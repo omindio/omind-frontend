@@ -1,0 +1,12 @@
+version: '3'
+services:
+  frontend-app:
+    container_name: frontend-app
+    image: frontend-app
+    restart: unless-stopped
+    build: .
+    ports:
+      - '${PORT}:${PORT}'
+    command: npm start
+    volumes: 
+      - .:/opt/frontend-app
