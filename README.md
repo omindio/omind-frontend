@@ -8,27 +8,23 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Docker dependency. Install it from:
-
-```
-[https://docs.docker.com/install/](https://docs.docker.com/install/)
-```
+Docker dependency. Install it from: [https://docs.docker.com/install/](https://docs.docker.com/install/)
 
 ### Installing
 
 1. Copy *.env.dist* and paste as *.env*
 2. Build Docker containers:
 ```
-docker-compose build
+**docker-compose build**
 ```
 3. Run containrs:
 ```
-docker-compose up -d
+**docker-compose up -d**
 ```
 
 List all containers:
 ```
-docker ps
+**docker ps**
 ```
 
 ## Running the tests
@@ -50,3 +46,5 @@ docker ps
 - **redux-thunk**:
 
 ### Proyect Organization
+
+*TODO*
