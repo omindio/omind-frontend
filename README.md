@@ -15,21 +15,17 @@ Docker dependency. Install it from: [https://docs.docker.com/install/](https://d
 1. Copy *.env.dist* and paste as *.env*
 2. Build Docker containers:
 ```
-**docker-compose build**
+docker-compose build
 ```
 3. Run containrs:
 ```
-**docker-compose up -d**
+docker-compose up -d
 ```
 
 List all containers:
 ```
-**docker ps**
+docker ps
 ```
-
-## Running the tests
-
-*TODO*
 
 ### Packages
 
@@ -46,5 +42,9 @@ List all containers:
 - **redux-thunk**:
 
 ### Proyect Organization
+
+*TODO*
+
+## Running the tests
 
 *TODO*
