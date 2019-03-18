@@ -22,6 +22,8 @@ docker-compose build
 docker-compose up -d
 ```
 
+- App: [http://0.0.0.0:3200](http://0.0.0.0:3200)
+
 List all containers:
 ```
 docker ps
