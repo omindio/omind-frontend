@@ -17,17 +17,17 @@ Docker dependency. Install it from: [https://docs.docker.com/install/](https://d
 ```
 docker-compose build
 ```
-3. Run containrs:
+3. Run containers:
 ```
 docker-compose up -d
 ```
-
-- App: [http://0.0.0.0:3200](http://0.0.0.0:3200)
 
 List all containers:
 ```
 docker ps
 ```
+
+- App: [http://0.0.0.0:3200](http://0.0.0.0:3200)
 
 ### Packages
 
