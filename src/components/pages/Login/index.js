@@ -1,98 +1,112 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
 
 import './styles.scss';
 
-import { authActions } from '@containers/Auth';
+import { authActions } from 'containers/Auth';
 
 class Login extends Component {
-    componentDidMount () {
-        this.checkAuth();
+  componentDidMount() {
+    this.checkAuth();
+  }
+
+  componentDidUpdate() {
+    // check if errors
+    this.checkAuth();
+  }
+
+  /*
+  serverErrorHandler() {
+    const { error } = this.props;
+
+    if (error) {
+      let errorMessage;
+      switch (error.type) {
+        case 'ValidationSchemaError':
+          const errorMessageObject = JSON.parse(error.message);
+          errorMessageObject.forEach(element => {
+            errorMessage += <div>{element.message}</div>;
+          });
+          break;
+        default:
+          errorMessage = error.message;
+          break;
+      }
+
+      return <div>{errorMessage}</div>;
     }
-
-    componentDidUpdate () {
-    //check if errors
-        this.checkAuth();
-    }
-
-    checkAuth () {
-        const { isAuthenticated, history } = this.props;
-        //check is user is authenticated and push to profile
-        if (isAuthenticated) {
-            history.push('/profile');
-        }
-    }
-
-    serverErrorHandler () {
-        const { error } = this.props;
-
-        if (error) {
-            let errorMessage;
-            switch (error.type) {
-                case 'ValidationSchemaError':
-                    const errorMessageObject = JSON.parse(error.message);
-                    errorMessageObject.forEach(element => {
-                        errorMessage += <div>{element.message}</div>;
-                    });
-                    break;
-                default:
-                    errorMessage = error.message;
-                    break;
-            }
-
-            return <div>{errorMessage}</div>;
-        }
-    }
+  }
+  */
 
   onHandleLogin = event => {
-      event.preventDefault();
+    const { dispatch } = this.props;
 
-      const email = event.target.email;
-      const password = event.target.password;
+    event.preventDefault();
 
-      const creds = {
-          email: email.value.trim(),
-          password: password.value.trim()
-      };
+    const { email } = event.target;
+    const { password } = event.target;
 
-      this.props.dispatch(authActions.loginAction(creds));
+    const creds = {
+      email: email.value.trim(),
+      password: password.value.trim(),
+    };
+
+    dispatch(authActions.loginAction(creds));
   };
 
-  render () {
-      return (
-          <div>
-              <Helmet>
-                  <title>Omind - Login</title>
-              </Helmet>
-              <h3>Login Page</h3>
-              <form onSubmit={this.onHandleLogin}>
-                  <div>
-                      <label>Email</label>
-                      <input type="text" name="email" />
-                  </div>
-                  <div>
-                      <label>Password</label>
-                      <input type="password" name="password" />
-                  </div>
-                  <div>
-                      <button type="submit">Login</button>
-                  </div>
-              </form>
+  checkAuth() {
+    const { isAuthenticated, history } = this.props;
+    // check is user is authenticated and push to profile
+    if (isAuthenticated) {
+      history.push('/profile');
+    }
+  }
 
-              {this.errorHandler()}
+  render() {
+    return (
+      <div>
+        <Helmet>
+          <title>Omind - Login</title>
+        </Helmet>
+        <h3>Login Page</h3>
+        <form onSubmit={this.onHandleLogin}>
+          <div>
+            <label htmlFor="email">
+              Email
+              <input id="email" type="text" name="email" />
+            </label>
           </div>
-      );
+          <div>
+            <label htmlFor="password">
+              Password
+              <input id="password" type="password" name="password" />
+            </label>
+          </div>
+          <div>
+            <button type="submit">Login</button>
+          </div>
+        </form>
+      </div>
+    );
   }
 }
 
-function mapStateToProps (state) {
-    const { authReducer } = state;
-    const { isAuthenticated, error } = authReducer;
-    return {
-        isAuthenticated,
-        error
-    };
+Login.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  history: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+};
+
+function mapStateToProps(state) {
+  const { authReducer } = state;
+  const { isAuthenticated, error } = authReducer;
+  return {
+    isAuthenticated,
+    error,
+  };
 }
 
 export default connect(mapStateToProps)(Login);

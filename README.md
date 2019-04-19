@@ -1,6 +1,6 @@
 # React & Redux - Docker
 
-*TODO*
+_TODO_
 
 ## Getting Started
 
@@ -12,17 +12,21 @@ Docker dependency. Install it from: [https://docs.docker.com/install/](https://d
 
 ### Installing
 
-1. Copy *.env.dist* and paste as *.env*
+1. Copy _.env.dist_ and paste as _.env_
 2. Build Docker containers:
+
 ```
 docker-compose build
 ```
+
 3. Run containers:
+
 ```
 docker-compose up -d
 ```
 
 List all containers:
+
 ```
 docker ps
 ```
@@ -31,39 +35,41 @@ docker ps
 
 ### Packages
 
-- **axios**: 
-- **classnames**: 
-- **jwt-decode**: 
-- **node-sass**: 
-- **react**: 
-- **react-dom**: 
-- **react-intl**: 
-- **react-redux**: 
-- **react-router-dom**: 
-- **redux**: 
-- **redux-saga**: 
-- **redux-logger**: 
-- **jsonwebtoken**: 
+- **axios**:
+- **classnames**:
+- **jwt-decode**:
+- **node-sass**:
+- **react**:
+- **react-dom**:
+- **react-intl**:
+- **react-redux**:
+- **react-router-dom**:
+- **redux**:
+- **redux-saga**:
+- **redux-logger**:
+- **jsonwebtoken**:
 
 - **webpack, webpack-dev-server, webpack-cli**:
 - **@babel/core, @babel/preset-env, @babel/preset-react, @babel/node, @babel/plugin-proposal-class-properties, babel-loader**:
-- **eslint eslint-loader babel-eslint eslint-config-react eslint-plugin-react**: 
+- **eslint eslint-loader babel-eslint eslint-plugin-react eslint-config-airbnb eslint-config-prettier eslint-plugin-import**:
 - **sass-loader node-sass css-loader style-loader**:
 - **html-webpack-plugin**:
 - **babel-plugin-module-resolver**:
 - **@babel/plugin-transform-runtime**:
 - **dotenv**:
-- **prettier**:
+- **prettier pretty-quick**:
 - **react-helmet**: title, metas inside component
+- **eslint-import-resolver-babel-module**:
+- **prop-types**:
 
 ### Proyect Organization
 
-*TODO*
+_TODO_
 
 ## Running the tests
 
-*TODO*
+_TODO_
 
 ## Production Build
 
-*TODO*
+_TODO_
