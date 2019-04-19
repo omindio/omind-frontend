@@ -31,22 +31,39 @@ docker ps
 
 ### Packages
 
-- **axios**:
-- **classnames**:
-- **jwt-decode**:
-- **node-sass**:
-- **react**:
-- **react-dom**:
-- **react-intl**:
-- **react-redux**:
-- **react-router-dom**:
-- **redux**:
-- **redux-thunk**:
+- **axios**: 
+- **classnames**: 
+- **jwt-decode**: 
+- **node-sass**: 
+- **react**: 
+- **react-dom**: 
+- **react-intl**: 
+- **react-redux**: 
+- **react-router-dom**: 
+- **redux**: 
+- **redux-saga**: 
+- **redux-logger**: 
+- **jsonwebtoken**: 
+
+- **webpack, webpack-dev-server, webpack-cli**:
+- **@babel/core, @babel/preset-env, @babel/preset-react, @babel/node, @babel/plugin-proposal-class-properties, babel-loader**:
+- **eslint eslint-loader babel-eslint eslint-config-react eslint-plugin-react**: 
+- **sass-loader node-sass css-loader style-loader**:
+- **html-webpack-plugin**:
+- **babel-plugin-module-resolver**:
+- **@babel/plugin-transform-runtime**:
+- **dotenv**:
+- **prettier**:
+- **react-helmet**: title, metas inside component
 
 ### Proyect Organization
 
 *TODO*
 
 ## Running the tests
+
+*TODO*
+
+## Production Build
 
 *TODO*

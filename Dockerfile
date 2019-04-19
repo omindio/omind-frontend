@@ -3,10 +3,9 @@ FROM node:11-alpine
 RUN mkdir -p /opt/frontend-app
 WORKDIR /opt/frontend-app
 
-COPY package.json .
-RUN npm install --quiet
+COPY . /opt/frontend-app
 
-COPY . .
+RUN npm install --quiet
 
 EXPOSE ${PORT}
 
