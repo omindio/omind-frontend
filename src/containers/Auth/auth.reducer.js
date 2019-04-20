@@ -25,6 +25,7 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: true,
+        user: action.response,
         error: null,
       });
     case LOGIN_FAILURE:

@@ -21,7 +21,7 @@ const AppRoute = () => {
       <Route path="/login" component={Login} />
       <Route path="/logout" component={Logout} />
 
-      <PrivateRoute path="/profile" component={Profile} />
+      <PrivateRoute path="/profile" allowedRoles={['Admin', 'User']} component={Profile} />
 
       <Route path="*" component={NotFound} />
     </Switch>

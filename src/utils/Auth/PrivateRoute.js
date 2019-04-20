@@ -3,22 +3,25 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import jwt from 'jsonwebtoken';
-
 import { authActions } from 'containers/Auth';
 
 // TODO: Think about add tokenRefresh
-const checkAuth = (isAuthenticated, dispatch) => {
+const checkAuth = (isAuthenticated, dispatch, allowedRoles, user) => {
   // const { isAuthenticated, dispatch } = this.props;
-  const token = localStorage.getItem('token');
-
   if (!isAuthenticated) {
     return false;
   }
 
+  if (!allowedRoles.includes(user.role)) {
+    /*
+      TODO: Return 404 or not authorized.
+    */
+    return false;
+  }
+
   try {
-    const { exp } = jwt.decode(token);
-    if (exp < new Date().getTime() / 1000) {
+    const tokenExpires = localStorage.getItem('token_expires');
+    if (tokenExpires < new Date().getTime() / 1000) {
       // dispatch logout
       dispatch(authActions.logoutAction());
       // return false;
@@ -30,19 +33,29 @@ const checkAuth = (isAuthenticated, dispatch) => {
   return true;
 };
 
-const PrivateRoute = ({ component: Component, isAuthenticated, dispatch, ...rest }) => (
+const PrivateRoute = ({
+  component: Component,
+  allowedRoles,
+  isAuthenticated,
+  user,
+  dispatch,
+  ...rest
+}) => (
   <Route
     {...rest}
     render={props =>
-      checkAuth(isAuthenticated, dispatch) ? (
+      checkAuth(isAuthenticated, dispatch, allowedRoles, user) ? (
         <Component {...props} />
       ) : (
-        <Redirect to={{ pathname: '/login' }} />
+        <Redirect to={{ pathname: '/' }} />
       )
     }
   />
 );
 
+/*
+TODO: add user, allowedRoles and component prop-types
+*/
 PrivateRoute.propTypes = {
   dispatch: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
@@ -50,9 +63,10 @@ PrivateRoute.propTypes = {
 
 function mapStateToProps(state) {
   const { authReducer } = state;
-  const { isAuthenticated } = authReducer;
+  const { isAuthenticated, user } = authReducer;
   return {
     isAuthenticated,
+    user,
   };
 }
 
