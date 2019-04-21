@@ -48,15 +48,16 @@ docker ps
 - **redux-saga**:
 - **redux-logger**:
 - **jsonwebtoken**:
+- **history**:
 
-- **webpack, webpack-dev-server, webpack-cli**:
-- **@babel/core, @babel/preset-env, @babel/preset-react, @babel/node, @babel/plugin-proposal-class-properties, babel-loader**:
+- **webpack webpack-dev-server webpack-cli**:
+- **@babel/core @babel/preset-env @babel/preset-react @babel/node @babel/plugin-proposal-class-properties babel-plugin-module-resolver babel-loader**:
 - **eslint eslint-loader babel-eslint eslint-plugin-react eslint-config-airbnb eslint-config-prettier eslint-plugin-import**:
 - **sass-loader node-sass css-loader style-loader**:
 - **html-webpack-plugin**:
-- **babel-plugin-module-resolver**:
 - **@babel/plugin-transform-runtime**:
-- **dotenv**:
+- **dotenv**:odule-resolver\*\*:
+- \*\*@babel/plugin-transfor
 - **prettier pretty-quick**:
 - **react-helmet**: title, metas inside component
 - **eslint-import-resolver-babel-module**:

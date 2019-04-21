@@ -51,44 +51,8 @@ module.exports = () => {
           collapseWhitespace: true,
         },
         inject: true,
-        //appMountId: 'omind'
       }),
       new webpack.DefinePlugin(envKeys),
     ],
   };
 };
-
-/*
-const webpack = require('webpack');
-const path = require('path');
-
-module.exports = {
-  entry: './src/index.js',
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader']
-      }
-    ]
-  },
-  resolve: {
-    extensions: ['*', '.js', '.jsx']
-  },
-  output: {
-    path: path.join(__dirname, 'public'),
-    publicPath: '/',
-    filename: 'app.js'
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  devServer: {
-    contentBase: path.join(__dirname, 'public'),
-    port: 3200,
-    host: "0.0.0.0",
-    public: "0.0.0.0:3200",
-    hot: true
-  }
-};*/
