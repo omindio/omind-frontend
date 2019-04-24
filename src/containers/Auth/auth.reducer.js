@@ -9,7 +9,10 @@ import {
 
 const initialState = {
   isFetching: false,
-  isAuthenticated: !!localStorage.getItem('token'),
+  isAuthenticated: false,
+  user: undefined,
+  token: undefined,
+  tokenExpires: undefined,
 };
 
 export default function(state = initialState, action) {
@@ -25,7 +28,9 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: true,
-        user: action.response,
+        user: action.response.user,
+        token: action.response.token,
+        tokenExpires: action.response.tokenExpires,
         error: null,
       });
     case LOGIN_FAILURE:
@@ -42,9 +47,12 @@ export default function(state = initialState, action) {
       });
     case LOGOUT_SUCCESS:
       return Object.assign({}, state, {
-        isFetching: true,
+        isFetching: false,
         isAuthenticated: false,
         error: null,
+        user: undefined,
+        token: undefined,
+        tokenExpires: undefined,
       });
     case LOGOUT_FAILURE:
       return Object.assign({}, state, {

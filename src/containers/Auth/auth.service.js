@@ -7,18 +7,22 @@ const API_ENDPOINT = `${process.env.API_URL}/users/auth`;
 TODO: Thin about call User action and save role, token and tokenexpires inside.
 */
 
-export const loginService = async params => {
+const loginService = async params => {
   return axios
     .post(API_ENDPOINT, params)
     .then(response => {
       const { token } = response.data;
-      const { exp, role, email, name } = jwt.decode(token);
-      localStorage.setItem('token', token);
-      localStorage.setItem('token_expires', exp);
+      const { id, exp, role, email, name } = jwt.decode(token);
+
       return {
-        role,
-        email,
-        name,
+        user: {
+          id,
+          role,
+          name,
+          email,
+        },
+        token,
+        tokenExpires: exp,
       };
     })
     .catch(err => {
@@ -26,7 +30,4 @@ export const loginService = async params => {
     });
 };
 
-export const logoutService = async () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('token_expires');
-};
+export default loginService;

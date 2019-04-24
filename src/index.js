@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import store from 'containers/store';
+import { Store } from 'containers';
 import * as serviceWorker from './serviceWorker';
 
 import App from './App';
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={Store}>
     <App />
   </Provider>,
   document.getElementById('omind'),

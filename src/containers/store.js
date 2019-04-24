@@ -1,13 +1,26 @@
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { logger } from 'redux-logger';
+import { throttle } from 'lodash';
 
-import Reducer from './root.reducer';
-import Saga from './root.saga';
+import { saveState, loadState } from './localStorage';
+
+import Reducer from './reducer';
+import Saga from './saga';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(Reducer, applyMiddleware(sagaMiddleware, logger));
+const persistedState = loadState();
+
+const store = createStore(Reducer, persistedState, applyMiddleware(sagaMiddleware, logger));
+
+store.subscribe(
+  throttle(() => {
+    saveState({
+      authReducer: store.getState().authReducer,
+    });
+  }, 1000),
+);
 
 sagaMiddleware.run(Saga);
 

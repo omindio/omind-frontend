@@ -3,9 +3,14 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './styles.scss';
+import { authActions } from 'containers/Auth';
 
 const Nav = props => {
-  const { isAuthenticated } = props;
+  const { isAuthenticated, dispatch } = props;
+
+  const handleLogout = () => {
+    dispatch(authActions.logoutAction());
+  };
 
   return (
     <nav>
@@ -14,7 +19,9 @@ const Nav = props => {
       <NavLink to="/contact">Lets Talk</NavLink>
 
       {isAuthenticated ? (
-        <NavLink to="/logout">Sign out</NavLink>
+        <button onClick={handleLogout} type="button">
+          Logout
+        </button>
       ) : (
         <NavLink to="/login">Sign in</NavLink>
       )}
@@ -23,6 +30,7 @@ const Nav = props => {
 };
 
 Nav.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
 };
 

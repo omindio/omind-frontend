@@ -49,6 +49,8 @@ docker ps
 - **redux-logger**:
 - **jsonwebtoken**:
 - **history**:
+- **joi joi-browser**:
+- **lodash.throttle**:
 
 - **webpack webpack-dev-server webpack-cli**:
 - **@babel/core @babel/preset-env @babel/preset-react @babel/node @babel/plugin-proposal-class-properties babel-plugin-module-resolver babel-loader**:

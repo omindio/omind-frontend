@@ -2,7 +2,7 @@ import { put, call } from 'redux-saga/effects';
 
 import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS, LOGOUT_FAILURE } from './auth.types';
 
-import { loginService, logoutService } from './auth.service';
+import loginService from './auth.service';
 
 export function* loginWorker(action) {
   try {
@@ -15,7 +15,6 @@ export function* loginWorker(action) {
 
 export function* logoutWorker() {
   try {
-    yield call(logoutService);
     yield put({ type: LOGOUT_SUCCESS });
   } catch (error) {
     yield put({ type: LOGOUT_FAILURE, response: error });
