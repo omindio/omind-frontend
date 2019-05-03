@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { Home, Proyects, Contact, Profile, Login, NotFound } from 'components/pages';
+import { Home, Proyects, Contact, UserProfile, Login, NotFound } from '@components/pages';
 
-import { PrivateRoute } from 'utils/Auth';
+import { PrivateRoute, Role } from '@utils/Auth';
 
 const AppRoute = () => {
   return (
@@ -14,7 +14,11 @@ const AppRoute = () => {
 
       <Route path="/login" component={Login} />
 
-      <PrivateRoute path="/profile" allowedRoles={['Admin', 'User']} component={Profile} />
+      <PrivateRoute
+        path="/profile"
+        allowedRoles={[Role.Admin, Role.User]}
+        component={UserProfile}
+      />
 
       <Route path="*" component={NotFound} />
     </Switch>

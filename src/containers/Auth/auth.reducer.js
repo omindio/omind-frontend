@@ -9,10 +9,13 @@ import {
 
 const initialState = {
   isFetching: false,
+  error: undefined,
   isAuthenticated: false,
-  user: undefined,
+  userId: undefined,
+  userRole: undefined,
   token: undefined,
   tokenExpires: undefined,
+  values: undefined,
 };
 
 export default function(state = initialState, action) {
@@ -20,18 +23,19 @@ export default function(state = initialState, action) {
     // ---LOGIN---
     case LOGIN_REQUEST:
       return Object.assign({}, state, {
+        error: undefined,
         isFetching: true,
         isAuthenticated: false,
-        user: action.creds,
       });
     case LOGIN_SUCCESS:
       return Object.assign({}, state, {
+        error: undefined,
         isFetching: false,
         isAuthenticated: true,
-        user: action.response.user,
+        userId: action.response.userId,
+        userRole: action.response.userRole,
         token: action.response.token,
         tokenExpires: action.response.tokenExpires,
-        error: null,
       });
     case LOGIN_FAILURE:
       return Object.assign({}, state, {
@@ -49,8 +53,9 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: false,
-        error: null,
-        user: undefined,
+        error: undefined,
+        userId: undefined,
+        userRole: undefined,
         token: undefined,
         tokenExpires: undefined,
       });

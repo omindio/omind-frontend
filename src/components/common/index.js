@@ -1,3 +1,4 @@
 import Header from './Header';
+import Loader from './Loader';
 
-export default Header;
+export { Header, Loader };

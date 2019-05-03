@@ -49,7 +49,7 @@ docker ps
 - **redux-logger**:
 - **jsonwebtoken**:
 - **history**:
-- **joi joi-browser**:
+- **yup**:
 - **lodash.throttle**:
 
 - **webpack webpack-dev-server webpack-cli**:
@@ -64,6 +64,7 @@ docker ps
 - **react-helmet**: title, metas inside component
 - **eslint-import-resolver-babel-module**:
 - **prop-types**:
+- **npm i formik**:
 
 ### Proyect Organization
 

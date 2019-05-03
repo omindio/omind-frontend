@@ -41,11 +41,6 @@ module.exports = () => {
         },
       ],
     },
-    resolve: {
-      alias: {
-        joi: 'joi-browser',
-      },
-    },
     plugins: [
       new HtmlWebpackPlugin({
         template: 'src/index.html',

@@ -1,11 +1,11 @@
 import { LOGIN_REQUEST, LOGOUT_REQUEST } from './auth.types';
 
-export const loginAction = creds => {
+export const loginAction = values => {
   return {
     type: LOGIN_REQUEST,
     isFetching: true,
     isAuthenticated: false,
-    creds,
+    values,
   };
 };
 

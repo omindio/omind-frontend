@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './styles.scss';
-import { authActions } from 'containers/Auth';
+import { authActions } from '@containers/Auth';
 
 const Nav = props => {
   const { isAuthenticated, dispatch } = props;

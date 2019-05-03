@@ -11,7 +11,6 @@ import Saga from './saga';
 const sagaMiddleware = createSagaMiddleware();
 
 const persistedState = loadState();
-
 const store = createStore(Reducer, persistedState, applyMiddleware(sagaMiddleware, logger));
 
 store.subscribe(

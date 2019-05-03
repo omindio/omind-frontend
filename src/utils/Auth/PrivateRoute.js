@@ -3,15 +3,15 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { authActions } from 'containers/Auth';
+import { authActions } from '@containers/Auth';
 
 // TODO: Think about add tokenRefresh
-const checkAuth = (isAuthenticated, user, tokenExpires, allowedRoles, dispatch) => {
+const checkAuth = (isAuthenticated, userRole, tokenExpires, allowedRoles, dispatch) => {
   if (!isAuthenticated) {
     return false;
   }
 
-  if (!allowedRoles.includes(user.role)) {
+  if (!allowedRoles.includes(userRole)) {
     return false;
   }
 
@@ -33,14 +33,14 @@ const PrivateRoute = ({
   allowedRoles,
   isAuthenticated,
   tokenExpires,
-  user,
+  userRole,
   dispatch,
   ...rest
 }) => (
   <Route
     {...rest}
     render={props =>
-      checkAuth(isAuthenticated, user, tokenExpires, allowedRoles, dispatch) ? (
+      checkAuth(isAuthenticated, userRole, tokenExpires, allowedRoles, dispatch) ? (
         <Component {...props} />
       ) : (
         <Redirect to={{ pathname: '/' }} />
@@ -57,17 +57,18 @@ PrivateRoute.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   allowedRoles: PropTypes.array.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
+  // eslint-disable-next-line react/require-default-props
+  tokenExpires: PropTypes.number,
 };
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   const { authReducer } = state;
-  const { isAuthenticated, tokenExpires, user } = authReducer;
+  const { isAuthenticated, tokenExpires, userRole } = authReducer;
   return {
     isAuthenticated,
-    user,
+    userRole,
     tokenExpires,
   };
-}
+};
 
 export default connect(mapStateToProps)(PrivateRoute);

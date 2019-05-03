@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
+import { Formik, ErrorMessage, Form, Field } from 'formik';
+
+import { authActions, loginSchema } from '@containers/Auth';
+import { StateErrorHandler } from '@utils/ErrorHandler';
 
 import './styles.scss';
-
-import { authActions } from 'containers/Auth';
 
 class Login extends Component {
   componentDidMount() {
@@ -17,45 +19,6 @@ class Login extends Component {
     this.checkAuth();
   }
 
-  /*
-  serverErrorHandler() {
-    const { error } = this.props;
-
-    if (error) {
-      let errorMessage;
-      switch (error.type) {
-        case 'ValidationSchemaError':
-          const errorMessageObject = JSON.parse(error.message);
-          errorMessageObject.forEach(element => {
-            errorMessage += <div>{element.message}</div>;
-          });
-          break;
-        default:
-          errorMessage = error.message;
-          break;
-      }
-
-      return <div>{errorMessage}</div>;
-    }
-  }
-  */
-
-  onHandleLogin = event => {
-    const { dispatch } = this.props;
-
-    event.preventDefault();
-
-    const { email } = event.target;
-    const { password } = event.target;
-
-    const creds = {
-      email: email.value.trim(),
-      password: password.value.trim(),
-    };
-
-    dispatch(authActions.loginAction(creds));
-  };
-
   checkAuth() {
     const { isAuthenticated, history } = this.props;
     // check is user is authenticated and push to profile
@@ -65,29 +28,43 @@ class Login extends Component {
   }
 
   render() {
+    const { error } = this.props;
+
     return (
       <div>
         <Helmet>
           <title>Omind - Login</title>
         </Helmet>
         <h3>Login Page</h3>
-        <form onSubmit={this.onHandleLogin}>
-          <div>
-            <label htmlFor="email">
-              Email
-              <input id="email" type="text" name="email" />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password
-              <input id="password" type="password" name="password" />
-            </label>
-          </div>
-          <div>
-            <button type="submit">Login</button>
-          </div>
-        </form>
+
+        <StateErrorHandler error={error} />
+
+        <Formik
+          initialValues={{ email: '', password: '' }}
+          validationSchema={loginSchema}
+          onSubmit={values => {
+            const { dispatch } = this.props;
+            dispatch(authActions.loginAction(values));
+          }}
+          render={values => (
+            <Form>
+              <div>
+                <Field value={values.email} placeholder="email" type="email" name="email" />
+                <ErrorMessage name="email" component="span" />
+              </div>
+              <div>
+                <Field
+                  value={values.password}
+                  placeholder="password"
+                  type="password"
+                  name="password"
+                />
+                <ErrorMessage name="password" component="span" />
+              </div>
+              <button type="submit">Sign in</button>
+            </Form>
+          )}
+        />
       </div>
     );
   }
@@ -100,13 +77,13 @@ Login.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
 };
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   const { authReducer } = state;
   const { isAuthenticated, error } = authReducer;
   return {
     isAuthenticated,
     error,
   };
-}
+};
 
 export default connect(mapStateToProps)(Login);

@@ -13,10 +13,10 @@
       {
         "root": ["./"],
         "alias": {
-          "components": "./src/components",
-          "containers": "./src/containers",
-          "utils": "./src/utils",
-          "routes": "./src/routes"
+          "@components": "./src/components",
+          "@containers": "./src/containers",
+          "@utils": "./src/utils",
+          "@routes": "./src/routes"
         }
       }
     ]

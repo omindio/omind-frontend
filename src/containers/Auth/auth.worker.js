@@ -6,7 +6,8 @@ import loginService from './auth.service';
 
 export function* loginWorker(action) {
   try {
-    const response = yield call(loginService, action.creds);
+    const { values } = action;
+    const response = yield call(loginService, values);
     yield put({ type: LOGIN_SUCCESS, response });
   } catch (error) {
     yield put({ type: LOGIN_FAILURE, response: error });

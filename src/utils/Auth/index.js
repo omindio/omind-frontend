@@ -1,4 +1,4 @@
-import authHeader from './auth.header';
 import PrivateRoute from './PrivateRoute';
+import Role from './roles';
 
-export { authHeader, PrivateRoute };
+export { PrivateRoute, Role };
