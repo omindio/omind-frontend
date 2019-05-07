@@ -1,11 +1,19 @@
-import { fork } from 'redux-saga/effects';
+import { fork, all } from 'redux-saga/effects';
 
-import { authSaga } from './Auth';
-import { userProfileSaga } from './UserProfile';
+import { saga as userSaga } from './User';
+import { saga as authSaga } from './Auth';
+
+const getWatchers = sagas => {
+  const watchers = [];
+  for (const saga of sagas) {
+    const modules = Object.values(saga);
+    for (const module of modules) {
+      watchers.push(...Object.values(module));
+    }
+  }
+  return watchers;
+};
 
 export default function* rootSaga() {
-  yield fork(authSaga.loginWatcher);
-  yield fork(authSaga.logoutWatcher);
-  yield fork(userProfileSaga.loadDataWatcher);
-  yield fork(userProfileSaga.userProfileWatcher);
+  yield all([...getWatchers([authSaga, userSaga])].map(fork));
 }

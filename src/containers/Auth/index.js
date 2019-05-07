@@ -1,6 +1,10 @@
-import * as authActions from './auth.actions';
-import authReducer from './auth.reducer';
-import * as authSaga from './auth.saga';
-import loginSchema from './validation/auth.validation';
+/*
+  TODO: Think about add just Action.
+*/
+import * as Login from './Login';
+import * as Logout from './Logout';
 
-export { authActions, authReducer, authSaga, loginSchema };
+import reducer from './reducer';
+import saga from './saga';
+
+export { Login, Logout, reducer, saga };

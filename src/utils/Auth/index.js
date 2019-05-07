@@ -1,4 +1,4 @@
-import PrivateRoute from './PrivateRoute';
+import ProtectedRoute from './ProtectedRoute';
 import Role from './roles';
 
-export { PrivateRoute, Role };
+export { ProtectedRoute, Role };

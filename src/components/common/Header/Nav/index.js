@@ -3,13 +3,14 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './styles.scss';
-import { authActions } from '@containers/Auth';
+
+import { logoutAction } from '@containers/Auth/Logout';
 
 const Nav = props => {
   const { isAuthenticated, dispatch } = props;
 
   const handleLogout = () => {
-    dispatch(authActions.logoutAction());
+    dispatch(logoutAction());
   };
 
   return (
@@ -30,8 +31,8 @@ const Nav = props => {
 };
 
 Nav.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default Nav;
