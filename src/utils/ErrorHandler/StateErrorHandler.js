@@ -1,5 +1,6 @@
 /* eslint-disable guard-for-in */
 import React from 'react';
+import { Alert } from 'react-bootstrap';
 
 const build = error => {
   const errorMessage = [];
@@ -16,12 +17,20 @@ const build = error => {
             const obj = errors[key];
             for (const prop in obj) {
               const keyList = `${key}_${prop}`;
-              errorMessage.push(<li key={keyList}>{obj[prop]}</li>);
+              errorMessage.push(
+                <Alert key={keyList} variant="danger">
+                  {obj[prop]}
+                </Alert>,
+              );
             }
           }
           break;
         default:
-          errorMessage.push(<li key={0}>{error.message}</li>);
+          errorMessage.push(
+            <Alert key={0} variant="danger">
+              {error.message}
+            </Alert>,
+          );
           break;
       }
     }
@@ -33,11 +42,7 @@ const StateErrorHandler = props => {
   const { error } = props;
   const errorMessage = build(error);
 
-  return (
-    <div>
-      <ul>{errorMessage}</ul>
-    </div>
-  );
+  return <div>{errorMessage}</div>;
 };
 
 export default StateErrorHandler;

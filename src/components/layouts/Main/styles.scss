@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800');
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$colors: (
+  'black': #0e1111,
+  'blue': $blue,
+  'red': $red,
+  'orange': $orange,
+  'yellow': $yellow,
+  'green': $green,
+  'white': $white,
+  'gray': $gray-600,
+  'gray-dark': $gray-800,
+);
+
+$theme-colors: (
+  'primary': color('black'),
+  'secondary': #fffa94,
+  'success': color('green'),
+  'info': color('blue'),
+  'warning': color('yellow'),
+  'danger': color('red'),
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 600px,
+  md: 800px,
+  lg: 1000px,
+  xl: 1200px,
+);
+$container-max-widths: (
+  sm: 100%,
+  md: 100%,
+  lg: 100%,
+  xl: 100%,
+);
+
+$body-bg: #fff;
+$body-color: color('black');
+
+$font-family-sans-serif: 'Helvetica Neue', sans-serif;
+$font-family-serif: 'Helvetica Neue', sans-serif;
+$font-family-base: $font-family-sans-serif;
+
+$font-size-base: 18px;
+$font-size-large: $font-size-base;
+$font-size-small: 14px;
+
+$h1-font-size: 3.75rem;
+
+/*
+  TODO: import on each component or page what is necesary
+*/
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/type';
+@import '~bootstrap/scss/images';
+@import '~bootstrap/scss/code';
+@import '~bootstrap/scss/grid';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/alert';
+@import '~bootstrap/scss/pagination';
+@import '~bootstrap/scss/spinners';
+@import '~bootstrap/scss/tables';
+@import '~bootstrap/scss/spinners';
+@import '~bootstrap/scss/nav';
+@import '~bootstrap/scss/navbar';
+@import '~bootstrap/scss/utilities';
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  strong {
+    font-weight: 700;
+  }
+}
+
+.container {
+  padding-right: 95px !important;
+  padding-left: 396px !important;
+}
+
+.title {
+  font-size: $h1-font-size !important;
+}
+
+.form-control {
+  text-transform: capitalize;
+  border: 3px solid #1f1e1d;
+  background: transparent;
+  padding: 1.7rem 1.5rem;
+  color: #6c6c6c;
+}

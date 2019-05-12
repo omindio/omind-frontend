@@ -3,24 +3,24 @@ import createSagaMiddleware from 'redux-saga';
 import { logger } from 'redux-logger';
 import { throttle } from 'lodash';
 
-import { State } from '@utils/LocalStorage';
+import state from '@utils/LocalStorage';
 
-import Reducer from './reducer';
-import Saga from './saga';
+import rootReducer from './rootReducer';
+import rootSaga from './rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const persistedState = State.load();
-const AppStore = createStore(Reducer, persistedState, applyMiddleware(sagaMiddleware, logger));
+const persistedState = state.load();
+const AppStore = createStore(rootReducer, persistedState, applyMiddleware(sagaMiddleware, logger));
 
 AppStore.subscribe(
   throttle(() => {
-    State.save({
+    state.save({
       auth: AppStore.getState().auth,
     });
   }, 1000),
 );
 
-sagaMiddleware.run(Saga);
+sagaMiddleware.run(rootSaga);
 
 export default AppStore;

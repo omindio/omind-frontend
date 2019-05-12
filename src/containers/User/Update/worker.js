@@ -1,6 +1,11 @@
 import { put, call } from 'redux-saga/effects';
 
-import { UPDATE_SUCCESS, UPDATE_FAILURE, LOAD_DATA_SUCCESS, LOAD_DATA_FAILURE } from './types';
+import {
+  USER_UPDATE_SUCCESS,
+  USER_UPDATE_FAILURE,
+  LOAD_DATA_SUCCESS,
+  LOAD_DATA_FAILURE,
+} from './types';
 
 import * as Service from './service';
 
@@ -18,8 +23,8 @@ export function* updateWorker(action) {
   try {
     const { values } = action;
     const response = yield call(Service.update, values);
-    yield put({ type: UPDATE_SUCCESS, response });
+    yield put({ type: USER_UPDATE_SUCCESS, response });
   } catch (error) {
-    yield put({ type: UPDATE_FAILURE, response: error });
+    yield put({ type: USER_UPDATE_FAILURE, response: error });
   }
 }

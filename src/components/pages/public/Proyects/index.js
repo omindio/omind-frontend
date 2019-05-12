@@ -3,17 +3,15 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 
-import './styles.scss';
-
 class Proyects extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Helmet>
           <title>Omind - Proyects</title>
         </Helmet>
         <h1>Proyects</h1>
-      </div>
+      </React.Fragment>
     );
   }
 }

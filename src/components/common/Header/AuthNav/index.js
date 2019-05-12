@@ -1,26 +1,40 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { logoutAction } from '@containers/Auth/Logout';
 import PropTypes from 'prop-types';
 
 import { Role } from '@utils/Auth';
-
-import './styles.scss';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 
 const AuthNav = props => {
-  const { userRole } = props;
+  const { userRole, dispatch } = props;
 
   const isAdmin = userRole === Role.Admin;
 
+  const handleLogout = () => {
+    dispatch(logoutAction());
+  };
+
   return (
-    <nav>
-      <NavLink to="/profile">Profile</NavLink>
-      {isAdmin && <NavLink to="/users">Users</NavLink>}
-    </nav>
+    <Navbar>
+      <Navbar.Toggle />
+      <Navbar.Collapse className="justify-content-end">
+        <Nav className="mr-auto">
+          <Nav.Link href="/profile">Profile</Nav.Link>
+          {isAdmin && <Nav.Link href="/users">Users</Nav.Link>}
+          <Navbar.Text>
+            <Button onClick={handleLogout} type="submit">
+              Logout
+            </Button>
+          </Navbar.Text>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
 AuthNav.propTypes = {
   userRole: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default AuthNav;

@@ -2,9 +2,9 @@ import {
   LOAD_DATA_REQUEST,
   LOAD_DATA_FAILURE,
   LOAD_DATA_SUCCESS,
-  UPDATE_REQUEST,
-  UPDATE_SUCCESS,
-  UPDATE_FAILURE,
+  USER_UPDATE_REQUEST,
+  USER_UPDATE_SUCCESS,
+  USER_UPDATE_FAILURE,
 } from './types';
 
 const initialState = {
@@ -32,19 +32,19 @@ export default function(state = initialState, action) {
         isFetching: false,
         error: action.response,
       });
-    case UPDATE_REQUEST:
+    case USER_UPDATE_REQUEST:
       return Object.assign({}, state, {
         error: null,
         isFetching: true,
         user: action.values,
       });
-    case UPDATE_SUCCESS:
+    case USER_UPDATE_SUCCESS:
       return Object.assign({}, state, {
         error: null,
         isFetching: false,
         user: action.response,
       });
-    case UPDATE_FAILURE:
+    case USER_UPDATE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
         error: action.response,

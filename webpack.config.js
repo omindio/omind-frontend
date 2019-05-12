@@ -1,6 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const dotenv = require('dotenv');
 
 module.exports = () => {
@@ -19,6 +22,7 @@ module.exports = () => {
       publicPath: '/',
       filename: 'app.js',
     },
+    watch: true,
     devServer: {
       contentBase: path.resolve(__dirname, 'public'),
       port: process.env.PORT,
@@ -36,10 +40,36 @@ module.exports = () => {
           use: ['babel-loader', 'eslint-loader'],
         },
         {
-          test: /\.(scss|sass|css)$/i,
-          use: ['style-loader', 'css-loader', 'sass-loader'],
+          test: /\.(scss|css)$/i,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                // only enable hot in development
+                hmr: process.env.NODE_ENV === 'development',
+                // if hmr does not work, this is a forceful method.
+                reloadAll: true,
+              },
+            },
+            'css-loader',
+            'sass-loader',
+          ],
+        },
+        {
+          test: /.(jpg|jpeg|png|gif|mp3|svg)$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[path][name]-[hash:8].[ext]',
+              },
+            },
+          ],
         },
       ],
+    },
+    optimization: {
+      minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -49,6 +79,10 @@ module.exports = () => {
           collapseWhitespace: true,
         },
         inject: true,
+      }),
+      new MiniCssExtractPlugin({
+        filename: '[name].css',
+        chunkFilename: '[id].css',
       }),
       new webpack.DefinePlugin(envKeys),
     ],

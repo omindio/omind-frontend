@@ -1,37 +1,47 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { CSSTransition } from 'react-transition-group';
 
-import './styles.scss';
+import { Navbar as NavbarBootstrap, Nav as NavBootstrap, Container } from 'react-bootstrap';
 
-import { logoutAction } from '@containers/Auth/Logout';
+import { LogoWhite, LogoBlack } from '@components/common/Logo';
+
+import { Hamburguer, Content } from './components';
+
+const Logo = styled(NavbarBootstrap.Brand)`
+  padding: 0;
+`;
+
+const Navbar = styled(NavbarBootstrap)`
+  padding: 2.2rem;
+
+  .container-fluid {
+    z-index: 1000;
+  }
+`;
 
 const Nav = props => {
-  const { isAuthenticated, dispatch } = props;
-
-  const handleLogout = () => {
-    dispatch(logoutAction());
-  };
+  const { isAuthenticated, isOpen, dispatch } = props;
 
   return (
-    <nav>
-      <NavLink to="/">About</NavLink>
-      <NavLink to="/proyects">Our Work</NavLink>
-      <NavLink to="/contact">Lets Talk</NavLink>
-
-      {isAuthenticated ? (
-        <button onClick={handleLogout} type="button">
-          Logout
-        </button>
-      ) : (
-        <NavLink to="/login">Sign in</NavLink>
-      )}
-    </nav>
+    <Navbar className="fixed-top" bg="transparent">
+      <Container fluid="true">
+        <Logo href="/">{isOpen ? <LogoBlack /> : <LogoWhite />}</Logo>
+        <NavBootstrap className="ml-auto d-flex flex-column justify-content-center">
+          <Hamburguer isOpen={isOpen} dispatch={dispatch} />
+        </NavBootstrap>
+      </Container>
+      <CSSTransition in={isOpen} timeout={300} classNames="fade" unmountOnExit>
+        <Content dispatch={dispatch} isAuthenticated={isAuthenticated} />
+      </CSSTransition>
+    </Navbar>
   );
 };
 
 Nav.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 

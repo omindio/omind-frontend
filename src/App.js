@@ -4,8 +4,7 @@ import { Provider } from 'react-redux';
 
 import { createBrowserHistory } from 'history';
 
-import AppRoute from '@routes';
-import { Header } from '@components/common';
+import { Main } from '@components/layouts';
 import AppStore from '@containers';
 
 const history = createBrowserHistory();
@@ -14,10 +13,7 @@ const App = () => {
   return (
     <Provider store={AppStore}>
       <Router history={history}>
-        <div>
-          <Header />
-          <AppRoute />
-        </div>
+        <Main />
       </Router>
     </Provider>
   );

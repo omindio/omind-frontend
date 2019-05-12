@@ -1,6 +1,10 @@
+/*
+  TODO: Do some logic if it is necesary.
+*/
 const logout = () => {
   try {
-    localStorage.removeItem('state');
+    return null;
+    // eslint-disable-next-line no-unreachable
   } catch (err) {
     throw err;
   }

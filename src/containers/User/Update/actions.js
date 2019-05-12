@@ -1,4 +1,4 @@
-import { UPDATE_REQUEST, LOAD_DATA_REQUEST } from './types';
+import { USER_UPDATE_REQUEST, LOAD_DATA_REQUEST } from './types';
 
 const loadDataAction = values => {
   return {
@@ -9,7 +9,7 @@ const loadDataAction = values => {
 
 const updateAction = values => {
   return {
-    type: UPDATE_REQUEST,
+    type: USER_UPDATE_REQUEST,
     values,
   };
 };

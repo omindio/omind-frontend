@@ -1,4 +1,3 @@
-import * as State from './state';
+import * as state from './state';
 
-// eslint-disable-next-line import/prefer-default-export
-export { State };
+export default state;
