@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 
 import {
   Navbar as NavbarBootstrap,
@@ -29,25 +32,25 @@ const NavDropdown = styled(NavDropdownBootstrap)`
 `;
 
 const MainNav = props => {
-  const { dispatch } = props;
-
-  const handleLogout = () => {
-    dispatch(logoutAction());
-  };
+  const { logout, fullName } = props;
 
   return (
     <Navbar bg="primary" variant="dark">
       <Container fluid="true">
-        <Logo href="/">
-          <LogoWhite />
-        </Logo>
+        <LinkContainer to="/">
+          <Logo>
+            <LogoWhite />
+          </Logo>
+        </LinkContainer>
         <NavbarBootstrap.Toggle aria-controls="basic-navbar-nav" />
         <NavbarBootstrap className="p-0">
           <Nav className="ml-auto p-0">
-            <NavDropdown title="David González Hidalgo" id="basic-nav-dropdown">
-              <NavDropdownBootstrap.Item href="/settings">Profile</NavDropdownBootstrap.Item>
+            <NavDropdown title={fullName} id="basic-nav-dropdown">
+              <NavLink className="dropdown-item" to="/settings">
+                Profile
+              </NavLink>
               <NavDropdownBootstrap.Divider />
-              <NavDropdownBootstrap.Item href="#" onClick={handleLogout}>
+              <NavDropdownBootstrap.Item href="#" onClick={logout}>
                 Logout
               </NavDropdownBootstrap.Item>
             </NavDropdown>
@@ -59,7 +62,26 @@ const MainNav = props => {
 };
 
 MainNav.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  fullName: PropTypes.string.isRequired,
 };
 
-export default MainNav;
+const mapStateToProps = state => {
+  const { profile } = state.user;
+  const { name, lastName } = profile.user;
+
+  return {
+    fullName: `${name} ${lastName}`,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    // dispatching actions returned by action creators
+    logout: () => dispatch(logoutAction()),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MainNav);

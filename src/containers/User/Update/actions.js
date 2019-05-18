@@ -1,9 +1,8 @@
-import { USER_UPDATE_REQUEST, LOAD_DATA_REQUEST } from './types';
+import { USER_UPDATE_REQUEST, USER_UPDATE_CLEAR } from './types';
 
-const loadDataAction = values => {
+const clearAction = () => {
   return {
-    type: LOAD_DATA_REQUEST,
-    values,
+    type: USER_UPDATE_CLEAR,
   };
 };
 
@@ -14,4 +13,4 @@ const updateAction = values => {
   };
 };
 
-export { loadDataAction, updateAction };
+export { clearAction, updateAction };

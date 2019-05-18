@@ -5,21 +5,37 @@ import { Formik } from 'formik';
 import { Form, Button, Alert } from 'react-bootstrap';
 
 import { actions, validationSchema } from '@containers/User/Update';
-import { Loader } from '@components/common';
 import { getOneAction } from '@containers/User/GetOne';
+import { profileAction } from '@containers/User/Profile';
+
+import { Loader } from '@components/common';
 import { StateErrorHandler } from '@utils/ErrorHandler';
 
 import Field from './Field';
 
 class ProfileForm extends Component {
   componentDidMount() {
-    const { dispatch, userId, token } = this.props;
-    dispatch(getOneAction({ id: userId, token }));
+    const { fetch, userId, token } = this.props;
+    fetch({ id: userId, token });
+  }
+
+  componentDidUpdate() {
+    const { isUpdated, updateProfile, userUpdated } = this.props;
+    if (isUpdated) {
+      const { name, lastName, email } = userUpdated;
+
+      updateProfile({ name, lastName, email });
+    }
+  }
+
+  componentWillUnmount() {
+    const { clear } = this.props;
+    clear();
   }
 
   render() {
     const {
-      dispatch,
+      update,
       userId,
       token,
       userFetched,
@@ -32,12 +48,9 @@ class ProfileForm extends Component {
     } = this.props;
 
     if (isFetchingUpdate || isFetchingData) return <Loader />;
-
-    const { name, lastName, email } = userFetched;
-
-    console.log(Object.assign({}, userFetched, userUpdated));
-
     if (fetchDataError) return <StateErrorHandler error={fetchDataError} />;
+
+    const { name, lastName, email } = Object.assign({}, userFetched, userUpdated);
 
     return (
       <Formik
@@ -50,7 +63,7 @@ class ProfileForm extends Component {
         }}
         validationSchema={validationSchema}
         onSubmit={values => {
-          dispatch(actions.updateAction(Object.assign({}, values, { id: userId, token })));
+          update(Object.assign({}, values, { id: userId, token }));
         }}
         render={({ values, handleSubmit, handleChange, errors, touched }) => (
           <Form noValidate onSubmit={handleSubmit}>
@@ -122,7 +135,6 @@ class ProfileForm extends Component {
 }
 
 ProfileForm.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
   isFetchingData: PropTypes.bool.isRequired,
@@ -146,4 +158,18 @@ const mapStateToProps = state => {
     updateError: update.error,
   };
 };
-export default connect(mapStateToProps)(ProfileForm);
+
+const mapDispatchToProps = dispatch => {
+  return {
+    // dispatching actions returned by action creators
+    fetch: values => dispatch(getOneAction(values)),
+    update: values => dispatch(actions.updateAction(values)),
+    clear: () => dispatch(actions.clearAction()),
+    updateProfile: values => dispatch(profileAction(values)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ProfileForm);

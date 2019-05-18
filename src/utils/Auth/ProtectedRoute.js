@@ -5,7 +5,10 @@ import PropTypes from 'prop-types';
 
 import { logoutAction } from '@containers/Auth/Logout';
 
-// TODO: Think about add tokenRefresh
+/*
+  TODO: Think about connect to store in parent (AppRoute)
+*/
+
 const checkAuth = (isAuthenticated, userRole, tokenExpires, allowedRoles, dispatch) => {
   if (!isAuthenticated) {
     return false;
@@ -47,9 +50,6 @@ const ProtectedRoute = ({
   />
 );
 
-/*
-TODO: add user, allowedRoles and component prop-types
-*/
 ProtectedRoute.propTypes = {
   dispatch: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,

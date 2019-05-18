@@ -7,6 +7,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
 import { loginAction, validationSchema } from '@containers/Auth/Login';
+import { profileAction } from '@containers/User/Profile';
 import { Header } from '@components/common';
 
 import { Form } from './components';
@@ -18,15 +19,6 @@ const H1 = styled.h1`
 
 class Login extends Component {
   componentDidMount() {
-    this.checkAuth();
-  }
-
-  componentDidUpdate() {
-    // check if errors
-    this.checkAuth();
-  }
-
-  checkAuth() {
     const { isAuthenticated, history } = this.props;
     // check is user is authenticated and push to profile
     if (isAuthenticated) {
@@ -34,8 +26,24 @@ class Login extends Component {
     }
   }
 
+  componentDidUpdate() {
+    const {
+      isAuthenticated,
+      history,
+      userName,
+      userLastName,
+      userEmail,
+      updateProfile,
+    } = this.props;
+    // check is user is authenticated and push to profile
+    if (isAuthenticated) {
+      updateProfile({ name: userName, lastName: userLastName, email: userEmail });
+      history.push('/dashboard');
+    }
+  }
+
   render() {
-    const { error, dispatch, isFetching } = this.props;
+    const { error, login, isFetching } = this.props;
     return (
       <React.Fragment>
         <Helmet>
@@ -44,8 +52,8 @@ class Login extends Component {
         <Header.Public color="black" />
 
         <section className="bg-white login">
-          <Container className="h-100 w-100">
-            <Row className="h-100">
+          <Container>
+            <Row>
               <Col className="m-0 vh-100 d-flex flex-column justify-content-center">
                 <H1 className="text-primary">Welcome.</H1>
 
@@ -53,9 +61,8 @@ class Login extends Component {
                   <Col xs={6}>
                     <Form
                       error={error}
-                      loading={isFetching}
-                      dispatch={dispatch}
-                      loginAction={loginAction}
+                      isFetching={isFetching}
+                      login={login}
                       validationSchema={validationSchema}
                     />
                   </Col>
@@ -70,7 +77,6 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   history: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
@@ -79,12 +85,25 @@ Login.propTypes = {
 
 const mapStateToProps = state => {
   const { login } = state.auth;
-  const { isAuthenticated, error, isFetching } = login;
+  const { isAuthenticated, error, isFetching, userName, userLastName, userEmail } = login;
   return {
+    userName,
+    userLastName,
+    userEmail,
     isAuthenticated,
     isFetching,
     error,
   };
 };
 
-export default connect(mapStateToProps)(Login);
+const mapDispatchToProps = dispatch => {
+  return {
+    login: values => dispatch(loginAction(values)),
+    updateProfile: values => dispatch(profileAction(values)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Login);

@@ -14,15 +14,15 @@ const Button = styled(ButtonBootsrap)`
 `;
 
 const LoginForm = props => {
-  const { dispatch, loginAction, validationSchema, loading, error } = props;
-  if (loading) return <Loader />;
-  
+  const { login, validationSchema, isFetching, error } = props;
+  if (isFetching) return <Loader />;
+
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
       validationSchema={validationSchema}
       onSubmit={values => {
-        dispatch(loginAction(values));
+        login(values);
       }}
       render={({ values, handleSubmit, handleChange, touched, errors }) => (
         <Form noValidate onSubmit={handleSubmit}>
@@ -60,7 +60,8 @@ const LoginForm = props => {
 };
 
 LoginForm.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };
 
 export default LoginForm;

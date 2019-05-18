@@ -1,26 +1,28 @@
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { logger } from 'redux-logger';
-import { throttle } from 'lodash';
-
-import state from '@utils/LocalStorage';
+import { persistStore, persistReducer } from 'redux-persist';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import storage from 'redux-persist/lib/storage';
 
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 
-const sagaMiddleware = createSagaMiddleware();
-
-const persistedState = state.load();
-const AppStore = createStore(rootReducer, persistedState, applyMiddleware(sagaMiddleware, logger));
-
-AppStore.subscribe(
-  throttle(() => {
-    state.save({
-      auth: AppStore.getState().auth,
-    });
-  }, 1000),
+const rootPReducer = persistReducer(
+  {
+    key: 'root',
+    storage,
+    blacklist: ['ui'],
+    stateReconciler: autoMergeLevel2,
+  },
+  rootReducer,
 );
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(rootPReducer, applyMiddleware(sagaMiddleware, logger));
 
 sagaMiddleware.run(rootSaga);
 
-export default AppStore;
+const persistor = persistStore(store);
+
+export { store, persistor };

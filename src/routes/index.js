@@ -5,10 +5,11 @@ import {
   Home,
   Proyects,
   Contact,
-  User,
+  Users,
   Login,
   Dashboard,
   Settings,
+  Products,
   NotFound,
 } from '@components/pages';
 
@@ -19,15 +20,10 @@ const AppRoute = () => {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/proyects" component={Proyects} />
+      <Route path="/products" component={Products} />
       <Route path="/contact" component={Contact} />
 
       <Route path="/login" component={Login} />
-
-      <ProtectedRoute
-        path="/profile"
-        allowedRoles={[Role.Admin, Role.User]}
-        component={User.Profile}
-      />
 
       <ProtectedRoute
         path="/dashboard"
@@ -41,7 +37,7 @@ const AppRoute = () => {
         component={Settings.Profile}
       />
 
-      <ProtectedRoute path="/users" allowedRoles={[Role.Admin]} component={User.List} />
+      <ProtectedRoute path="/users" allowedRoles={[Role.Admin]} component={Users.List} />
 
       <Route path="*" component={NotFound} />
     </Switch>

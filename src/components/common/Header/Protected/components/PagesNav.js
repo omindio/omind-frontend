@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
@@ -83,4 +84,12 @@ PagesNav.propTypes = {
   userRole: PropTypes.string.isRequired,
 };
 
-export default PagesNav;
+function mapStateToProps(state) {
+  const { login } = state.auth;
+  const { userRole } = login;
+  return {
+    userRole,
+  };
+}
+
+export default connect(mapStateToProps)(PagesNav);

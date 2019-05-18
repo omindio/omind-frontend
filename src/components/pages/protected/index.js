@@ -1,5 +1,5 @@
-import * as User from './User';
+import * as Users from './Users';
 import Dashboard from './Dashboard';
 import Settings from './Settings';
 
-export { User, Dashboard, Settings };
+export { Users, Dashboard, Settings };

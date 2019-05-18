@@ -1,4 +1,4 @@
-import Form from './Form';
+import List from './List';
 
 // eslint-disable-next-line import/prefer-default-export
-export { Form };
+export { List };

@@ -1,0 +1,60 @@
+$colors: (
+  'black': #0e1111,
+  'blue': $blue,
+  'red': #dc3545,
+  'orange': $orange,
+  'yellow': #ffc107,
+  'green': #28a745,
+  'white': #ffffff,
+  'gray': #eee,
+  'gray-dark': #5a5f6d,
+);
+
+$theme-colors: (
+  primary: color('black'),
+  secondary: #fffa94,
+  success: color('green'),
+  info: color('blue'),
+  warning: color('yellow'),
+  danger: color('red'),
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 800px,
+  md: 1000px,
+  lg: 1200px,
+  xl: 1400px,
+);
+$container-max-widths: (
+  xs: 100%,
+  sm: 100%,
+  md: 100%,
+  lg: 100%,
+  xl: 800px,
+);
+
+$base-font-sizes: (
+  xs: 13px,
+  sm: 14px,
+  md: 15px,
+  lg: 16px,
+  xl: 17px,
+);
+
+$h1-font-sizes: (
+  xs: 30px,
+  sm: 50px,
+  md: 50px,
+  lg: 50px,
+  xl: 60px,
+);
+
+$body-bg: #fff;
+$body-color: color('black');
+
+$font-family-sans-serif: 'Helvetica Neue', sans-serif;
+$font-family-base: $font-family-sans-serif;
+
+$alert-bg-level: 0;
+$alert-border-level: 1;

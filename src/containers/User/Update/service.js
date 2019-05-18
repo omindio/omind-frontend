@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ValidationSchemaError, UnauthorizedError, InvalidRequestMethodError } from '@utils/Error';
+import { ValidationSchemaError, UnauthorizedError } from '@utils/Error';
 
 import {
   EmailAlreadyExistsError,
@@ -9,25 +9,16 @@ import {
   UserVerifiedError,
 } from '../_Error';
 
-const api = async (values, method) => {
+const api = async values => {
   const { id, token } = values;
   const API_URL = `${process.env.API_URL}/users/${id}`;
   const headers = {
     headers: { Authorization: `Bearer ${token}` },
   };
-  let response;
 
   try {
-    switch (method) {
-      case 'PATCH':
-        response = await axios.patch(API_URL, values, headers);
-        break;
-      case 'GET':
-        response = await axios.get(API_URL, headers);
-        break;
-      default:
-        throw new InvalidRequestMethodError();
-    }
+    const response = await axios.patch(API_URL, values, headers);
+
     const { name, lastName, email } = response.data;
     return {
       name,
@@ -43,25 +34,17 @@ const api = async (values, method) => {
       UnauthorizedError,
       ValidationSchemaError,
     };
-    response = err.response.data;
+    const response = err.response.data;
     throw new classesMapping[response.type](response.message);
-  }
-};
-
-const loadData = async values => {
-  try {
-    return await api(values, 'GET');
-  } catch (err) {
-    throw err;
   }
 };
 
 const update = async values => {
   try {
-    return await api(values, 'PATCH');
+    return await api(values);
   } catch (err) {
     throw err;
   }
 };
 
-export { loadData, update };
+export default update;

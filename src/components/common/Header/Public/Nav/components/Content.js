@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { actions } from '@containers/UI/Nav';
@@ -21,6 +22,9 @@ const MainNav = styled.ul`
   li {
     margin-bottom: 1.5rem;
     font-weight: 700;
+    &.disabled {
+      opacity: 0.1;
+    }
     a {
       color: #0e1111;
       text-decoration: none;
@@ -52,103 +56,114 @@ const SocialMediaNav = styled.ul`
     }
   }
 `;
-class Content extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    const { dispatch } = this.props;
-
-    dispatch(actions.closeAction());
-  }
-
-  render() {
-    const { isAuthenticated } = this.props;
-    return (
-      <ContentStyled className="bg-secondary">
-        <Container className="h-100 w-100">
-          <Row className="h-100">
-            <Col xs={9} className="m-0 vh-100 d-flex flex-column justify-content-center">
-              <MainNav>
+const Content = props => {
+  const { isAuthenticated, close } = props;
+  return (
+    <ContentStyled className="bg-secondary">
+      <Container className="h-100 w-100">
+        <Row className="h-100">
+          <Col xs={9} className="m-0 vh-100 d-flex flex-column justify-content-center">
+            <MainNav>
+              <li className="title">
+                <NavLink onClick={close} exact activeClassName="active" to="/">
+                  About
+                </NavLink>
+                .
+              </li>
+              <li className="title disabled">
+                <NavLink onClick={close} activeClassName="active" to="/proyects">
+                  Our Work
+                </NavLink>
+                .
+              </li>
+              <li className="title disabled">
+                <NavLink onClick={close} activeClassName="active" to="/products">
+                  Products
+                </NavLink>
+                .
+              </li>
+              <li className="title">
+                <NavLink onClick={close} activeClassName="active" to="/contact">
+                  Lets Talk
+                </NavLink>
+                .
+              </li>
+              {!isAuthenticated ? (
                 <li className="title">
-                  <NavLink onClick={this.handleClick} exact activeClassName="active" to="/">
-                    About
+                  <NavLink onClick={close} activeClassName="active" to="/login">
+                    Sign in
                   </NavLink>
                   .
                 </li>
+              ) : (
                 <li className="title">
-                  <NavLink onClick={this.handleClick} activeClassName="active" to="/proyects">
-                    Our Work
+                  <NavLink onClick={close} activeClassName="active" to="/dashboard">
+                    Dashboard
                   </NavLink>
                   .
                 </li>
-                <li className="title">
-                  <NavLink onClick={this.handleClick} activeClassName="active" to="/contact">
-                    Lets Talk
-                  </NavLink>
-                  .
-                </li>
-                {!isAuthenticated ? (
-                  <li className="title">
-                    <NavLink onClick={this.handleClick} activeClassName="active" to="/login">
-                      Sign in
-                    </NavLink>
-                    .
-                  </li>
-                ) : (
-                  <li className="title">
-                    <NavLink onClick={this.handleClick} activeClassName="active" to="/dashboard">
-                      Dashboard
-                    </NavLink>
-                    .
-                  </li>
-                )}
-              </MainNav>
-            </Col>
-            <Col className="m-0 vh-100 d-flex flex-column justify-content-center">
-              <SocialMediaNav>
-                <li>
-                  <a
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    title="Omind Linkedin"
-                    href="https://www.linkedin.com/company/omindbrand/"
-                  >
-                    Linkedin
-                  </a>
-                  .
-                </li>
-                <li>
-                  <a
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    title="Omind Instagram"
-                    href="https://www.instagram.com/omindbrand/"
-                  >
-                    Instagram
-                  </a>
-                  .
-                </li>
-                <li>
-                  <a
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    title="Omind Facebook"
-                    href="https://www.facebook.com/omindbrand/"
-                  >
-                    Facebook
-                  </a>
-                  .
-                </li>
-              </SocialMediaNav>
-            </Col>
-          </Row>
-        </Container>
-      </ContentStyled>
-    );
-  }
+              )}
+            </MainNav>
+          </Col>
+          <Col className="m-0 vh-100 d-flex flex-column justify-content-center">
+            <SocialMediaNav>
+              <li>
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  title="Omind Linkedin"
+                  href="https://www.linkedin.com/company/omindbrand/"
+                >
+                  Linkedin
+                </a>
+                .
+              </li>
+              <li>
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  title="Omind Instagram"
+                  href="https://www.instagram.com/omindbrand/"
+                >
+                  Instagram
+                </a>
+                .
+              </li>
+              <li>
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  title="Omind Facebook"
+                  href="https://www.facebook.com/omindbrand/"
+                >
+                  Facebook
+                </a>
+                .
+              </li>
+            </SocialMediaNav>
+          </Col>
+        </Row>
+      </Container>
+    </ContentStyled>
+  );
+};
+
+function mapStateToProps(state) {
+  const { login } = state.auth;
+  const { isAuthenticated } = login;
+  return {
+    isAuthenticated,
+  };
 }
 
-export default Content;
+const mapDispatchToProps = dispatch => {
+  const { closeAction } = actions;
+  return {
+    close: () => dispatch(closeAction()),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Content);

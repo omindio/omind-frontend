@@ -10,8 +10,11 @@ const api = async values => {
   try {
     const response = await axios.post(API_ENDPOINT, values);
     const { token } = response.data;
-    const { id, exp, role } = jwt.decode(token);
+    const { id, exp, role, name, lastName, email } = jwt.decode(token);
     return {
+      userName: name,
+      userLastName: lastName,
+      userEmail: email,
       userId: id,
       userRole: role,
       token,
