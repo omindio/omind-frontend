@@ -9,6 +9,7 @@ import {
 
 const initialState = {
   isFetching: false,
+  success: false,
   error: {},
   user: {},
 };
@@ -19,12 +20,14 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         error: null,
         isFetching: true,
+        success: false,
         user: action.values,
       });
     case LOAD_DATA_SUCCESS:
       return Object.assign({}, state, {
         error: null,
         isFetching: false,
+        success: false,
         user: action.response,
       });
     case LOAD_DATA_FAILURE:
@@ -42,11 +45,13 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         error: null,
         isFetching: false,
+        success: true,
         user: action.response,
       });
     case USER_UPDATE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
+        success: false,
         error: action.response,
       });
     default:

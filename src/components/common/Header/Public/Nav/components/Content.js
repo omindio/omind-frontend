@@ -29,7 +29,7 @@ const MainNav = styled.ul`
       }
     }
     .active {
-      color: #fff;
+      text-decoration: underline;
     }
     &:last-child {
       margin-bottom: 0;
@@ -46,6 +46,9 @@ const SocialMediaNav = styled.ul`
     font-size: 1.4rem;
     &:last-child {
       margin-bottom: 0;
+    }
+    a {
+      color: inherit;
     }
   }
 `;
@@ -87,10 +90,17 @@ class Content extends Component {
                   </NavLink>
                   .
                 </li>
-                {!isAuthenticated && (
+                {!isAuthenticated ? (
                   <li className="title">
                     <NavLink onClick={this.handleClick} activeClassName="active" to="/login">
                       Sign in
+                    </NavLink>
+                    .
+                  </li>
+                ) : (
+                  <li className="title">
+                    <NavLink onClick={this.handleClick} activeClassName="active" to="/dashboard">
+                      Dashboard
                     </NavLink>
                     .
                   </li>
@@ -99,9 +109,39 @@ class Content extends Component {
             </Col>
             <Col className="m-0 vh-100 d-flex flex-column justify-content-center">
               <SocialMediaNav>
-                <li>Linkedin.</li>
-                <li>Instagram.</li>
-                <li>Facebook.</li>
+                <li>
+                  <a
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    title="Omind Linkedin"
+                    href="https://www.linkedin.com/company/omindbrand/"
+                  >
+                    Linkedin
+                  </a>
+                  .
+                </li>
+                <li>
+                  <a
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    title="Omind Instagram"
+                    href="https://www.instagram.com/omindbrand/"
+                  >
+                    Instagram
+                  </a>
+                  .
+                </li>
+                <li>
+                  <a
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    title="Omind Facebook"
+                    href="https://www.facebook.com/omindbrand/"
+                  >
+                    Facebook
+                  </a>
+                  .
+                </li>
               </SocialMediaNav>
             </Col>
           </Row>

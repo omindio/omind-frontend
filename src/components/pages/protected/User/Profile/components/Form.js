@@ -3,9 +3,19 @@ import PropTypes from 'prop-types';
 import { Formik, ErrorMessage } from 'formik';
 import { Loader } from '@components/common';
 import { Form as BootstrapForm, Button } from 'react-bootstrap';
+import { StateErrorHandler } from '@utils/ErrorHandler';
 
 const Form = props => {
-  const { initialValues, dispatch, userId, token, actions, validationSchema, loading } = props;
+  const {
+    initialValues,
+    dispatch,
+    userId,
+    token,
+    actions,
+    validationSchema,
+    loading,
+    error,
+  } = props;
   if (loading) {
     return <Loader />;
   }
@@ -18,6 +28,8 @@ const Form = props => {
       }}
       render={({ values, handleSubmit, handleChange, errors, touched }) => (
         <BootstrapForm noValidate onSubmit={handleSubmit}>
+          <StateErrorHandler error={error} />
+
           <BootstrapForm.Row>
             <BootstrapForm.Control
               type="text"

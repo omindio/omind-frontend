@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { reducer as authReducer, Logout } from './Auth';
+import { reducer as authReducer } from './Auth';
 import { reducer as userReducer } from './User';
 import { reducer as uiReducer } from './UI';
 
@@ -12,9 +12,8 @@ const appReducer = combineReducers({
 
 const rootReducer = (stateParameter, action) => {
   let state = stateParameter;
-  const { LOGOUT_SUCCESS } = Logout.types;
 
-  if (action.type === LOGOUT_SUCCESS) {
+  if (action.type === 'LOGOUT') {
     localStorage.removeItem('state');
     state = undefined;
   }

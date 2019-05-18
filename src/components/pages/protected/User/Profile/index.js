@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
-import { StateErrorHandler } from '@utils/ErrorHandler';
-
 import { actions, validationSchema } from '@containers/User/Update';
 
 import { Form } from './components';
@@ -32,8 +30,6 @@ class Profile extends Component {
 
         <h3>Profile</h3>
 
-        <StateErrorHandler error={error} />
-
         <Form
           initialValues={{
             name,
@@ -42,6 +38,7 @@ class Profile extends Component {
             password: '',
             passwordConfirmation: '',
           }}
+          error={error}
           loading={loading}
           userId={userId}
           dispatch={dispatch}

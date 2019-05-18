@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 
 import { Container, Row, Col } from 'react-bootstrap';
+import { Header, Footer } from '@components/common';
 
 class Home extends Component {
   render() {
@@ -12,6 +13,8 @@ class Home extends Component {
         <Helmet>
           <title>Omind - Home</title>
         </Helmet>
+        <Header.Public color="white" />
+
         <section className="bg-primary">
           <Container className="h-100 w-100">
             <Row className="h-100">
@@ -30,6 +33,8 @@ class Home extends Component {
             </Row>
           </Container>
         </section>
+
+        <Footer />
       </React.Fragment>
     );
   }

@@ -1,4 +1,4 @@
-import Header from './Header';
+import * as Header from './Header';
 import Footer from './Footer';
 import Loader from './Loader';
 

@@ -1,4 +1,5 @@
 import * as User from './User';
+import Dashboard from './Dashboard';
+import Settings from './Settings';
 
-// eslint-disable-next-line import/prefer-default-export
-export { User };
+export { User, Dashboard, Settings };

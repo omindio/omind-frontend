@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import logoBlack from './logo-black.png';
 
 const Logo = styled.img`
-  width: 90px;
+  width: 75px;
 `;
 const Black = () => {
   return <Logo src={logoBlack} alt="Logo omind" />;

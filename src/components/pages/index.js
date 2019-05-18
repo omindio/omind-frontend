@@ -1,4 +1,4 @@
 import { Home, Proyects, Contact, NotFound, Login } from './public';
-import { User } from './protected';
+import { User, Dashboard, Settings } from './protected';
 
-export { Contact, Home, Login, NotFound, User, Proyects };
+export { Contact, Home, Login, NotFound, User, Dashboard, Settings, Proyects };

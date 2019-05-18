@@ -4,12 +4,17 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
-
-import { StateErrorHandler } from '@utils/ErrorHandler';
+import styled from 'styled-components';
 
 import { loginAction, validationSchema } from '@containers/Auth/Login';
+import { Header } from '@components/common';
 
 import { Form } from './components';
+
+const H1 = styled.h1`
+  margin-bottom: 2.3rem;
+  font-weight: 700;
+`;
 
 class Login extends Component {
   componentDidMount() {
@@ -25,7 +30,7 @@ class Login extends Component {
     const { isAuthenticated, history } = this.props;
     // check is user is authenticated and push to profile
     if (isAuthenticated) {
-      history.push('/profile');
+      history.push('/dashboard');
     }
   }
 
@@ -36,21 +41,25 @@ class Login extends Component {
         <Helmet>
           <title>Omind - Login</title>
         </Helmet>
-        <section className="bg-secondary">
+        <Header.Public color="black" />
+
+        <section className="bg-white login">
           <Container className="h-100 w-100">
             <Row className="h-100">
               <Col className="m-0 vh-100 d-flex flex-column justify-content-center">
-                <h1 className="text-primary">
-                  <strong>Welcome</strong>.
-                </h1>
-                <StateErrorHandler error={error} />
+                <H1 className="text-primary">Welcome.</H1>
 
-                <Form
-                  loading={isFetching}
-                  dispatch={dispatch}
-                  loginAction={loginAction}
-                  validationSchema={validationSchema}
-                />
+                <Row>
+                  <Col xs={6}>
+                    <Form
+                      error={error}
+                      loading={isFetching}
+                      dispatch={dispatch}
+                      loginAction={loginAction}
+                      validationSchema={validationSchema}
+                    />
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </Container>
@@ -65,6 +74,7 @@ Login.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   history: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => {

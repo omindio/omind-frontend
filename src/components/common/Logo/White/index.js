@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import logoWhite from './logo-white.svg';
 
 const Logo = styled.img`
-  width: 90px;
+  width: 75px;
 `;
 const White = () => {
   return <Logo src={logoWhite} alt="Logo omind" />;

@@ -72,11 +72,11 @@ class Hamburguer extends Component {
   }
 
   render() {
-    const { isOpen } = this.props;
+    const { isOpen, color } = this.props;
     return (
       <HamburguerStyled className={isOpen ? 'open' : ''} onClick={this.handleClick}>
-        <span />
-        <span />
+        <span className={color === 'black' ? 'bg-primary' : 'bg-white'} />
+        <span className={color === 'black' ? 'bg-primary' : 'bg-white'} />
       </HamburguerStyled>
     );
   }

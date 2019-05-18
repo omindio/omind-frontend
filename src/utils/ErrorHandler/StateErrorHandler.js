@@ -18,7 +18,7 @@ const build = error => {
             for (const prop in obj) {
               const keyList = `${key}_${prop}`;
               errorMessage.push(
-                <Alert key={keyList} variant="danger">
+                <Alert dismissible key={keyList} variant="danger">
                   {obj[prop]}
                 </Alert>,
               );
@@ -27,7 +27,7 @@ const build = error => {
           break;
         default:
           errorMessage.push(
-            <Alert key={0} variant="danger">
+            <Alert dismissible key={0} variant="danger">
               {error.message}
             </Alert>,
           );

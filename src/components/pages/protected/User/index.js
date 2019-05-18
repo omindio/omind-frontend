@@ -1,4 +1,4 @@
-import Profile from './Profile/index';
+import Profile from './Profile';
 import List from './List';
 
 export { Profile, List };
