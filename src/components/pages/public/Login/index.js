@@ -58,7 +58,7 @@ class Login extends Component {
                 <H1 className="text-primary">Welcome.</H1>
 
                 <Row>
-                  <Col xs={6}>
+                  <Col xs={12} sm={7} md={6}>
                     <Form
                       error={error}
                       isFetching={isFetching}

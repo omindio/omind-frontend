@@ -33,7 +33,6 @@ const LoginForm = props => {
             name="email"
             value={values.email}
             onChange={handleChange}
-            isValid={touched.email && !errors.email}
             isInvalid={touched.email && errors.email}
             placeholder="email"
           />
@@ -45,7 +44,6 @@ const LoginForm = props => {
             name="password"
             value={values.password}
             onChange={handleChange}
-            isValid={touched.password && !errors.password}
             isInvalid={touched.password && errors.password}
             placeholder="password"
           />

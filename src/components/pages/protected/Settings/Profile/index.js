@@ -26,7 +26,7 @@ const Profile = () => {
         <SettingsNav />
         <Section className="bordered">
           <Row>
-            <Col sm={5}>
+            <Col xs={12} sm={7} md={6}>
               <Form />
             </Col>
           </Row>

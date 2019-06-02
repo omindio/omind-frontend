@@ -4,10 +4,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const dotenv = require('dotenv');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+
+const ImageminPlugin = require('imagemin-webpack');
+const imageminGifsicle = require('imagemin-gifsicle');
+const imageminJpegtran = require('imagemin-jpegtran');
+const imageminOptipng = require('imagemin-optipng');
+const imageminSvgo = require('imagemin-svgo');
 
 module.exports = () => {
-  const env = dotenv.config().parsed;
+  const { env } = process;
 
   const envKeys = Object.keys(env).reduce((prev, next) => {
     prev[`process.env.${next}`] = JSON.stringify(env[next]);
@@ -15,22 +22,13 @@ module.exports = () => {
   }, {});
 
   return {
+    mode: 'production',
     devtool: 'inline-source-map',
     entry: path.resolve(__dirname, 'src/index.js'),
     output: {
       path: path.resolve(__dirname, 'public'),
       publicPath: '/',
       filename: 'app.js',
-    },
-    watch: true,
-    devServer: {
-      contentBase: path.resolve(__dirname, 'public'),
-      port: process.env.PORT,
-      compress: true,
-      host: '0.0.0.0',
-      public: `0.0.0.0:${process.env.PORT}`,
-      historyApiFallback: true,
-      hot: true,
     },
     module: {
       rules: [
@@ -61,7 +59,7 @@ module.exports = () => {
             {
               loader: 'file-loader',
               options: {
-                name: '[path][name]-[hash:8].[ext]',
+                name: 'images/[name].[ext]',
               },
             },
           ],
@@ -70,6 +68,29 @@ module.exports = () => {
     },
     optimization: {
       minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+      splitChunks: {
+        cacheGroups: {
+          default: false,
+          vendors: false,
+          // vendor chunk
+          vendor: {
+            // sync + async chunks
+            name: 'vendor',
+            chunks: 'all',
+            // import file path containing node_modules
+            test: /node_modules/,
+            priority: 20,
+          },
+          common: {
+            name: 'common',
+            minChunks: 2,
+            chunks: 'async',
+            priority: 10,
+            reuseExistingChunk: true,
+            enforce: true,
+          },
+        },
+      },
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -85,6 +106,34 @@ module.exports = () => {
         chunkFilename: '[id].css',
       }),
       new webpack.DefinePlugin(envKeys),
+      new ManifestPlugin(),
+      new ImageminPlugin({
+        bail: false,
+        cache: true,
+        imageminOptions: {
+          plugins: [
+            imageminGifsicle({
+              interlaced: true,
+            }),
+            imageminJpegtran({
+              progressive: true,
+            }),
+            imageminOptipng({
+              optimizationLevel: 5,
+            }),
+            imageminSvgo({
+              removeViewBox: true,
+            }),
+          ],
+        },
+      }),
+      new CompressionPlugin({
+        filename: '[path].gz[query]',
+        algorithm: 'gzip',
+        test: /\.js$|\.css$|\.html$/,
+        threshold: 10240,
+        minRatio: 0.8,
+      }),
     ],
   };
 };

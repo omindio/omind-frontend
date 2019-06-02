@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
+import { MediaQueries } from '@utils/Styles';
 
 import {
   Navbar as NavbarBootstrap,
@@ -21,7 +22,10 @@ const Logo = styled(NavbarBootstrap.Brand)`
 `;
 
 const Navbar = styled(NavbarBootstrap)`
-  padding: 1rem 2.2rem;
+  ${MediaQueries.xs`padding: 0.8rem 1rem;`}
+  ${MediaQueries.sm`padding: 0.8rem 1.5rem;`}
+  ${MediaQueries.md`padding: 0.9rem 1.8rem;`}
+  ${MediaQueries.lg`padding: 1rem 2.2rem;`}
 `;
 
 const NavDropdown = styled(NavDropdownBootstrap)`

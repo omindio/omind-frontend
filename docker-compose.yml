@@ -7,6 +7,6 @@ services:
     build: .
     ports:
       - '${PORT}:${PORT}'
-    command: npm start
-    volumes: 
+    command: npm run dev
+    volumes:
       - .:/opt/frontend-app

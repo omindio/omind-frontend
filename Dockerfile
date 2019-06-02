@@ -9,4 +9,4 @@ RUN npm install --quiet
 
 EXPOSE ${PORT}
 
-CMD npm start
+CMD npm run dev

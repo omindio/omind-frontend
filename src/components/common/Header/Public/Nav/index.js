@@ -8,6 +8,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import { LogoWhite, LogoBlack } from '@components/common/Logo';
 import { actions } from '@containers/UI/Nav';
+import { MediaQueries } from '@utils/Styles';
 
 import { Hamburguer, Content } from './components';
 
@@ -19,13 +20,40 @@ const Logo = styled(NavbarBootstrap.Brand)`
 `;
 
 const Navbar = styled(NavbarBootstrap)`
-  padding: 2.2rem;
-
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  transition: padding 0.3s linear;
+  -webkit-transition: padding 0.3s linear;
+  -moz-transition: padding 0.3s linear;
+  -o-transition: padding 0.3s linear;
+  ${MediaQueries.xs`padding: 0.8rem 2.2rem;`}
+  ${MediaQueries.sm`padding: 0.9rem 2.2rem;`}
+  ${MediaQueries.md`padding: 1rem 2.2rem;`}
+  ${MediaQueries.lg`padding: 2.2rem;`}
+  ${MediaQueries.xl`padding: 2.2rem;`}
   .container-fluid {
     z-index: 1000;
   }
+  &.sticky {
+    padding: 1rem 2.2rem;
+  }
 `;
+/*
+  TODO: ADD TO TODO BG OF NAV
+*/
 class Nav extends Component {
+  constructor(props) {
+    super(props);
+    this.handleScroll = this.handleScroll.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      className: 'transparent',
+    };
+  }
+
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
   }
@@ -34,10 +62,14 @@ class Nav extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   handleScroll() {
     const windowsScrollTop = window.pageYOffset;
-    console.log(windowsScrollTop);
+
+    if (windowsScrollTop > 150) {
+      this.setState({ className: 'sticky bg-primary' });
+    } else {
+      this.setState({ className: 'bg-transparent' });
+    }
   }
 
   handleClick() {
@@ -47,9 +79,9 @@ class Nav extends Component {
 
   render() {
     const { isOpen, color } = this.props;
-
+    const { className } = this.state;
     return (
-      <Navbar className="fixed-top" bg="transparent">
+      <Navbar className={className}>
         <Container fluid="true">
           <LinkContainer to="/">
             <Logo onClick={this.handleClick}>

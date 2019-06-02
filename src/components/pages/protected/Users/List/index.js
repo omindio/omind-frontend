@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Table, Pagination } from 'react-bootstrap';
 import styled from 'styled-components';
 import { Header, Loader } from '@components/common';
 import { connect } from 'react-redux';
@@ -27,13 +27,29 @@ class UsersList extends Component {
     if (isFetchingData || !users) return <Loader />;
 
     console.log(users);
-    /*
-    const items = [];
 
-    for (const [index, user] of users) {
-      items.push(<li key={index}>{user.name}</li>);
+    // eslint-disable-next-line func-names
+    const items = users.map(function(user, index) {
+      console.log(index);
+      return [
+        // eslint-disable-next-line react/no-array-index-key
+        <tr key={index}>
+          <td>{user.name}</td>
+          <td>{user.lastName}</td>
+          <td>{user.email}</td>
+        </tr>,
+      ];
+    });
+
+    const paginationItems = [];
+    // eslint-disable-next-line no-plusplus
+    for (let number = 1; number <= pages; number++) {
+      paginationItems.push(
+        <Pagination.Item key={number} active={number === current}>
+          {number}
+        </Pagination.Item>,
+      );
     }
-    */
 
     return (
       <React.Fragment>
@@ -47,8 +63,17 @@ class UsersList extends Component {
           <Section className="bordered">
             <Row>
               <Col sm={5}>
-                {pages}
-                {current}
+                <Table>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Last Name</th>
+                      <th>Email</th>
+                    </tr>
+                  </thead>
+                  <tbody>{items}</tbody>
+                </Table>
+                <Pagination>{paginationItems}</Pagination>
               </Col>
             </Row>
           </Section>

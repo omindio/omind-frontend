@@ -1,17 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { MediaQueries } from '@utils/Styles';
 
 import { Navbar as NavbarBootstrap, Nav } from 'react-bootstrap';
 
 const Navbar = styled(NavbarBootstrap)`
-  padding: 0 2.2rem;
+
+  ${MediaQueries.xs`
+    padding: 0 0.5rem;
+    border: 0;
+  `}
+  ${MediaQueries.sm`
+    padding: 0 1rem;
+    border-style: solid;
+    border-color: #eee;
+    border-width: 1px 1px 0 1px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  `}
+  ${MediaQueries.md`padding: 0 1.5rem;`}
+  ${MediaQueries.lg`padding: 0 2.2rem;`}
   background: #fff;
-  border-style: solid;
-  border-color: #eee;
-  border-width: 1px 1px 0 1px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
 
   .nav-item {
     position: relative;

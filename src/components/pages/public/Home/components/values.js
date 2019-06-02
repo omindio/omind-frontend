@@ -1,19 +1,22 @@
 /* eslint-disable max-len */
 const values = [
   {
-    name: 'PEOPLE FIRST',
+    name: 'People First',
   },
   {
-    name: 'OPEN MINDED',
+    name: 'Open Minded',
   },
   {
-    name: 'PERSPECTIVE',
+    name: 'Perspective',
   },
   {
-    name: 'GLOBALIZATION',
+    name: 'Globalization',
   },
   {
-    name: 'RESPECT',
+    name: 'Respect',
+  },
+  {
+    name: 'Security',
   },
 ];
 

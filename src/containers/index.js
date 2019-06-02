@@ -8,6 +8,9 @@ import storage from 'redux-persist/lib/storage';
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 
+/*
+  TODO: Arreglar la duplicación de persistencia para los modulos user y auth.
+*/
 const rootPReducer = persistReducer(
   {
     key: 'root',

@@ -21,7 +21,7 @@ $theme-colors: (
 
 $grid-breakpoints: (
   xs: 0,
-  sm: 800px,
+  sm: 768px,
   md: 1000px,
   lg: 1200px,
   xl: 1400px,
@@ -43,11 +43,19 @@ $base-font-sizes: (
 );
 
 $h1-font-sizes: (
-  xs: 30px,
+  xs: 40px,
   sm: 50px,
-  md: 50px,
-  lg: 50px,
+  md: 60px,
+  lg: 60px,
   xl: 60px,
+);
+
+$h2-font-sizes: (
+  xs: 25px,
+  sm: 30px,
+  md: 35px,
+  lg: 35px,
+  xl: 40px,
 );
 
 $body-bg: #fff;

@@ -47,7 +47,7 @@ class ProfileForm extends Component {
       isUpdated,
     } = this.props;
 
-    if (isFetchingUpdate || isFetchingData) return <Loader />;
+    if (isFetchingData) return <Loader />;
     if (fetchDataError) return <StateErrorHandler error={fetchDataError} />;
 
     const { name, lastName, email } = Object.assign({}, userFetched, userUpdated);
@@ -76,9 +76,9 @@ class ProfileForm extends Component {
               <Field
                 type="text"
                 name="name"
+                disabled={isFetchingUpdate}
                 value={values.name}
                 onChange={handleChange}
-                isValid={touched.name && !errors.name}
                 isInvalid={touched.name && errors.name}
                 placeholder="Name"
               />
@@ -87,7 +87,7 @@ class ProfileForm extends Component {
                 name="lastName"
                 value={values.lastName}
                 onChange={handleChange}
-                isValid={touched.lastName && !errors.lastName}
+                disabled={isFetchingUpdate}
                 isInvalid={touched.lastName && errors.lastName}
                 placeholder="Last Name"
               />
@@ -98,7 +98,7 @@ class ProfileForm extends Component {
                 name="email"
                 value={values.email}
                 onChange={handleChange}
-                isValid={touched.email && !errors.email}
+                disabled={isFetchingUpdate}
                 isInvalid={touched.email && errors.email}
                 placeholder="Email"
               />
@@ -109,7 +109,7 @@ class ProfileForm extends Component {
                 name="password"
                 value={values.password}
                 onChange={handleChange}
-                isValid={touched.password && !errors.password}
+                disabled={isFetchingUpdate}
                 isInvalid={touched.password && errors.password}
                 placeholder="Password"
               />
@@ -118,14 +118,14 @@ class ProfileForm extends Component {
                 name="passwordConfirmation"
                 value={values.passwordConfirmation}
                 onChange={handleChange}
-                isValid={touched.passwordConfirmation && !errors.passwordConfirmation}
+                disabled={isFetchingUpdate}
                 isInvalid={touched.passwordConfirmation && errors.passwordConfirmation}
                 placeholder="Repeat Password"
               />
             </Form.Row>
 
-            <Button className="btn-block text-left" type="submit">
-              Save
+            <Button disabled={isFetchingUpdate} className="btn-block text-left" type="submit">
+              {isFetchingUpdate ? 'Loading...' : 'Save'}
             </Button>
           </Form>
         )}

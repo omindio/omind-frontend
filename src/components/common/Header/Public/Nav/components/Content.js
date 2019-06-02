@@ -3,9 +3,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { actions } from '@containers/UI/Nav';
-
 import { Container, Row, Col } from 'react-bootstrap';
+
+import { actions } from '@containers/UI/Nav';
+import { MediaQueries } from '@utils/Styles';
 
 const ContentStyled = styled.div`
   position: absolute;
@@ -13,17 +14,24 @@ const ContentStyled = styled.div`
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 1;
 `;
 
 const MainNav = styled.ul`
   list-style-type: none;
-  margin: 0;
+  ${MediaQueries.xs`margin: 25% 0 0 0;`}
+  ${MediaQueries.md`margin: 0;`}
   padding: 0;
   li {
     margin-bottom: 1.5rem;
     font-weight: 700;
     &.disabled {
       opacity: 0.1;
+    }
+    @media (max-width: 320px) {
+      &.title {
+        font-size: 1.5rem;
+      }
     }
     a {
       color: #0e1111;
@@ -47,7 +55,10 @@ const SocialMediaNav = styled.ul`
   padding: 0;
   li {
     margin-bottom: 1rem;
-    font-size: 1.4rem;
+
+    ${MediaQueries.xs`font-size: 1rem;`}
+    ${MediaQueries.sm`font-size: 2rem;`}
+    font-weight: 400;
     &:last-child {
       margin-bottom: 0;
     }
@@ -60,9 +71,9 @@ const Content = props => {
   const { isAuthenticated, close } = props;
   return (
     <ContentStyled className="bg-secondary">
-      <Container className="h-100 w-100">
-        <Row className="h-100">
-          <Col xs={9} className="m-0 vh-100 d-flex flex-column justify-content-center">
+      <Container>
+        <Row className="vh-100">
+          <Col xs={12} md={9} className="m-0 d-flex flex-column justify-content-center">
             <MainNav>
               <li className="title">
                 <NavLink onClick={close} exact activeClassName="active" to="/">
@@ -105,7 +116,7 @@ const Content = props => {
               )}
             </MainNav>
           </Col>
-          <Col className="m-0 vh-100 d-flex flex-column justify-content-center">
+          <Col xs={12} md={3} className="m-0 d-flex flex-column justify-content-center">
             <SocialMediaNav>
               <li>
                 <a

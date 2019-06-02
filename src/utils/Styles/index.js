@@ -1,4 +1,4 @@
 import MediaQueries from './MediaQueries';
+import * as Keyframes from './Keyframes';
 
-// eslint-disable-next-line import/prefer-default-export
-export { MediaQueries };
+export { MediaQueries, Keyframes };

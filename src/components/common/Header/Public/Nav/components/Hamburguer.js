@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { actions } from '@containers/UI/Nav';
 import { MediaQueries } from '@utils/Styles';
 
 const HamburguerStyled = styled.div`
   display: block;
   transition: 0.3s;
-  cursor: pointer;
+  cursor: pointer !important;
   span {
     position: relative;
     transition: 0.3s;
@@ -83,12 +84,18 @@ class Hamburguer extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentWillUnmount() {
+    clearAllBodyScrollLocks();
+  }
+
   handleClick() {
     const { isOpen, open, close } = this.props;
 
     if (isOpen) {
+      enableBodyScroll();
       close();
     } else {
+      disableBodyScroll();
       open();
     }
   }

@@ -5,3 +5,7 @@
 @function h1-font-size($key) {
   @return map-get($h1-font-sizes, $key);
 }
+
+@function h2-font-size($key) {
+  @return map-get($h2-font-sizes, $key);
+}

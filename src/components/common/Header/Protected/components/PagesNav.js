@@ -5,16 +5,19 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import { Navbar as NavbarBootstrap, Nav } from 'react-bootstrap';
+import { MediaQueries } from '@utils/Styles';
 
 import { MdPeopleOutline, MdSettings, MdDashboard } from 'react-icons/md';
 
 import { Role } from '@utils/Auth';
 
 const Navbar = styled(NavbarBootstrap)`
-  padding: 0 2.2rem;
+  ${MediaQueries.xs`padding: 0 1rem; margin-bottom: 0;`}
+  ${MediaQueries.sm`padding: 0 1.5rem; margin-bottom: 0;`}
+  ${MediaQueries.md`padding: 0 1.8rem; margin-bottom: 1.5rem;`}
+  ${MediaQueries.lg`padding: 0 1.8rem; margin-bottom: 2rem;`}
   border-bottom: 1px solid rgb(236, 239, 241);
   background: #fff;
-  margin-bottom: 2rem;
   .nav-item {
     position: relative;
     margin-left: 1.5rem;
@@ -43,6 +46,8 @@ const Navbar = styled(NavbarBootstrap)`
         margin-right: 0.5rem;
         font-size: 1.2rem;
         line-height: 1rem;
+        ${MediaQueries.xs`display:none;`}
+        ${MediaQueries.md`display:inline-block;`}
       }
     }
   }

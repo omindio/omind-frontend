@@ -6,44 +6,57 @@ import styled from 'styled-components';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import { Header, Footer } from '@components/common';
+import { MediaQueries } from '@utils/Styles';
 
 import { ServiceCard, services, ValueCard, values } from './components';
 
+const HeaderSection = styled.section`
+  overflow: hidden;
+  background: #0e1111;
+`;
+/*
+  TODO: Responsive de los textos y margenes.
+*/
+
 const AboutSection = styled.section`
-  padding-top: 200px;
+
+  ${MediaQueries.xs`padding-top: 90px;`}
+  ${MediaQueries.sm`padding-top: 110px;`}
+  ${MediaQueries.md`padding-top: 150px;`}
+  ${MediaQueries.lg`padding-top: 180px;`}
   h1,
   h2 {
-    margin-bottom: 80px;
     font-weight: 700;
+    ${MediaQueries.xs`margin-bottom: 30px;`}
+    ${MediaQueries.sm`margin-bottom: 40px;`}
+    ${MediaQueries.md`margin-bottom: 50px;`}
+    ${MediaQueries.lg`margin-bottom: 60px;`}
   }
   .container {
     > .row {
-      margin-bottom: 100px;
+        ${MediaQueries.xs`margin-bottom: 60px;`}
+        ${MediaQueries.sm`margin-bottom: 70px;`}
+        ${MediaQueries.md`margin-bottom: 80px;`}
+        ${MediaQueries.lg`margin-bottom: 90px;`}
+      p {
+        ${MediaQueries.xs`font-size: 16px;`}
+        ${MediaQueries.sm`font-size: 18px;`}
+        ${MediaQueries.md`font-size: 20px;`}
+        ${MediaQueries.lg`font-size: 25px;`}
+      }
     }
   }
 `;
 
 const CardContainer = styled.div`
-  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: flex-start;
   align-items: stretch;
   > div {
-    margin-bottom: 25px;
-  }
-  &.services__container {
-    > div {
-      &:nth-child(odd) {
-        margin-right: 25px;
-      }
-    }
-  }
-  &.values__container {
-    > div {
-      margin-right: 25px !important;
-    }
+    border: 2px solid #fff;
+    border-radius: 10px;
   }
 `;
 
@@ -52,12 +65,12 @@ class Home extends Component {
     return (
       <React.Fragment>
         <Helmet>
-          <title>Omind - Home</title>
+          <title>Omind. Where you ideas evolve into products.</title>
         </Helmet>
 
         <Header.Public color="white" />
 
-        <section className="bg-primary">
+        <HeaderSection>
           <Container>
             <Row>
               <Col className="m-0 vh-100 d-flex flex-column justify-content-center">
@@ -74,18 +87,16 @@ class Home extends Component {
               </Col>
             </Row>
           </Container>
-        </section>
+        </HeaderSection>
 
         <AboutSection>
           <Container>
             <Row>
               <Col>
-                <h1 className="text-primary">About.</h1>
+                <h1 className="text-primary">Hello,</h1>
                 <p>
                   We are a full service multimedia & technology brand, and we’re ready to provide
-                  you with
-                  <br />
-                  everything you need, in terms of creativity.
+                  you with everything you need, in terms of creativity.
                 </p>
                 <p>
                   <strong>

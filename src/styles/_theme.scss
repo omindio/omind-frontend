@@ -38,6 +38,11 @@ h5,
   xl: 1400px,
 */
 
+body,
+section {
+  font-weight: 300;
+}
+
 @include media-breakpoint-up(xs) {
   body,
   section {
@@ -47,8 +52,20 @@ h5,
   .title {
     font-size: h1-font-size('xs');
   }
+  h2 {
+    font-size: h2-font-size('xs');
+  }
   .container {
     padding: 0 2.2rem;
+  }
+  section {
+    &.bordered {
+      padding: 0.5rem;
+    }
+  }
+  .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
   }
 }
 @include media-breakpoint-up(sm) {
@@ -60,9 +77,21 @@ h5,
   .title {
     font-size: h1-font-size('sm');
   }
+  h2 {
+    font-size: h2-font-size('sm');
+  }
   .container {
     padding-right: 90px;
     padding-left: 160px;
+  }
+  section {
+    &.bordered {
+      padding: 1rem;
+    }
+  }
+  .container-fluid {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
   }
 }
 @include media-breakpoint-up(md) {
@@ -74,9 +103,21 @@ h5,
   .title {
     font-size: h1-font-size('md');
   }
+  h2 {
+    font-size: h2-font-size('md');
+  }
   .container {
     padding-right: 95px;
     padding-left: 190px;
+  }
+  section {
+    &.bordered {
+      padding: 1.5rem;
+    }
+  }
+  .container-fluid {
+    padding-right: 1.8rem;
+    padding-left: 1.8rem;
   }
 }
 @include media-breakpoint-up(lg) {
@@ -87,10 +128,23 @@ h5,
   h1,
   .title {
     font-size: h1-font-size('lg');
+    line-height: 1.1;
+  }
+  h2 {
+    font-size: h2-font-size('lg');
   }
   .container {
     padding-right: 95px;
     padding-left: 396px;
+  }
+  section {
+    &.bordered {
+      padding: 2rem;
+    }
+  }
+  .container-fluid {
+    padding-right: 2.2rem;
+    padding-left: 2.2rem;
   }
 }
 @include media-breakpoint-up(xl) {
@@ -102,9 +156,16 @@ h5,
   .title {
     font-size: h1-font-size('xl');
   }
+  h2 {
+    font-size: h2-font-size('xl');
+  }
   .container {
     padding-right: 0;
     padding-left: 0;
+  }
+  .container-fluid {
+    padding-right: 2.2rem;
+    padding-left: 2.2rem;
   }
 }
 
@@ -135,7 +196,6 @@ h5,
 
 section {
   &.bordered {
-    padding: 2rem;
     border: 1px solid color('gray');
     border-radius: 3px;
     form {
@@ -177,9 +237,4 @@ select:-webkit-autofill:focus {
 .alert-dismissible .close {
   background: transparent;
   border: 0;
-}
-
-.container-fluid {
-  padding-right: 2.2rem;
-  padding-left: 2.2rem;
 }

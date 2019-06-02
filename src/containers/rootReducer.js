@@ -16,6 +16,11 @@ const rootReducer = (stateParameter, action) => {
   let state = stateParameter;
 
   if (action.type === 'LOGOUT') {
+    /*
+      TODO: Arreglar la duplicación de persistencia para los modulos user y auth.
+    */
+    localStorage.removeItem('persist:auth');
+    localStorage.removeItem('persist:user');
     localStorage.removeItem('persist:root');
 
     state = undefined;
