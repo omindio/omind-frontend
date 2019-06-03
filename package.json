@@ -1,11 +1,11 @@
 {
   "name": "react-redux",
   "version": "1.0.0",
-  "description": "Frontend Stack - Docker. https://omindbrand.com",
+  "description": "Frontend Stack. https://omindbrand.com",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/omindbrand/react-redux"
+    "url": "https://github.com/omindbrand/omind-frontend"
   },
   "dependencies": {
     "axios": "^0.18.0",

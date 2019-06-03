@@ -7,7 +7,7 @@ const Field = props => {
   const { name, placeholder } = props;
   const controlId = `profile_${name}`;
   return (
-    <Form.Group as={Col} controlId={controlId}>
+    <Form.Group xs={12} sm as={Col} controlId={controlId}>
       <Form.Label>{placeholder}</Form.Label>
       <Form.Control {...props} />
       <Form.Control.Feedback type="invalid">
