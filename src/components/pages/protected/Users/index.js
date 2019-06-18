@@ -1,4 +1,5 @@
 import List from './List';
+import Edit from './Edit';
+import Add from './Add';
 
-// eslint-disable-next-line import/prefer-default-export
-export { List };
+export { List, Edit, Add };

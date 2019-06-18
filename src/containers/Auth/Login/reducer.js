@@ -11,7 +11,6 @@ const initialState = {
   userName: null,
   userLastName: null,
   userEmail: null,
-  token: null,
   tokenExpires: null,
 };
 
@@ -34,7 +33,6 @@ export default function(state = initialState, action) {
         userName: action.response.userName,
         userLastName: action.response.userLastName,
         userEmail: action.response.userEmail,
-        token: action.response.token,
         tokenExpires: action.response.tokenExpires,
       });
     case LOGIN_FAILURE:

@@ -7,7 +7,7 @@ import { reducer as userReducer } from './User';
 import { reducer as uiReducer } from './UI';
 
 const appReducer = combineReducers({
-  auth: persistReducer({ key: 'auth', storage, blacklist: ['logout'] }, authReducer),
+  auth: persistReducer({ key: 'auth', storage, whitelist: ['login'] }, authReducer),
   user: persistReducer({ key: 'user', storage, whitelist: ['profile'] }, userReducer),
   ui: uiReducer,
 });
@@ -21,7 +21,8 @@ const rootReducer = (stateParameter, action) => {
     */
     localStorage.removeItem('persist:auth');
     localStorage.removeItem('persist:user');
-    localStorage.removeItem('persist:root');
+    // localStorage.removeItem('persist:root');
+    localStorage.removeItem('token');
 
     state = undefined;
   }

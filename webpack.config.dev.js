@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const ImageminPlugin = require('imagemin-webpack');
 const imageminGifsicle = require('imagemin-gifsicle');
@@ -37,11 +38,11 @@ module.exports = () => {
     devServer: {
       contentBase: path.resolve(__dirname, 'public'),
       port: process.env.PORT,
-      compress: true,
-      host: '0.0.0.0',
-      public: `0.0.0.0:${process.env.PORT}`,
+      // compress: true,
+      // host: 'localhost',
+      // public: `localhost:${process.env.PORT}`,
       historyApiFallback: true,
-      hot: true,
+      // hot: true,
     },
     module: {
       rules: [
@@ -97,6 +98,13 @@ module.exports = () => {
       }),
       new webpack.DefinePlugin(envKeys),
       new ManifestPlugin(),
+      new FaviconsWebpackPlugin({
+        logo: './src/favicon.png',
+        prefix: 'icons/',
+        inject: true,
+        background: '#fffa94',
+        title: 'Omind',
+      }),
       new ImageminPlugin({
         bail: false,
         cache: true,
@@ -117,13 +125,17 @@ module.exports = () => {
           ],
         },
       }),
-      new BrowserSyncPlugin({
-        // browse to http://localhost:3000/ during development,
-        // ./public directory is being served
-        host: process.env.INET_IP,
-        port: process.env.PORT,
-        server: { baseDir: ['public'] },
-      }),
+
+      new BrowserSyncPlugin(
+        {
+          host: 'localhost',
+          port: process.env.PORT,
+          proxy: 'http://localhost:3100/',
+        },
+        {
+          reload: false,
+        },
+      ),
     ],
   };
 };

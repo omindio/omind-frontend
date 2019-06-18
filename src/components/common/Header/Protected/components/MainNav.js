@@ -22,16 +22,19 @@ const Logo = styled(NavbarBootstrap.Brand)`
 `;
 
 const Navbar = styled(NavbarBootstrap)`
-  ${MediaQueries.xs`padding: 0.8rem 1rem;`}
-  ${MediaQueries.sm`padding: 0.8rem 1.5rem;`}
-  ${MediaQueries.md`padding: 0.9rem 1.8rem;`}
-  ${MediaQueries.lg`padding: 1rem 2.2rem;`}
+  ${MediaQueries.xs`padding: 0.65rem 1rem;`}
+  ${MediaQueries.sm`padding: 0.68rem 1.5rem;`}
+  ${MediaQueries.md`padding: 0.7rem 1.8rem;`}
+  ${MediaQueries.lg`padding: 0.75rem 2.2rem;`}
 `;
 
 const NavDropdown = styled(NavDropdownBootstrap)`
   a.nav-link {
     font-size: 1rem;
     color: #fff;
+  }
+  .dropdown-menu {
+    left: -30%;
   }
 `;
 

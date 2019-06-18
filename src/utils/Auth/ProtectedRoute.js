@@ -8,7 +8,6 @@ import { logoutAction } from '@containers/Auth/Logout';
 /*
   TODO: Think about connect to store in parent (AppRoute)
 */
-
 const checkAuth = (isAuthenticated, userRole, tokenExpires, allowedRoles, dispatch) => {
   if (!isAuthenticated) {
     return false;

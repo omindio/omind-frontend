@@ -13,7 +13,7 @@ import { Role } from '@utils/Auth';
 
 const Navbar = styled(NavbarBootstrap)`
   ${MediaQueries.xs`padding: 0 1rem; margin-bottom: 0;`}
-  ${MediaQueries.sm`padding: 0 1.5rem; margin-bottom: 0;`}
+  ${MediaQueries.sm`padding: 0 1.5rem; margin-bottom: 1.3rem;`}
   ${MediaQueries.md`padding: 0 1.8rem; margin-bottom: 1.5rem;`}
   ${MediaQueries.lg`padding: 0 1.8rem; margin-bottom: 2rem;`}
   border-bottom: 1px solid rgb(236, 239, 241);
@@ -28,6 +28,7 @@ const Navbar = styled(NavbarBootstrap)`
       font-size: 1rem;
       color: rgba(17, 51, 83, 0.6);
       padding: 1rem 0;
+      font-weight: 400;
       &.active {
         color: #0d1111;
         text-decoration: none;

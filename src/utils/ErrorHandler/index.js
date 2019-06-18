@@ -1,6 +1,4 @@
 import StateErrorHandler from './StateErrorHandler';
+import ErrorBoundary from './ErrorBoundary';
 
-export {
-  // eslint-disable-next-line import/prefer-default-export
-  StateErrorHandler,
-};
+export { StateErrorHandler, ErrorBoundary };

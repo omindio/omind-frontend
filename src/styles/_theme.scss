@@ -169,15 +169,11 @@ section {
   }
 }
 
-.form-control,
-.btn {
+.form-control {
   padding: 0.7rem 0.6rem !important;
   border-radius: 3px !important;
   height: auto !important;
   text-align: left;
-}
-
-.form-control {
   background: transparent;
   color: #6c6c6c;
   border: 3px solid color('gray');
@@ -237,4 +233,36 @@ select:-webkit-autofill:focus {
 .alert-dismissible .close {
   background: transparent;
   border: 0;
+}
+
+table,
+.table {
+  thead {
+    background: #f7f7f7;
+    th {
+      font-weight: 500;
+      border: 0;
+      color: rgba(17, 51, 83, 0.6);
+    }
+  }
+  .btn-sm {
+    padding: 0.2rem 0.2rem;
+    font-size: 0.8rem;
+    line-height: 1;
+  }
+}
+
+.pagination {
+  margin-top: 30px;
+  justify-content: center;
+  .page-link {
+    padding: 0.3rem 0.55rem;
+    line-height: 1.2;
+  }
+  .page-item.active {
+    .page-link {
+      background-color: color('black');
+      border-color: color('black');
+    }
+  }
 }

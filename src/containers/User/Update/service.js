@@ -10,7 +10,8 @@ import {
 } from '../_Error';
 
 const api = async values => {
-  const { id, token } = values;
+  const { id } = values;
+  const token = localStorage.getItem('token');
   const API_URL = `${process.env.API_URL}/users/${id}`;
   const headers = {
     headers: { Authorization: `Bearer ${token}` },

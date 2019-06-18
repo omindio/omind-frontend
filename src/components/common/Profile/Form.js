@@ -6,26 +6,16 @@ import { Form, Button, Alert } from 'react-bootstrap';
 
 import { actions, validationSchema } from '@containers/User/Update';
 import { getOneAction } from '@containers/User/GetOne';
-import { profileAction } from '@containers/User/Profile';
 
-import { Loader } from '@components/common';
+import Loader from '@components/common/Loader';
 import { StateErrorHandler } from '@utils/ErrorHandler';
 
 import Field from './Field';
 
 class ProfileForm extends Component {
   componentDidMount() {
-    const { fetch, userId, token } = this.props;
-    fetch({ id: userId, token });
-  }
-
-  componentDidUpdate() {
-    const { isUpdated, updateProfile, userUpdated } = this.props;
-    if (isUpdated) {
-      const { name, lastName, email } = userUpdated;
-
-      updateProfile({ name, lastName, email });
-    }
+    const { fetch, userId } = this.props;
+    fetch({ id: userId });
   }
 
   componentWillUnmount() {
@@ -37,7 +27,6 @@ class ProfileForm extends Component {
     const {
       update,
       userId,
-      token,
       userFetched,
       userUpdated,
       isFetchingData,
@@ -63,10 +52,10 @@ class ProfileForm extends Component {
         }}
         validationSchema={validationSchema}
         onSubmit={values => {
-          update(Object.assign({}, values, { id: userId, token }));
+          update(Object.assign({}, values, { id: userId }));
         }}
         render={({ values, handleSubmit, handleChange, errors, touched }) => (
-          <Form noValidate onSubmit={handleSubmit}>
+          <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
             {updateError && <StateErrorHandler error={updateError} />}
             <Alert show={isUpdated} key={0} variant="success">
               Profile updated successfully.
@@ -74,6 +63,7 @@ class ProfileForm extends Component {
 
             <Form.Row>
               <Field
+                autoComplete="off"
                 type="text"
                 name="name"
                 disabled={isFetchingUpdate}
@@ -83,6 +73,7 @@ class ProfileForm extends Component {
                 placeholder="Name"
               />
               <Field
+                autoComplete="off"
                 type="text"
                 name="lastName"
                 value={values.lastName}
@@ -94,6 +85,7 @@ class ProfileForm extends Component {
             </Form.Row>
             <Form.Row>
               <Field
+                autoComplete="off"
                 type="email"
                 name="email"
                 value={values.email}
@@ -105,6 +97,7 @@ class ProfileForm extends Component {
             </Form.Row>
             <Form.Row>
               <Field
+                autoComplete="off"
                 type="password"
                 name="password"
                 value={values.password}
@@ -114,6 +107,7 @@ class ProfileForm extends Component {
                 placeholder="Password"
               />
               <Field
+                autoComplete="off"
                 type="password"
                 name="passwordConfirmation"
                 value={values.passwordConfirmation}
@@ -124,8 +118,8 @@ class ProfileForm extends Component {
               />
             </Form.Row>
 
-            <Button disabled={isFetchingUpdate} className="btn-block text-left" type="submit">
-              {isFetchingUpdate ? 'Loading...' : 'Save'}
+            <Button disabled={isFetchingUpdate} className="btn text-left" type="submit">
+              {isFetchingUpdate ? 'Wait...' : 'Save'}
             </Button>
           </Form>
         )}
@@ -136,26 +130,20 @@ class ProfileForm extends Component {
 
 ProfileForm.propTypes = {
   userId: PropTypes.string.isRequired,
-  token: PropTypes.string.isRequired,
   isFetchingData: PropTypes.bool.isRequired,
   isFetchingUpdate: PropTypes.bool.isRequired,
   isUpdated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => {
-  const { login } = state.auth;
-  const { getOne, update } = state.user;
+  const { update } = state.user;
+  const { user, isFetching, success, error } = update;
 
   return {
-    userId: login.userId,
-    token: login.token,
-    userFetched: getOne.user,
-    userUpdated: update.user,
-    isFetchingData: getOne.isFetching,
-    fetchDataError: getOne.error,
-    isFetchingUpdate: update.isFetching,
-    isUpdated: update.success,
-    updateError: update.error,
+    userUpdated: user,
+    isFetchingUpdate: isFetching,
+    isUpdated: success,
+    updateError: error,
   };
 };
 
@@ -165,7 +153,6 @@ const mapDispatchToProps = dispatch => {
     fetch: values => dispatch(getOneAction(values)),
     update: values => dispatch(actions.updateAction(values)),
     clear: () => dispatch(actions.clearAction()),
-    updateProfile: values => dispatch(profileAction(values)),
   };
 };
 

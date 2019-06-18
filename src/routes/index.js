@@ -37,6 +37,8 @@ const AppRoute = () => {
         component={Settings.Profile}
       />
 
+      <ProtectedRoute path="/users/edit/:id" allowedRoles={[Role.Admin]} component={Users.Edit} />
+      <ProtectedRoute path="/users/add" allowedRoles={[Role.Admin]} component={Users.Add} />
       <ProtectedRoute path="/users" allowedRoles={[Role.Admin]} component={Users.List} />
 
       <Route path="*" component={NotFound} />

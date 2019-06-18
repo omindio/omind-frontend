@@ -9,15 +9,18 @@ const API_ENDPOINT = `${process.env.API_URL}/users/auth`;
 const api = async values => {
   try {
     const response = await axios.post(API_ENDPOINT, values);
+
     const { token } = response.data;
-    const { id, exp, role, name, lastName, email } = jwt.decode(token);
+    const { id, role, name, lastName, email, exp } = jwt.decode(token);
+    // const { id, exp, role, name, lastName, email } = jwt.decode(token);
+    localStorage.setItem('token', token);
     return {
       userName: name,
       userLastName: lastName,
       userEmail: email,
       userId: id,
       userRole: role,
-      token,
+      // token,
       tokenExpires: exp,
     };
   } catch (err) {

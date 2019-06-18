@@ -3,7 +3,7 @@ import React from 'react';
 import { Form, Col } from 'react-bootstrap';
 import { ErrorMessage } from 'formik';
 
-const Field = props => {
+const ProfileFormField = props => {
   const { name, placeholder } = props;
   const controlId = `profile_${name}`;
   return (
@@ -17,4 +17,4 @@ const Field = props => {
   );
 };
 
-export default Field;
+export default ProfileFormField;

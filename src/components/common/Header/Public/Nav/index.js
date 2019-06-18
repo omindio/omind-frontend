@@ -51,6 +51,7 @@ class Nav extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.state = {
       className: 'transparent',
+      sticky: false,
     };
   }
 
@@ -66,9 +67,9 @@ class Nav extends Component {
     const windowsScrollTop = window.pageYOffset;
 
     if (windowsScrollTop > 150) {
-      this.setState({ className: 'sticky bg-primary' });
+      this.setState({ className: 'sticky bg-primary', sticky: true });
     } else {
-      this.setState({ className: 'bg-transparent' });
+      this.setState({ className: 'bg-transparent', sticky: false });
     }
   }
 
@@ -79,18 +80,33 @@ class Nav extends Component {
 
   render() {
     const { isOpen, color } = this.props;
-    const { className } = this.state;
+    const { className, sticky } = this.state;
+
+    let logo;
+    let hamburguerColor;
+
+    if (!sticky || isOpen) {
+      if (isOpen || color === 'black') {
+        logo = <LogoBlack />;
+        hamburguerColor = 'black';
+      } else {
+        hamburguerColor = 'white';
+        logo = <LogoWhite />;
+      }
+    } else {
+      logo = <LogoWhite />;
+      hamburguerColor = 'white';
+    }
+
     return (
       <Navbar className={className}>
         <Container fluid="true">
           <LinkContainer to="/">
-            <Logo onClick={this.handleClick}>
-              {isOpen || color === 'black' ? <LogoBlack /> : <LogoWhite />}
-            </Logo>
+            <Logo onClick={this.handleClick}>{logo}</Logo>
           </LinkContainer>
 
           <NavBootstrap className="ml-auto d-flex flex-column justify-content-center">
-            <Hamburguer color={color} />
+            <Hamburguer color={hamburguerColor} />
           </NavBootstrap>
         </Container>
         <CSSTransition in={isOpen} timeout={300} classNames="nav__content" unmountOnExit>

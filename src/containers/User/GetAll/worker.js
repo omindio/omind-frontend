@@ -4,7 +4,7 @@ import { USER_GET_ALL_SUCCESS, USER_GET_ALL_FAILURE } from './types';
 
 import getAll from './service';
 
-export default function* getOneWorker(action) {
+export default function* getAllWorker(action) {
   try {
     const { values } = action;
     const response = yield call(getAll, values);

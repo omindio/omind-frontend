@@ -6,8 +6,6 @@ import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
-import { loginAction, validationSchema } from '@containers/Auth/Login';
-import { profileAction } from '@containers/User/Profile';
 import { Header } from '@components/common';
 
 import { Form } from './components';
@@ -26,24 +24,9 @@ class Login extends Component {
     }
   }
 
-  componentDidUpdate() {
-    const {
-      isAuthenticated,
-      history,
-      userName,
-      userLastName,
-      userEmail,
-      updateProfile,
-    } = this.props;
-    // check is user is authenticated and push to profile
-    if (isAuthenticated) {
-      updateProfile({ name: userName, lastName: userLastName, email: userEmail });
-      history.push('/dashboard');
-    }
-  }
-
   render() {
-    const { error, login, isFetching } = this.props;
+    const { history } = this.props;
+
     return (
       <React.Fragment>
         <Helmet>
@@ -59,12 +42,7 @@ class Login extends Component {
 
                 <Row>
                   <Col xs={12} sm={7} md={6}>
-                    <Form
-                      error={error}
-                      isFetching={isFetching}
-                      login={login}
-                      validationSchema={validationSchema}
-                    />
+                    <Form history={history} />
                   </Col>
                 </Row>
               </Col>
@@ -80,30 +58,14 @@ Login.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   history: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  isFetching: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => {
   const { login } = state.auth;
-  const { isAuthenticated, error, isFetching, userName, userLastName, userEmail } = login;
+  const { isAuthenticated } = login;
   return {
-    userName,
-    userLastName,
-    userEmail,
     isAuthenticated,
-    isFetching,
-    error,
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    login: values => dispatch(loginAction(values)),
-    updateProfile: values => dispatch(profileAction(values)),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Login);
+export default connect(mapStateToProps)(Login);

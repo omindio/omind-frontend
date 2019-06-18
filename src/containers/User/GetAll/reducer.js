@@ -7,7 +7,7 @@ const initialState = {
   limit: 10,
   pages: 1,
   current: 1,
-  users: {},
+  users: [],
 };
 
 export default function(state = initialState, action) {

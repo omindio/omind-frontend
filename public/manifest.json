@@ -1,7 +1,11 @@
 {
   "main.css": "/main.css",
   "main.js": "/app.js",
-  "images/logo-black.png": "/images/logo-black-644655a1.png",
-  "images/logo-white.svg": "/images/logo-white-7b2a2c5c.svg",
-  "index.html": "/index.html"
+  "vendor.js": "/1.app.js",
+  "1.app.js.gz": "/1.app.js.gz",
+  "app.js.gz": "/app.js.gz",
+  "images/logo-black.png": "/images/logo-black.png",
+  "images/logo-white.svg": "/images/logo-white.svg",
+  "index.html": "/index.html",
+  "main.css.gz": "/main.css.gz"
 }
