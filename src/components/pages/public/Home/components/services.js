@@ -10,6 +10,16 @@ const services = [
       'We build the tools and put the platforms in place which accelerate digital growth.',
   },
   {
+    title: 'Big data and high load',
+    description:
+      'Working with automated systems means the creation of scalable projects. That’s why we work with multiple types of databases.',
+  },
+  {
+    title: 'Cryptocurrency',
+    description:
+      'We use cryptocurrency in our blockchain projects, helping our clients to digitalize their assets.',
+  },
+  {
     title: 'Graphic Design',
     description:
       'Graphics designed with your audience in mind. We really understand your goals and what you want to achieve.',
@@ -44,7 +54,7 @@ const services = [
     description: 'We help you to put you in a good light. Each shoot will speak for itself.',
   },
   {
-    title: 'Digital Teams',
+    title: 'Agile Teams',
     description:
       'A flexible team of proven experts to help you with every stage of your digital transformation.',
   },
