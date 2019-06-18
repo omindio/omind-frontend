@@ -87,8 +87,13 @@ class Nav extends Component {
 
     if (!sticky || isOpen) {
       if (isOpen || color === 'black') {
-        logo = <LogoBlack />;
-        hamburguerColor = 'black';
+        if (isOpen && color === 'black') {
+          hamburguerColor = 'white';
+          logo = <LogoWhite />;
+        } else {
+          logo = <LogoBlack />;
+          hamburguerColor = 'black';
+        }
       } else {
         hamburguerColor = 'white';
         logo = <LogoWhite />;
@@ -110,7 +115,7 @@ class Nav extends Component {
           </NavBootstrap>
         </Container>
         <CSSTransition in={isOpen} timeout={300} classNames="nav__content" unmountOnExit>
-          <Content />
+          <Content color={color} />
         </CSSTransition>
       </Navbar>
     );

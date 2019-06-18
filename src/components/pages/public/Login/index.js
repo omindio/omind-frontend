@@ -30,7 +30,7 @@ class Login extends Component {
     return (
       <React.Fragment>
         <Helmet>
-          <title>Omind - Login</title>
+          <title>Login.</title>
         </Helmet>
         <Header.Public color="black" />
 

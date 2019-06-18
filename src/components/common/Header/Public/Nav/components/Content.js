@@ -15,6 +15,13 @@ const ContentStyled = styled.div`
   left: 0;
   width: 100%;
   z-index: 1;
+  &.bg-primary {
+    li {
+      a {
+        color: #fff !important;
+      }
+    }
+  }
 `;
 
 const MainNav = styled.ul`
@@ -68,9 +75,14 @@ const SocialMediaNav = styled.ul`
   }
 `;
 const Content = props => {
-  const { isAuthenticated, close } = props;
+  const { isAuthenticated, close, color } = props;
+  let className = 'bg-secondary';
+
+  if (color === 'black') {
+    className = 'bg-primary';
+  }
   return (
-    <ContentStyled className="bg-secondary">
+    <ContentStyled className={className}>
       <Container>
         <Row className="vh-100">
           <Col xs={12} md={9} className="m-0 d-flex flex-column justify-content-center">

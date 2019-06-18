@@ -55,9 +55,6 @@ const HamburguerStyled = styled.div`
     ${MediaQueries.xl`width: 22px;`}
   }
 
-  &.open span {
-    background-color: #0e1111 !important;
-  }
   &.open span:nth-child(1) {
     -webkit-transform: rotate(-135deg);
     -moz-transform: rotate(-135deg);

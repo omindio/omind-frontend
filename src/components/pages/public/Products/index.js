@@ -5,11 +5,11 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 
 import { Container, Row, Col } from 'react-bootstrap';
-import { Header, Footer } from '@components/common';
+import { Header, Footer, ButtonNav } from '@components/common';
 
 const HeaderSection = styled.section`
   overflow: hidden;
-  background: #fffa94;
+  background: #fff;
 `;
 
 class Products extends Component {
@@ -34,6 +34,7 @@ class Products extends Component {
             </Row>
           </Container>
         </HeaderSection>
+        <ButtonNav exclude="products" />
         <Footer />
       </React.Fragment>
     );
