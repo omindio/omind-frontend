@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
-import { Header } from '@components/common';
+import { Header, ButtonNav, Footer } from '@components/common';
 
 import { Form } from './components';
 
@@ -49,6 +49,8 @@ class Login extends Component {
             </Row>
           </Container>
         </section>
+        <ButtonNav />
+        <Footer />
       </React.Fragment>
     );
   }

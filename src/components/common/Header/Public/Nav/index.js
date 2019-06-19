@@ -33,7 +33,6 @@ const Navbar = styled(NavbarBootstrap)`
   ${MediaQueries.sm`padding: 0.9rem 2.2rem;`}
   ${MediaQueries.md`padding: 1rem 2.2rem;`}
   ${MediaQueries.lg`padding: 2.2rem;`}
-  ${MediaQueries.xl`padding: 2.2rem;`}
   .container-fluid {
     z-index: 1000;
   }

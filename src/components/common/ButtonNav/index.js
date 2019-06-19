@@ -50,7 +50,7 @@ const ButtonNav = props => {
           <Col>
             <h1 className="text-primary">Let's see</h1>
             {exclude !== 'about' && (
-              <LinkContainer to="/about">
+              <LinkContainer exact to="/">
                 <Button variant="outline-primary">About.</Button>
               </LinkContainer>
             )}

@@ -43,6 +43,20 @@ section {
   font-weight: 300;
 }
 
+.cookieConsent {
+  background: color('black') !important;
+  color: #fff !important;
+  div,
+  button {
+    margin: 0 !important;
+  }
+  button {
+    color: #fff !important;
+    background: transparent !important;
+    font-weight: 600;
+  }
+}
+
 @include media-breakpoint-up(xs) {
   body,
   section {
@@ -54,6 +68,9 @@ section {
   }
   h2 {
     font-size: h2-font-size('xs');
+  }
+  .cookieConsent {
+    padding: 0.5rem 2.2rem;
   }
   .container {
     padding: 0 2.2rem;
@@ -79,6 +96,9 @@ section {
   }
   h2 {
     font-size: h2-font-size('sm');
+  }
+  .cookieConsent {
+    padding: 0.5rem 2.2rem;
   }
   .container {
     padding-right: 90px;
@@ -106,6 +126,12 @@ section {
   h2 {
     font-size: h2-font-size('md');
   }
+  .cookieConsent {
+    padding: 0.5rem 2.2rem;
+  }
+  .cookieConsent {
+    padding: 2.2rem;
+  }
   .container {
     padding-right: 95px;
     padding-left: 190px;
@@ -132,6 +158,10 @@ section {
   }
   h2 {
     font-size: h2-font-size('lg');
+  }
+
+  .cookieConsent {
+    padding: 0.5rem 2.2rem;
   }
   .container {
     padding-right: 95px;

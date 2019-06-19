@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { actions } from '@containers/UI/Nav';
-import { MediaQueries } from '@utils/Styles';
+import { MediaQueries, sizes } from '@utils/Styles';
 
 const ContentStyled = styled.div`
   position: absolute;
@@ -28,6 +28,16 @@ const MainNav = styled.ul`
   list-style-type: none;
   ${MediaQueries.xs`margin: 25% 0 0 0;`}
   ${MediaQueries.md`margin: 0;`}
+  @media (max-width: ${sizes.md}px) and (orientation: landscape) {
+      margin: 9% 0 0 0;
+      li {
+        margin-bottom: 0.4rem !important;
+        &.title {
+          font-size: 1.2rem;
+        }
+      }
+  }
+
   padding: 0;
   li {
     margin-bottom: 1.5rem;
@@ -62,9 +72,12 @@ const SocialMediaNav = styled.ul`
   padding: 0;
   li {
     margin-bottom: 1rem;
-
     ${MediaQueries.xs`font-size: 1rem;`}
     ${MediaQueries.sm`font-size: 2rem;`}
+    @media (max-width: ${sizes.md}px) and (orientation: landscape) {
+      margin-bottom: 0.4rem;
+      font-size: 0.8rem !important;
+    }
     font-weight: 400;
     &:last-child {
       margin-bottom: 0;

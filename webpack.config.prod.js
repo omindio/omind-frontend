@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const ImageminPlugin = require('imagemin-webpack');
 const imageminGifsicle = require('imagemin-gifsicle');
@@ -107,6 +108,13 @@ module.exports = () => {
       }),
       new webpack.DefinePlugin(envKeys),
       new ManifestPlugin(),
+      new FaviconsWebpackPlugin({
+        logo: './src/favicon.png',
+        prefix: 'icons/',
+        inject: true,
+        background: '#fffa94',
+        title: 'Omind',
+      }),
       new ImageminPlugin({
         bail: false,
         cache: true,

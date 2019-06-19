@@ -68,10 +68,7 @@ const FooterComponent = () => {
             </p>
           </Col>
           <Col xs={12} sm={4}>
-            <p className="text-xs-left text-sm-right">
-              Made somewhere in the
-              <strong> world</strong>.
-            </p>
+            <p className="text-xs-left text-sm-right">Made in Terrassa.</p>
           </Col>
         </Row>
       </Container>
