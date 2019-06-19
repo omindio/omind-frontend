@@ -54,6 +54,11 @@ section {
     color: #fff !important;
     background: transparent !important;
     font-weight: 600;
+    padding: 0 !important;
+  }
+  a {
+    color: #fff !important;
+    text-decoration: underline !important;
   }
 }
 
@@ -71,6 +76,9 @@ section {
   }
   .cookieConsent {
     padding: 0.5rem 2.2rem;
+    button {
+      margin-top: 10px !important;
+    }
   }
   .container {
     padding: 0 2.2rem;
@@ -99,6 +107,10 @@ section {
   }
   .cookieConsent {
     padding: 0.5rem 2.2rem;
+    button {
+      margin-left: 15px !important;
+      margin-top: 0 !important;
+    }
   }
   .container {
     padding-right: 90px;
@@ -112,6 +124,13 @@ section {
   .container-fluid {
     padding-right: 1.5rem;
     padding-left: 1.5rem;
+  }
+}
+@include media-breakpoint-down(xs) {
+  .cookieConsent {
+    > div {
+      flex: 1 0 100% !important;
+    }
   }
 }
 @include media-breakpoint-up(md) {
@@ -128,9 +147,6 @@ section {
   }
   .cookieConsent {
     padding: 0.5rem 2.2rem;
-  }
-  .cookieConsent {
-    padding: 2.2rem;
   }
   .container {
     padding-right: 95px;

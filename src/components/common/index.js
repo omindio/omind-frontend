@@ -3,5 +3,6 @@ import Footer from './Footer';
 import Loader from './Loader';
 import ButtonNav from './ButtonNav';
 import * as Profile from './Profile';
+import CookieBanner from './CookieBanner';
 
-export { Header, Footer, Loader, Profile, ButtonNav };
+export { Header, Footer, Loader, Profile, ButtonNav, CookieBanner };

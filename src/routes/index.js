@@ -11,6 +11,7 @@ import {
   Settings,
   Products,
   NotFound,
+  CookiePolicy,
 } from '@components/pages';
 
 import { ProtectedRoute, Role } from '@utils/Auth';
@@ -22,7 +23,7 @@ const AppRoute = () => {
       <Route path="/proyects" component={Proyects} />
       <Route path="/products" component={Products} />
       <Route path="/contact" component={Contact} />
-
+      <Route path="/cookies-policy" component={CookiePolicy} />
       <Route path="/login" component={Login} />
 
       <ProtectedRoute

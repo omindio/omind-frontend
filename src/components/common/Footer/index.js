@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import styled from 'styled-components';
 import { Container, Row, Col } from 'react-bootstrap';
 import { MediaQueries } from '@utils/Styles';
+import { NavLink } from 'react-router-dom';
 
 const Footer = styled.footer`
   ${MediaQueries.xs`margin-top:90px; padding: 0.8rem 2.2rem;`}
@@ -41,13 +43,15 @@ const FooterComponent = () => {
           </Col>
           <Col xs={12} sm={4}>
             <p className="text-left">
+              <NavLink to="/cookies-policy">Cookies Policy.</NavLink>
+              &nbsp;&nbsp;&nbsp;
               <a
                 rel="noopener noreferrer"
                 target="_blank"
                 title="Omind Linkedin"
                 href="https://www.linkedin.com/company/omindbrand/"
               >
-                Linkedin.
+                Linkedin
               </a>
               <a
                 rel="noopener noreferrer"
@@ -55,7 +59,7 @@ const FooterComponent = () => {
                 title="Omind Instagram"
                 href="https://www.instagram.com/omindbrand/"
               >
-                Instagram.
+                Instagram
               </a>
               <a
                 rel="noopener noreferrer"
@@ -63,12 +67,14 @@ const FooterComponent = () => {
                 title="Omind Facebook"
                 href="https://www.facebook.com/omindbrand/"
               >
-                Facebook.
+                Facebook
               </a>
             </p>
           </Col>
           <Col xs={12} sm={4}>
-            <p className="text-xs-left text-sm-right">Made in Terrassa.</p>
+            <p className="text-xs-left text-sm-right">
+              <strong>Barcelona.</strong>
+            </p>
           </Col>
         </Row>
       </Container>

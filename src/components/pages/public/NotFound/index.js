@@ -1,8 +1,36 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
+import styled from 'styled-components';
 
-import { Header } from '@components/common';
+import { MediaQueries } from '@utils/Styles';
+import { Header, Footer, ButtonNav } from '@components/common';
+
+const Section = styled.section`
+
+  ${MediaQueries.xs`padding-top: 90px;`}
+  ${MediaQueries.sm`padding-top: 110px;`}
+  ${MediaQueries.md`padding-top: 150px;`}
+  ${MediaQueries.lg`padding-top: 180px;`}
+  h1,
+  h2 {
+    font-weight: 700;
+    ${MediaQueries.xs`margin-top:20px;margin-bottom: 10px;`}
+    ${MediaQueries.sm`margin-top:30px;margin-bottom: 20px;`}
+    ${MediaQueries.md`margin-top:40px;margin-bottom: 30px;`}
+    ${MediaQueries.lg`margin-top:50px;margin-bottom: 40px;`}
+  }
+  .container {
+    > .row {
+      p {
+        ${MediaQueries.xs`font-size: 16px;`}
+        ${MediaQueries.sm`font-size: 18px;`}
+        ${MediaQueries.md`font-size: 20px;`}
+        ${MediaQueries.lg`font-size: 25px;`}
+      }
+    }
+  }
+`;
 
 const NotFound = () => (
   <React.Fragment>
@@ -11,16 +39,19 @@ const NotFound = () => (
     </Helmet>
     <Header.Public color="black" />
 
-    <section className="bg-white">
-      <Container className="h-100 w-100">
-        <Row className="h-100">
-          <Col className="m-0 vh-100 d-flex flex-column justify-content-center">
-            <h1 className="text-primary">Oops!</h1>
-            <h3 className="text-primary">Page not found.</h3>
+    <Section>
+      <Container>
+        <Row>
+          <Col>
+            <h1>Oops!</h1>
+            <h2>Page not found.</h2>
           </Col>
         </Row>
       </Container>
-    </section>
+    </Section>
+
+    <ButtonNav />
+    <Footer />
   </React.Fragment>
 );
 

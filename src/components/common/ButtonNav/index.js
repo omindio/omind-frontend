@@ -48,25 +48,25 @@ const ButtonNav = props => {
       <Container>
         <Row>
           <Col>
-            <h1 className="text-primary">Let's see</h1>
+            <h1 className="text-primary">Let's see.</h1>
             {exclude !== 'about' && (
               <LinkContainer exact to="/">
-                <Button variant="outline-primary">About.</Button>
+                <Button variant="outline-primary">About</Button>
               </LinkContainer>
             )}
             {exclude !== 'proyects' && (
               <LinkContainer to="/proyects">
-                <Button variant="outline-primary">Proyects.</Button>
+                <Button variant="outline-primary">Proyects</Button>
               </LinkContainer>
             )}
             {exclude !== 'products' && (
               <LinkContainer to="/products">
-                <Button variant="outline-primary">Products.</Button>
+                <Button variant="outline-primary">Products</Button>
               </LinkContainer>
             )}
             {exclude !== 'contact' && (
               <LinkContainer to="/contact">
-                <Button variant="outline-primary">Contact.</Button>
+                <Button variant="outline-primary">Contact</Button>
               </LinkContainer>
             )}
           </Col>
