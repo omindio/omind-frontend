@@ -7,7 +7,6 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { actions, validationSchema } from '@containers/User/Update';
 import { getOneAction } from '@containers/User/GetOne';
 
-import Loader from '@components/common/Loader';
 import { StateErrorHandler } from '@utils/ErrorHandler';
 
 import Field from './Field';
@@ -36,7 +35,6 @@ class ProfileForm extends Component {
       isUpdated,
     } = this.props;
 
-    if (isFetchingData) return <Loader />;
     if (fetchDataError) return <StateErrorHandler error={fetchDataError} />;
 
     const { name, lastName, email } = Object.assign({}, userFetched, userUpdated);
@@ -44,9 +42,9 @@ class ProfileForm extends Component {
     return (
       <Formik
         initialValues={{
-          name,
-          lastName,
-          email,
+          name: name || '',
+          lastName: lastName || '',
+          email: email || '',
           password: '',
           passwordConfirmation: '',
         }}
@@ -54,6 +52,7 @@ class ProfileForm extends Component {
         onSubmit={values => {
           update(Object.assign({}, values, { id: userId }));
         }}
+        enableReinitialize="true"
         render={({ values, handleSubmit, handleChange, errors, touched }) => (
           <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
             {updateError && <StateErrorHandler error={updateError} />}
@@ -66,7 +65,7 @@ class ProfileForm extends Component {
                 autoComplete="off"
                 type="text"
                 name="name"
-                disabled={isFetchingUpdate}
+                disabled={isFetchingUpdate || isFetchingData}
                 value={values.name}
                 onChange={handleChange}
                 isInvalid={touched.name && errors.name}
@@ -78,7 +77,7 @@ class ProfileForm extends Component {
                 name="lastName"
                 value={values.lastName}
                 onChange={handleChange}
-                disabled={isFetchingUpdate}
+                disabled={isFetchingUpdate || isFetchingData}
                 isInvalid={touched.lastName && errors.lastName}
                 placeholder="Last Name"
               />
@@ -90,7 +89,7 @@ class ProfileForm extends Component {
                 name="email"
                 value={values.email}
                 onChange={handleChange}
-                disabled={isFetchingUpdate}
+                disabled={isFetchingUpdate || isFetchingData}
                 isInvalid={touched.email && errors.email}
                 placeholder="Email"
               />
@@ -102,7 +101,7 @@ class ProfileForm extends Component {
                 name="password"
                 value={values.password}
                 onChange={handleChange}
-                disabled={isFetchingUpdate}
+                disabled={isFetchingUpdate || isFetchingData}
                 isInvalid={touched.password && errors.password}
                 placeholder="Password"
               />
@@ -112,14 +111,18 @@ class ProfileForm extends Component {
                 name="passwordConfirmation"
                 value={values.passwordConfirmation}
                 onChange={handleChange}
-                disabled={isFetchingUpdate}
+                disabled={isFetchingUpdate || isFetchingData}
                 isInvalid={touched.passwordConfirmation && errors.passwordConfirmation}
                 placeholder="Repeat Password"
               />
             </Form.Row>
 
-            <Button disabled={isFetchingUpdate} className="btn text-left" type="submit">
-              {isFetchingUpdate ? 'Wait...' : 'Save'}
+            <Button
+              disabled={isFetchingUpdate || isFetchingData}
+              className="btn text-left"
+              type="submit"
+            >
+              {isFetchingUpdate || isFetchingData ? 'Wait...' : 'Save'}
             </Button>
           </Form>
         )}
@@ -130,7 +133,6 @@ class ProfileForm extends Component {
 
 ProfileForm.propTypes = {
   userId: PropTypes.string.isRequired,
-  isFetchingData: PropTypes.bool.isRequired,
   isFetchingUpdate: PropTypes.bool.isRequired,
   isUpdated: PropTypes.bool.isRequired,
 };

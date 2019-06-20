@@ -5,7 +5,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
 import { Header, Profile } from '@components/common';
-
 import { ErrorBoundary } from '@utils/ErrorHandler';
 import { getOneAction } from '@containers/User/GetOne';
 import { profileAction } from '@containers/User/Profile';

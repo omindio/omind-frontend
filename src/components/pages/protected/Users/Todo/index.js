@@ -14,7 +14,7 @@ const Section = styled.section`
   border-top-right-radius: 0 !important;
 `;
 
-const UsersList = () => {
+const UsersTodo = () => {
   return (
     <React.Fragment>
       <Helmet>
@@ -38,4 +38,4 @@ const UsersList = () => {
   );
 };
 
-export default UsersList;
+export default UsersTodo;

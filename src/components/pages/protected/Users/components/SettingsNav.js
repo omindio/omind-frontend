@@ -6,7 +6,10 @@ import { Navbar as NavbarBootstrap, Nav } from 'react-bootstrap';
 import { MediaQueries } from '@utils/Styles';
 
 const Navbar = styled(NavbarBootstrap)`
-  ${MediaQueries.xs`padding: 0 1rem;`}
+  padding: 0 1rem;
+
+  ${MediaQueries.xs`border: 0;`}
+
   ${MediaQueries.sm`
   padding: 0 1.5rem;
   border-style: solid;
@@ -15,8 +18,8 @@ const Navbar = styled(NavbarBootstrap)`
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 `}
-  ${MediaQueries.md`padding: 0 1.8rem;`}
-  ${MediaQueries.lg`padding: 0 2.2rem;`}
+  ${MediaQueries.md`padding: 0 1.5rem;`}
+  ${MediaQueries.lg`padding: 0 2rem;`}
 
   background: #fff;
   border-style: solid;
@@ -58,7 +61,7 @@ const SettingsNav = () => {
     <Navbar>
       <Nav.Item>
         <NavLink exact className="nav-link" activeClassName="active" to="/users">
-          List
+          Todo
         </NavLink>
       </Nav.Item>
       <Nav.Item>

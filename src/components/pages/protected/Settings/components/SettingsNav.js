@@ -6,22 +6,19 @@ import { MediaQueries } from '@utils/Styles';
 import { Navbar as NavbarBootstrap, Nav } from 'react-bootstrap';
 
 const Navbar = styled(NavbarBootstrap)`
+  padding: 0 1rem;
 
-  ${MediaQueries.xs`
-    padding: 0 1rem;
-    border: 0;
-  `}
+  ${MediaQueries.xs`border: 0;`}
 
   ${MediaQueries.sm`
-    padding: 0 1.5rem;
     border-style: solid;
     border-color: #eee;
     border-width: 1px 1px 0 1px;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
   `}
-  ${MediaQueries.md`padding: 0 1.8rem;`}
-  ${MediaQueries.lg`padding: 0 2.2rem;`}
+  ${MediaQueries.md`padding: 0 1.5rem;`}
+  ${MediaQueries.lg`padding: 0 2rem;`}
 
   background: #fff;
 
