@@ -3,8 +3,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Container, Row, Col } from 'react-bootstrap';
-import { MediaQueries } from '@utils/Styles';
+import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
+
+import { MediaQueries } from '@utils/Styles';
 
 const Footer = styled.footer`
   ${MediaQueries.xs`margin-top:90px; padding: 0.8rem 2.2rem;`}
@@ -19,6 +21,7 @@ const Footer = styled.footer`
   p {
     margin: 0;
     font-size: 0.9rem;
+    font-weight: 400;
     ${MediaQueries.xs`margin:5px 0;`}
     ${MediaQueries.sm`margin:5px 0;`}
   }
@@ -27,6 +30,9 @@ const Footer = styled.footer`
     margin:0 5px;
     font-weight: 400;
     text-decoration: underline;
+    svg {
+      font-size: 1.3rem;
+    }
     &:first-child {
       ${MediaQueries.xs`margin-left:0 !important;`}
     }
@@ -39,19 +45,20 @@ const FooterComponent = () => {
       <Container fluid="true">
         <Row>
           <Col xs={12} sm={4}>
-            <p className="text-left">Copyright © 2019 Omind Brand.</p>
+            <p className="text-left">
+              Copyright © 2019 Omind Brand. &nbsp;&nbsp;
+              <NavLink to="/cookies-policy">Cookies Policy.</NavLink>
+            </p>
           </Col>
           <Col xs={12} sm={4}>
-            <p className="text-left">
-              <NavLink to="/cookies-policy">Cookies Policy.</NavLink>
-              &nbsp;&nbsp;&nbsp;
+            <p className="text-center">
               <a
                 rel="noopener noreferrer"
                 target="_blank"
                 title="Omind Linkedin"
                 href="https://www.linkedin.com/company/omindbrand/"
               >
-                Linkedin
+                <FaLinkedin />
               </a>
               <a
                 rel="noopener noreferrer"
@@ -59,7 +66,7 @@ const FooterComponent = () => {
                 title="Omind Instagram"
                 href="https://www.instagram.com/omindbrand/"
               >
-                Instagram
+                <FaInstagram />
               </a>
               <a
                 rel="noopener noreferrer"
@@ -67,13 +74,13 @@ const FooterComponent = () => {
                 title="Omind Facebook"
                 href="https://www.facebook.com/omindbrand/"
               >
-                Facebook
+                <FaFacebook />
               </a>
             </p>
           </Col>
           <Col xs={12} sm={4}>
             <p className="text-xs-left text-sm-right">
-              <strong>Barcelona.</strong>
+              <strong>Born in Barcelona.</strong>
             </p>
           </Col>
         </Row>

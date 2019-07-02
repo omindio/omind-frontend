@@ -9,15 +9,15 @@ import { Header, Footer, ButtonNav } from '@components/common';
 
 const HeaderSection = styled.section`
   overflow: hidden;
-  background: #fffa94;
+  background: #fff;
 `;
 
-class Contact extends Component {
+class InfoPage extends Component {
   render() {
     return (
       <React.Fragment>
         <Helmet>
-          <title>Contact. Omind</title>
+          <title>Proyect Title. Omind</title>
         </Helmet>
         <Header.Public color="black" />
 
@@ -34,11 +34,12 @@ class Contact extends Component {
             </Row>
           </Container>
         </HeaderSection>
-        <ButtonNav exclude="contact" />
+
+        <ButtonNav />
         <Footer />
       </React.Fragment>
     );
   }
 }
 
-export default Contact;
+export default InfoPage;

@@ -18,6 +18,15 @@ const values = [
   {
     name: 'Security',
   },
+  {
+    name: 'Resilience',
+  },
+  {
+    name: 'Balance',
+  },
+  {
+    name: 'Responsiblity',
+  },
 ];
 
 export default values;

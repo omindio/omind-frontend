@@ -30,9 +30,14 @@ const services = [
       'We are the Shopify experts and work with you to create a whole new e-commerce experience for your customers',
   },
   {
-    title: 'Digital Marketing',
+    title: 'Marketing Strategy',
     description:
       'We find the right channels & target group, and help you to set your campaigns up perfectly.',
+  },
+  {
+    title: 'Social Media',
+    description:
+      'Social media is at the heart of the new digital age. Harnessed effectively, social is an unrivaled tool for building rapport at scale, enabling round-the-clock engagement and one-on-one conversations.',
   },
   {
     title: 'Event Image',

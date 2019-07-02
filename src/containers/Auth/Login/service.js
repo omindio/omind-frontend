@@ -4,16 +4,17 @@ import { ValidationSchemaError, UnauthorizedError } from '@utils/Error';
 
 import { UnauthorizedAccessError, UnverifiedUserError } from '../_Error';
 
-const API_ENDPOINT = `${process.env.API_URL}/users/auth`;
+const API_ENDPOINT = `${process.env.API_URL}/auth`;
 
+// TODO: FIX STORAGE
 const api = async values => {
   try {
     const response = await axios.post(API_ENDPOINT, values);
 
     const { token } = response.data;
     const { id, role, name, lastName, email, exp } = jwt.decode(token);
-    // const { id, exp, role, name, lastName, email } = jwt.decode(token);
     localStorage.setItem('token', token);
+
     return {
       userName: name,
       userLastName: lastName,

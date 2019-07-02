@@ -4,5 +4,6 @@ import Loader from './Loader';
 import ButtonNav from './ButtonNav';
 import * as Profile from './Profile';
 import CookieBanner from './CookieBanner';
+import OverlayCard from './OverlayCard';
 
-export { Header, Footer, Loader, Profile, ButtonNav, CookieBanner };
+export { Header, Footer, Loader, Profile, ButtonNav, CookieBanner, OverlayCard };
