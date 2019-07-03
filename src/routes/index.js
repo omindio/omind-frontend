@@ -22,7 +22,8 @@ const AppRoute = () => {
       <Route exact path="/" component={Home} />
       <Route path="/proyects/:slug" component={Proyects.Info} />
       <Route path="/proyects" component={Proyects.Index} />
-      <Route path="/products" component={Products} />
+      <Route path="/products/:slug" component={Products.Info} />
+      <Route path="/products" component={Products.Index} />
       <Route path="/contact" component={Contact} />
       <Route path="/cookies-policy" component={CookiePolicy} />
       <Route path="/login" component={Login} />

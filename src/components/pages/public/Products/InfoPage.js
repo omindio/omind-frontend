@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable react/prefer-stateless-function */
 
 import React, { Component } from 'react';
@@ -7,15 +8,31 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { MediaQueries } from '@utils/Styles';
 
 import { Header, Footer, ButtonNav, ImageLightboxCard } from '@components/common';
-import movistarImg from './images/movistar.jpeg';
+import nomadcoworkImg from './images/nomadcowork.jpg';
 
+// background-image: url(${nomadcoworkImg});
 const HeaderSection = styled.section`
   overflow: hidden;
   height: 100vh;
-  background-image: url(${movistarImg});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
+
+  video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100vh;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+  }
 
   &::before {
     content: '';
@@ -96,20 +113,28 @@ class InfoPage extends Component {
     return (
       <React.Fragment>
         <Helmet>
-          <title>Business messaging admin panel movistar. Omind</title>
+          <title>Nomad Cowork. Omind</title>
         </Helmet>
         <Header.Public color="black" />
 
         <HeaderSection>
+          <video playsinline="playsinline" autoPlay="autoplay" muted="muted" loop="loop">
+            <source
+              src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4"
+              type="video/mp4"
+            />
+          </video>
           <Container>
             <Row>
               <Col className="m-0 vh-100 d-flex flex-column justify-content-center">
-                <h1>BUSINESS MESSAGING ADMIN PANEL MOVISTAR</h1>
+                <h1>Nomad Cowork</h1>
                 <TagsContainer>
-                  <span>UI & UX</span>
-                  <span>HTML</span>
-                  <span>SASS</span>
-                  <span>Javascript</span>
+                  <span>React</span>
+                  <span>Redux</span>
+                  <span>React Native</span>
+                  <span>Node</span>
+                  <span>Express</span>
+                  <span>MongoDB</span>
                 </TagsContainer>
               </Col>
             </Row>
@@ -120,28 +145,8 @@ class InfoPage extends Component {
           <Container>
             <Row>
               <Col>
-                <h2>Client</h2>
-                <p>
-                  <strong>
-                    Uptiva is a technology services provider. This company is in charge of the
-                    development and maintenance of Movistar’s business message service. Movistar is
-                    the major telecommunications brand owned by Telefónica, operating in Spain and
-                    in many Hispanic American countries. It is the largest mobile phone operator in
-                    Spain.
-                  </strong>
-                </p>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <h2>Proyect Description</h2>
-                <p>
-                  Admin panel layout design for a business messaging platform. We developed a
-                  usability study and the result is a innovative and functional layout composed of
-                  useful elements that improve user experience such as graphics, tables, drop-down
-                  menus and elegant pagination. Our new main goal was also to create a responsive
-                  panel.
-                </p>
+                <h2>Product Description</h2>
+                <p>TO DO.</p>
               </Col>
             </Row>
           </Container>
@@ -149,7 +154,7 @@ class InfoPage extends Component {
 
         <section>
           <GalleryContainer>
-            <ImageLightboxCard image={movistarImg} />
+            <ImageLightboxCard image={nomadcoworkImg} />
           </GalleryContainer>
         </section>
 

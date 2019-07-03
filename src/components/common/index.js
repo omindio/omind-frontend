@@ -5,5 +5,6 @@ import ButtonNav from './ButtonNav';
 import * as Profile from './Profile';
 import CookieBanner from './CookieBanner';
 import OverlayCard from './OverlayCard';
+import ImageLightboxCard from './ImageLightboxCard';
 
-export { Header, Footer, Loader, Profile, ButtonNav, CookieBanner, OverlayCard };
+export { Header, Footer, Loader, Profile, ButtonNav, CookieBanner, OverlayCard, ImageLightboxCard };
