@@ -19,7 +19,7 @@ const HeaderSection = styled.section`
 
   &::before {
     content: '';
-    height: 100%;
+    height: 100vh;
     width: 100%;
     position: absolute;
     z-index: 0;
@@ -32,16 +32,19 @@ const HeaderSection = styled.section`
   h1 {
     margin-bottom: 3rem;
   }
+`;
 
+const TagsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -0.5rem;
   span {
     background: #000;
     color: #fff;
     padding: 15px 23px;
     border-radius: 10px;
     margin-left: 0.5rem;
-    &:first-child {
-      margin-left: 0;
-    }
+    margin-top: 0.5rem;
   }
 `;
 
@@ -89,12 +92,12 @@ class InfoPage extends Component {
             <Row>
               <Col className="m-0 vh-100 d-flex flex-column justify-content-center">
                 <h1>BUSINESS MESSAGING ADMIN PANEL MOVISTAR</h1>
-                <div>
+                <TagsContainer>
                   <span>UI & UX</span>
                   <span>HTML</span>
                   <span>SASS</span>
                   <span>Javascript</span>
-                </div>
+                </TagsContainer>
               </Col>
             </Row>
           </Container>
@@ -104,6 +107,20 @@ class InfoPage extends Component {
           <Container>
             <Row>
               <Col>
+                <h2>Client</h2>
+                <p>
+                  <strong>
+                    Uptiva is a technology services provider. This company is in charge of the
+                    development and maintenance of Movistar’s business message service. Movistar is
+                    the major telecommunications brand owned by Telefónica, operating in Spain and
+                    in many Hispanic American countries. It is the largest mobile phone operator in
+                    Spain.
+                  </strong>
+                </p>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
                 <h2>Proyect Description</h2>
                 <p>
                   Admin panel layout design for a business messaging platform. We developed a
@@ -111,18 +128,6 @@ class InfoPage extends Component {
                   useful elements that improve user experience such as graphics, tables, drop-down
                   menus and elegant pagination. Our new main goal was also to create a responsive
                   panel.
-                </p>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <h2>Client</h2>
-                <p>
-                  Uptiva is a technology services provider. This company is in charge of the
-                  development and maintenance of Movistar’s business message service. Movistar is
-                  the major telecommunications brand owned by Telefónica, operating in Spain and in
-                  many Hispanic American countries. It is the largest mobile phone operator in
-                  Spain.
                 </p>
               </Col>
             </Row>
