@@ -36,6 +36,12 @@ const ButtonsSection = styled.section`
         ${MediaQueries.lg`font-size: 25px;`}
         &:hover {
           border-color: #0e1111;
+          background: #0e1111 !important;
+          color: #fff !important;
+        }
+        &.active {
+          background: transparent;
+          color: #0e1111;
         }
       }
     }

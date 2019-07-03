@@ -15,6 +15,8 @@ import skarabooImg from './images/skaraboo.jpg';
 import stelarbookingImg from './images/stelarbooking.jpeg';
 import viImg from './images/vi.jpeg';
 import zingImg from './images/zing.jpg';
+import thebarberlineImg from './images/thebarberline.jpeg';
+import ibpImg from './images/ibp.jpeg';
 
 const HeaderSection = styled.section`
   overflow: hidden;
@@ -62,44 +64,61 @@ class IndexPage extends Component {
             <OverlayCard
               image={movistarImg}
               to="/proyects/proyect-title"
-              title="Proyect Title"
+              title="UI, UX & Web Development - Movistar."
               alt=""
             />
             <OverlayCard
               image={skarabooImg}
               to="/proyects/proyect-title"
-              title="Proyect Title"
+              title="Co-Founded - Creative Multimedia & Technology Studio."
               alt=""
             />
             <OverlayCard
               image={stelarbookingImg}
               to="/proyects/proyect-title"
-              title="Proyect Title"
+              title="Co-Founded - International Booking Agency."
               alt=""
             />
-            <OverlayCard image={viImg} to="/proyects/proyect-title" title="Proyect Title" alt="" />
+            <OverlayCard
+              image={viImg}
+              to="/proyects/proyect-title"
+              title="Demo product video - Motion Graphics."
+              alt=""
+            />
             <OverlayCard
               image={zingImg}
               to="/proyects/proyect-title"
-              title="Proyect Title"
+              title="UI, UX & Web Development - Fintech."
               alt=""
             />
             <OverlayCard
               image={coverbarcelonaImg}
               to="/proyects/proyect-title"
-              title="Proyect Title"
+              title="UI, UX & Web Development - E-Commerce."
+              alt=""
+            />
+            <OverlayCard
+              image={thebarberlineImg}
+              to="/proyects/proyect-title"
+              title="UI, UX & Web Development."
               alt=""
             />
             <OverlayCard
               image={gospelhumanityImg}
               to="/proyects/proyect-title"
-              title="Proyect Title"
+              title="Non-for-profit Organization - ICO"
               alt=""
             />
             <OverlayCard
               image={renesasImg}
               to="/proyects/proyect-title"
-              title="Proyect Title"
+              title="Demo product video - Motion Graphics."
+              alt=""
+            />
+            <OverlayCard
+              image={ibpImg}
+              to="/proyects/proyect-title"
+              title="Corporative Roll-ups, Design and Print."
               alt=""
             />
           </CardsContainer>
