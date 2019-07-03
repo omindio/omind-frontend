@@ -7,12 +7,17 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { MediaQueries } from '@utils/Styles';
 
 import { Header, Footer, ButtonNav, ImageLightboxCard } from '@components/common';
-import movistarImg from './images/movistar.jpeg';
+import movistarImg1 from './images/movistar/movistar1.jpeg';
+import movistarImg2 from './images/movistar/movistar2.jpeg';
+import movistarImg3 from './images/movistar/movistar3.jpeg';
+import movistarImg4 from './images/movistar/movistar4.jpeg';
+import movistarImg5 from './images/movistar/movistar5.jpeg';
+import movistarImg6 from './images/movistar/movistar6.jpeg';
 
 const HeaderSection = styled.section`
   overflow: hidden;
   height: 100vh;
-  background-image: url(${movistarImg});
+  background-image: url(${movistarImg1});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -149,7 +154,11 @@ class InfoPage extends Component {
 
         <section>
           <GalleryContainer>
-            <ImageLightboxCard image={movistarImg} />
+            <ImageLightboxCard image={movistarImg2} />
+            <ImageLightboxCard image={movistarImg3} />
+            <ImageLightboxCard image={movistarImg4} />
+            <ImageLightboxCard image={movistarImg5} />
+            <ImageLightboxCard image={movistarImg6} />
           </GalleryContainer>
         </section>
 

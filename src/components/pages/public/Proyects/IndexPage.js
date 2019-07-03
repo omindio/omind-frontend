@@ -7,16 +7,16 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import { Header, Footer, ButtonNav, OverlayCard } from '@components/common';
 
-import movistarImg from './images/movistar.jpeg';
-import coverbarcelonaImg from './images/coverbarcelona.jpeg';
-import gospelhumanityImg from './images/gospelhumanity.jpg';
-import renesasImg from './images/renesas.jpg';
-import skarabooImg from './images/skaraboo.jpg';
-import stelarbookingImg from './images/stelarbooking.jpeg';
-import viImg from './images/vi.jpeg';
-import zingImg from './images/zing.jpg';
-import thebarberlineImg from './images/thebarberline.jpeg';
-import ibpImg from './images/ibp.jpeg';
+import movistarImg from './images/movistar/movistar1.jpeg';
+import coverbarcelonaImg from './images/coverbarcelona/coverbarcelona1.jpeg';
+import gospelhumanityImg from './images/gospelhumanity/gospelhumanity1.jpg';
+import renesasImg from './images/renesas/renesas1.jpg';
+import skarabooImg from './images/skaraboo/skaraboo1.jpg';
+import stelarbookingImg from './images/stelarbooking/stelarbooking1.jpg';
+import viImg from './images/vi/vi1.jpeg';
+import zingImg from './images/zing/zing1.jpg';
+import thebarberlineImg from './images/thebarberline/thebarberline1.jpg';
+import ibpImg from './images/ibp/ibp1.jpeg';
 
 const HeaderSection = styled.section`
   overflow: hidden;

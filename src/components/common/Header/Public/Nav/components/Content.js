@@ -120,7 +120,7 @@ const Content = props => {
               </li>
               <li className="title">
                 <NavLink onClick={close} activeClassName="active" to="/contact">
-                  Lets Talk
+                  Let&apos;s Talk
                 </NavLink>
                 .
               </li>
