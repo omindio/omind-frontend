@@ -20,8 +20,8 @@ const AppRoute = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/proyects/:slug" component={Proyects.Info} />
-      <Route path="/proyects" component={Proyects.Index} />
+      <Route path="/our-work/:slug" component={Proyects.Info} />
+      <Route path="/our-work" component={Proyects.Index} />
       <Route path="/products/:slug" component={Products.Info} />
       <Route path="/products" component={Products.Index} />
       <Route path="/contact" component={Contact} />

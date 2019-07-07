@@ -68,7 +68,7 @@ class TableItems extends Component {
     if (isFetchingData)
       return (
         <tr>
-          <td colSpan="5">
+          <td colSpan="6">
             <Loader />
           </td>
         </tr>
@@ -77,6 +77,7 @@ class TableItems extends Component {
     const items = users.map(function(user, index) {
       return [
         <tr key={index}>
+          <td>{user.id}</td>
           <td>
             {user.name}&nbsp;{user.lastName}
           </td>

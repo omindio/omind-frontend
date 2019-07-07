@@ -107,7 +107,7 @@ const Content = props => {
                 .
               </li>
               <li className="title">
-                <NavLink onClick={close} activeClassName="active" to="/proyects">
+                <NavLink onClick={close} activeClassName="active" to="/our-work">
                   Our Work
                 </NavLink>
                 .

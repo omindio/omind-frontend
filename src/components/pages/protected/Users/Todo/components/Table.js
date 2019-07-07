@@ -25,6 +25,7 @@ class TableComponent extends Component {
         <Table responsive="sm">
           <thead>
             <tr>
+              <th>id</th>
               <th>Full Name</th>
               <th>Email</th>
               <th>Role</th>

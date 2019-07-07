@@ -68,12 +68,20 @@ const PagesNav = props => {
       </Nav.Item>
 
       {isAdmin && (
-        <Nav.Item>
-          <NavLink className="nav-link" activeClassName="active" to="/users">
-            <MdPeopleOutline />
-            Users
-          </NavLink>
-        </Nav.Item>
+        <>
+          <Nav.Item>
+            <NavLink className="nav-link" activeClassName="active" to="/users">
+              <MdPeopleOutline />
+              Users
+            </NavLink>
+          </Nav.Item>
+          <Nav.Item>
+            <NavLink className="nav-link" activeClassName="active" to="/proyects">
+              <MdPeopleOutline />
+              Projects
+            </NavLink>
+          </Nav.Item>
+        </>
       )}
 
       <Nav.Item>

@@ -51,7 +51,7 @@ const FooterComponent = () => {
             </p>
           </Col>
           <Col xs={12} sm={4}>
-            <p className="text-center">
+            <p className="text-xs-left text-sm-center">
               <a
                 rel="noopener noreferrer"
                 target="_blank"
