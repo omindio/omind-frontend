@@ -63,68 +63,68 @@ class IndexPage extends Component {
           <CardsContainer>
             <OverlayCard
               image={movistarImg}
-              to="/proyects/proyect-title"
+              to="/our-work/proyect-title"
               title="UI, UX & Web Development - Movistar."
               alt=""
             />
             <OverlayCard
               image={skarabooImg}
-              to="/proyects/proyect-title"
+              to="/our-work/proyect-title"
               title="Co-Founded - Creative Multimedia & Technology Studio."
               alt=""
             />
             <OverlayCard
               image={stelarbookingImg}
-              to="/proyects/proyect-title"
+              to="/our-work/proyect-title"
               title="Co-Founded - International Booking Agency."
               alt=""
             />
             <OverlayCard
               image={viImg}
-              to="/proyects/proyect-title"
+              to="/our-work/proyect-title"
               title="Demo product video - Motion Graphics."
               alt=""
             />
             <OverlayCard
               image={zingImg}
-              to="/proyects/proyect-title"
+              to="/our-work/proyect-title"
               title="UI, UX & Web Development - Fintech."
               alt=""
             />
             <OverlayCard
               image={coverbarcelonaImg}
-              to="/proyects/proyect-title"
+              to="/our-work/proyect-title"
               title="UI, UX & Web Development - E-Commerce."
               alt=""
             />
             <OverlayCard
               image={thebarberlineImg}
-              to="/proyects/proyect-title"
+              to="/our-work/proyect-title"
               title="UI, UX & Web Development."
               alt=""
             />
             <OverlayCard
               image={gospelhumanityImg}
-              to="/proyects/proyect-title"
+              to="/our-work/proyect-title"
               title="Non-for-profit Organization - ICO"
               alt=""
             />
             <OverlayCard
               image={renesasImg}
-              to="/proyects/proyect-title"
+              to="/our-work/proyect-title"
               title="Demo product video - Motion Graphics."
               alt=""
             />
             <OverlayCard
               image={ibpImg}
-              to="/proyects/proyect-title"
+              to="/our-work/proyect-title"
               title="Corporative Roll-ups, Design and Print."
               alt=""
             />
           </CardsContainer>
         </section>
 
-        <ButtonNav exclude="proyects" />
+        <ButtonNav exclude="projects" />
         <Footer />
       </React.Fragment>
     );

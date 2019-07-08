@@ -60,7 +60,7 @@ const ButtonNav = props => {
                 <Button variant="outline-primary">About</Button>
               </LinkContainer>
             )}
-            {exclude !== 'proyects' && (
+            {exclude !== 'projects' && (
               <LinkContainer to="/our-work">
                 <Button variant="outline-primary">Projects</Button>
               </LinkContainer>

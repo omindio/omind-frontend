@@ -139,7 +139,7 @@ class InfoPage extends Component {
             </Row>
             <Row>
               <Col>
-                <h2>Proyect Description</h2>
+                <h2>Project Description</h2>
                 <p>
                   Admin panel layout design for a business messaging platform. We developed a
                   usability study and the result is a innovative and functional layout composed of

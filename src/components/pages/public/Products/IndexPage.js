@@ -67,7 +67,6 @@ class Products extends Component {
               title="Nomad Cowork"
               alt=""
             />
-            <OverlayCard image={nomadcoworkImg} to="/product/coestate" title="Coestate" alt="" />
           </CardsContainer>
         </section>
         <ButtonNav exclude="products" />

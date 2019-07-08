@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import {
   Home,
-  Proyects,
+  Projects,
   Contact,
   Users,
   Login,
@@ -20,8 +20,8 @@ const AppRoute = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/our-work/:slug" component={Proyects.Info} />
-      <Route path="/our-work" component={Proyects.Index} />
+      <Route path="/our-work/:slug" component={Projects.Info} />
+      <Route path="/our-work" component={Projects.Index} />
       <Route path="/products/:slug" component={Products.Info} />
       <Route path="/products" component={Products.Index} />
       <Route path="/contact" component={Contact} />

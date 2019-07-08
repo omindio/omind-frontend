@@ -5,9 +5,10 @@ import { PersistGate } from 'redux-persist/integration/react';
 import ScrollToTop from 'react-router-scroll-top';
 
 import { createBrowserHistory } from 'history';
+import { CookieBanner } from '@components/common';
+
 import AppRoute from '@routes';
 
-import { CookieBanner } from '@components/common';
 import { store, persistor } from '@containers';
 
 import './styles/main.scss';

@@ -1,4 +1,4 @@
-import { Home, Proyects, Contact, NotFound, Login, Products, CookiePolicy } from './public';
+import { Home, Projects, Contact, NotFound, Login, Products, CookiePolicy } from './public';
 import { Users, Dashboard, Settings } from './protected';
 
 export {
@@ -9,7 +9,7 @@ export {
   Users,
   Dashboard,
   Settings,
-  Proyects,
+  Projects,
   Products,
   CookiePolicy,
 };
