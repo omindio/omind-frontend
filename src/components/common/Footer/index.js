@@ -9,11 +9,11 @@ import { NavLink } from 'react-router-dom';
 import { MediaQueries } from '@utils/Styles';
 
 const Footer = styled.footer`
-  ${MediaQueries.xs`margin-top:90px; padding: 0.8rem 2.2rem;`}
-  ${MediaQueries.sm`margin-top:100px; padding: 0.9rem 2.2rem;`}
-  ${MediaQueries.md`margin-top:180px; padding: 1rem 2.2rem;`}
-  ${MediaQueries.lg`margin-top:200px; padding: 2.2rem;`}
-  ${MediaQueries.xl`margin-top:200px; padding: 2.2rem;`}
+  ${MediaQueries.xs`padding-top:90px !important; padding: 0.8rem 2.2rem;`}
+  ${MediaQueries.sm`padding-top:100px !important; padding: 0.9rem 2.2rem;`}
+  ${MediaQueries.md`padding-top:180px !important; padding: 1rem 2.2rem;`}
+  ${MediaQueries.lg`padding-top:200px !important; padding: 2.2rem;`}
+  ${MediaQueries.xl`padding-top:200px !important; padding: 2.2rem;`}
   .container-fluid {
     padding-right: 0;
     padding-left: 0;

@@ -11,11 +11,8 @@ const Navbar = styled(NavbarBootstrap)`
   ${MediaQueries.xs`border: 0;`}
 
   ${MediaQueries.sm`
-    border-style: solid;
-    border-color: #eee;
-    border-width: 1px 1px 0 1px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   `}
   ${MediaQueries.md`padding: 0 1.5rem;`}
   ${MediaQueries.lg`padding: 0 2rem;`}

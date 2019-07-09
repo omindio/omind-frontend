@@ -4,9 +4,11 @@ import { MediaQueries } from '@utils/Styles';
 
 const Card = styled.div`
   background: #fffa94;
+  box-shadow: 0 1px 15px rgba(0,0,0,.03), 0 1px 6px rgba(0,0,0,.03);
+  border-radius: 8px;
   ${MediaQueries.xs`flex-basis: 100%;`}
-  ${MediaQueries.sm`flex-basis: 258px;`}
-  ${MediaQueries.md`flex-basis: 360px;`}
+  ${MediaQueries.sm`flex-basis: 245px;`}
+  ${MediaQueries.md`flex-basis: 355px;`}
   ${MediaQueries.lg`flex-basis: 380px;`}
   ${MediaQueries.xl`flex-basis: 385px;`}
 `;

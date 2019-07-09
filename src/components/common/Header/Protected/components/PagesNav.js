@@ -16,7 +16,7 @@ const Navbar = styled(NavbarBootstrap)`
   ${MediaQueries.sm`padding: 0 1.5rem; margin-bottom: 1.3rem;`}
   ${MediaQueries.md`padding: 0 1.8rem; margin-bottom: 1.5rem;`}
   ${MediaQueries.lg`padding: 0 1.8rem; margin-bottom: 2rem;`}
-  border-bottom: 1px solid rgb(236, 239, 241);
+  box-shadow: 0 1px 15px rgba(0,0,0,.04), 0 1px 6px rgba(0,0,0,.04);
   background: #fff;
   .nav-item {
     position: relative;

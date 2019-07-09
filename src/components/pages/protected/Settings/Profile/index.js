@@ -49,7 +49,7 @@ class ProfilePage extends Component {
         <Header.Protected />
         <Container fluid="yes">
           <SettingsNav />
-          <Section className="bordered">
+          <Section className="shadow">
             <Row>
               <Col xs={12} sm={7} md={6}>
                 <ErrorBoundary>

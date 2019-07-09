@@ -4,7 +4,9 @@ import { MediaQueries } from '@utils/Styles';
 
 const Card = styled.div`
   height: auto;
+  box-shadow: 0 1px 15px rgba(0,0,0,.03), 0 1px 6px rgba(0,0,0,.03);
   background: #fffa94;
+  border-radius: 8px;
   ${MediaQueries.xs`flex-basis: 100%;`}
   ${MediaQueries.sm`flex-basis: 170px;`}
   ${MediaQueries.md`flex-basis: 190px;`}

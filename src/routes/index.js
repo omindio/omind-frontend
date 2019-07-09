@@ -30,13 +30,13 @@ const AppRoute = () => {
 
       <ProtectedRoute
         path="/dashboard"
-        allowedRoles={[Role.Admin, Role.User]}
+        allowedRoles={[Role.Admin, Role.Client, Role.Employee]}
         component={Dashboard}
       />
 
       <ProtectedRoute
         path="/settings"
-        allowedRoles={[Role.Admin, Role.User]}
+        allowedRoles={[Role.Admin, Role.Client, Role.Employee]}
         component={Settings.Profile}
       />
 

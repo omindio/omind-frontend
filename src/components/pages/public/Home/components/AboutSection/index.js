@@ -45,8 +45,7 @@ const CardContainer = styled.div`
   justify-content: flex-start;
   align-items: stretch;
   > div {
-    border: 2px solid #fff;
-    border-radius: 10px;
+    margin: 7px;
   }
 `;
 

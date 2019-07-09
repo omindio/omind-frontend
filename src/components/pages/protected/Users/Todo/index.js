@@ -24,7 +24,7 @@ const UsersTodo = () => {
       <Header.Protected />
       <Container fluid="yes">
         <SettingsNav />
-        <Section className="bordered">
+        <Section className="shadow">
           <Row>
             <Col sm={12}>
               <ErrorBoundary>

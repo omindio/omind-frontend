@@ -26,6 +26,8 @@ const ButtonsSection = styled.section`
         ${MediaQueries.md`margin-bottom: 80px;`}
         ${MediaQueries.lg`margin-bottom: 90px;`}
       .btn {
+        border-radius: 8px;
+        box-shadow: 0 1px 15px rgba(0,0,0,.03), 0 1px 6px rgba(0,0,0,.03);
         margin-right: 20px;
         border-color: #fffa94;
         border-width: 5px;
