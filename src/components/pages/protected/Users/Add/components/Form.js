@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import { actions, validationSchema } from '@containers/User/Create';
@@ -48,66 +48,64 @@ class AddForm extends Component {
               </LinkContainer>
             </Alert>
 
-            <Form.Row>
-              <Field
-                autoComplete="off"
-                type="text"
-                name="name"
-                disabled={isFetching}
-                value={values.name}
-                onChange={handleChange}
-                isInvalid={touched.name && errors.name}
-                placeholder="Name"
-              />
-              <Field
-                autoComplete="off"
-                type="text"
-                name="lastName"
-                value={values.lastName}
-                onChange={handleChange}
-                disabled={isFetching}
-                isInvalid={touched.lastName && errors.lastName}
-                placeholder="Last Name"
-              />
-            </Form.Row>
-            <Form.Row>
-              <Field
-                autoComplete="off"
-                type="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                disabled={isFetching}
-                isInvalid={touched.email && errors.email}
-                placeholder="Email"
-              />
-            </Form.Row>
-            <Form.Row>
-              <Field
-                autoComplete="off"
-                type="password"
-                name="password"
-                value={values.password}
-                onChange={handleChange}
-                disabled={isFetching}
-                isInvalid={touched.password && errors.password}
-                placeholder="Password"
-              />
-              <Field
-                autoComplete="off"
-                type="password"
-                name="passwordConfirmation"
-                value={values.passwordConfirmation}
-                onChange={handleChange}
-                disabled={isFetching}
-                isInvalid={touched.passwordConfirmation && errors.passwordConfirmation}
-                placeholder="Repeat Password"
-              />
-            </Form.Row>
+            <Field
+              autoComplete="off"
+              type="text"
+              name="name"
+              disabled={isFetching}
+              value={values.name}
+              onChange={handleChange}
+              isInvalid={touched.name && errors.name}
+              placeholder="Name"
+            />
+            <Field
+              autoComplete="off"
+              type="text"
+              name="lastName"
+              value={values.lastName}
+              onChange={handleChange}
+              disabled={isFetching}
+              isInvalid={touched.lastName && errors.lastName}
+              placeholder="Last Name"
+            />
+            <Field
+              autoComplete="off"
+              type="email"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              disabled={isFetching}
+              isInvalid={touched.email && errors.email}
+              placeholder="Email"
+            />
+            <Field
+              autoComplete="off"
+              type="password"
+              name="password"
+              value={values.password}
+              onChange={handleChange}
+              disabled={isFetching}
+              isInvalid={touched.password && errors.password}
+              placeholder="Password"
+            />
+            <Field
+              autoComplete="off"
+              type="password"
+              name="passwordConfirmation"
+              value={values.passwordConfirmation}
+              onChange={handleChange}
+              disabled={isFetching}
+              isInvalid={touched.passwordConfirmation && errors.passwordConfirmation}
+              placeholder="Repeat Password"
+            />
 
-            <Button disabled={isFetching} className="btn text-left" type="submit">
-              {isFetching ? 'Wait...' : 'Save'}
-            </Button>
+            <Row>
+              <Col className="text-center">
+                <Button disabled={isFetching} className="btn text-left" type="submit">
+                  {isFetching ? 'Wait...' : 'Save'}
+                </Button>
+              </Col>
+            </Row>
           </Form>
         )}
       />

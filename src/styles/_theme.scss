@@ -1,7 +1,10 @@
 body {
   background: #f8f8f8;
 }
-
+::-webkit-scrollbar {
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
 h1,
 h2,
 h3,
@@ -89,7 +92,7 @@ footer {
 
 section {
   &.shadow {
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04) !important;
     border-radius: 8px;
     margin-bottom: 30px;
     form {
@@ -322,18 +325,24 @@ select:-webkit-autofill:focus {
 
 table,
 .table {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
   thead {
-    background: #f7f7f7;
+    background: #0e1111;
     th {
-      font-weight: 500;
+      font-weight: 400;
       border: 0;
-      color: rgba(17, 51, 83, 0.6);
+      color: #fff;
     }
   }
   .btn-sm {
     padding: 0.2rem 0.2rem;
     font-size: 0.8rem;
     line-height: 1;
+  }
+  td {
+    border-top: 0;
   }
 }
 

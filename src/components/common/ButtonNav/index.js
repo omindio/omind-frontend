@@ -64,7 +64,7 @@ const ButtonNav = props => {
             )}
             {exclude !== 'projects' && (
               <LinkContainer to="/our-work">
-                <Button variant="outline-primary">Projects</Button>
+                <Button variant="outline-primary">Our Work</Button>
               </LinkContainer>
             )}
             {exclude !== 'products' && (

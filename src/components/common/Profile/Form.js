@@ -60,62 +60,56 @@ class ProfileForm extends Component {
               Profile updated successfully.
             </Alert>
 
-            <Form.Row>
-              <Field
-                autoComplete="off"
-                type="text"
-                name="name"
-                disabled={isFetchingUpdate || isFetchingData}
-                value={values.name}
-                onChange={handleChange}
-                isInvalid={touched.name && errors.name}
-                placeholder="Name"
-              />
-              <Field
-                autoComplete="off"
-                type="text"
-                name="lastName"
-                value={values.lastName}
-                onChange={handleChange}
-                disabled={isFetchingUpdate || isFetchingData}
-                isInvalid={touched.lastName && errors.lastName}
-                placeholder="Last Name"
-              />
-            </Form.Row>
-            <Form.Row>
-              <Field
-                autoComplete="off"
-                type="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                disabled={isFetchingUpdate || isFetchingData}
-                isInvalid={touched.email && errors.email}
-                placeholder="Email"
-              />
-            </Form.Row>
-            <Form.Row>
-              <Field
-                autoComplete="off"
-                type="password"
-                name="password"
-                value={values.password}
-                onChange={handleChange}
-                disabled={isFetchingUpdate || isFetchingData}
-                isInvalid={touched.password && errors.password}
-                placeholder="Password"
-              />
-              <Field
-                autoComplete="off"
-                type="password"
-                name="passwordConfirmation"
-                value={values.passwordConfirmation}
-                onChange={handleChange}
-                disabled={isFetchingUpdate || isFetchingData}
-                isInvalid={touched.passwordConfirmation && errors.passwordConfirmation}
-                placeholder="Repeat Password"
-              />
-            </Form.Row>
+            <Field
+              autoComplete="off"
+              type="text"
+              name="name"
+              disabled={isFetchingUpdate || isFetchingData}
+              value={values.name}
+              onChange={handleChange}
+              isInvalid={touched.name && errors.name}
+              placeholder="Name"
+            />
+            <Field
+              autoComplete="off"
+              type="text"
+              name="lastName"
+              value={values.lastName}
+              onChange={handleChange}
+              disabled={isFetchingUpdate || isFetchingData}
+              isInvalid={touched.lastName && errors.lastName}
+              placeholder="Last Name"
+            />
+            <Field
+              autoComplete="off"
+              type="email"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              disabled={isFetchingUpdate || isFetchingData}
+              isInvalid={touched.email && errors.email}
+              placeholder="Email"
+            />
+            <Field
+              autoComplete="off"
+              type="password"
+              name="password"
+              value={values.password}
+              onChange={handleChange}
+              disabled={isFetchingUpdate || isFetchingData}
+              isInvalid={touched.password && errors.password}
+              placeholder="Password"
+            />
+            <Field
+              autoComplete="off"
+              type="password"
+              name="passwordConfirmation"
+              value={values.passwordConfirmation}
+              onChange={handleChange}
+              disabled={isFetchingUpdate || isFetchingData}
+              isInvalid={touched.passwordConfirmation && errors.passwordConfirmation}
+              placeholder="Repeat Password"
+            />
 
             <Button
               disabled={isFetchingUpdate || isFetchingData}

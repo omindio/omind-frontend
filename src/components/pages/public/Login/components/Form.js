@@ -77,7 +77,7 @@ class LoginForm extends Component {
               <ErrorMessage name="password" component="span" />
             </Form.Control.Feedback>
             <Button disabled={isFetching} type="submit">
-              {isFetching ? 'Wait...' : 'Sign in'}
+              {isFetching ? 'Wait...' : 'Sign In'}
             </Button>
           </Form>
         )}

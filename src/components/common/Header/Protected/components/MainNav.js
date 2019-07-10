@@ -30,11 +30,23 @@ const Navbar = styled(NavbarBootstrap)`
 
 const NavDropdown = styled(NavDropdownBootstrap)`
   a.nav-link {
+    font-weight: 400;
     font-size: 1rem;
     color: #fff;
   }
   .dropdown-menu {
+    border: 0;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.04);
     left: -30%;
+    a {
+      padding: 0.5rem 1.5rem;
+      color: #6b6e71;
+      &.active,
+      &:active {
+        background: transparent;
+        font-weight: 600;
+      }
+    }
   }
 `;
 
@@ -58,7 +70,7 @@ const MainNav = props => {
               </NavLink>
               <NavDropdownBootstrap.Divider />
               <NavDropdownBootstrap.Item href="#" onClick={logout}>
-                Logout
+                Sign Out
               </NavDropdownBootstrap.Item>
             </NavDropdown>
           </Nav>
