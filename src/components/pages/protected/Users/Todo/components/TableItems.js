@@ -64,7 +64,7 @@ class TableItems extends Component {
     const { users, isFetching, isFetchingData } = this.props;
     const { showModal, userName } = this.state;
 
-    if (isFetchingData)
+    if (isFetchingData) {
       return (
         <tr>
           <td colSpan="6">
@@ -72,6 +72,7 @@ class TableItems extends Component {
           </td>
         </tr>
       );
+    }
 
     const items = users.map(function(user, index) {
       return [

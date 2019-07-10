@@ -33,7 +33,7 @@ class TableItems extends Component {
   componentDidMount() {
     const { fetch, limit } = this.props;
     const page = 1;
-    
+
     fetch({ page, limit });
   }
 
@@ -65,7 +65,7 @@ class TableItems extends Component {
     const { clients, isFetching, isFetchingData } = this.props;
     const { showModal, companyName } = this.state;
 
-    if (isFetchingData)
+    if (isFetchingData) {
       return (
         <tr>
           <td colSpan="7">
@@ -73,8 +73,9 @@ class TableItems extends Component {
           </td>
         </tr>
       );
+    }
 
-    const items = clients.map(function(client, index) {
+    const items = clients.map((client, index) => {
       return [
         <tr key={index}>
           <td>{client.id}</td>

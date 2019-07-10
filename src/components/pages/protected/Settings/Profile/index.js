@@ -4,12 +4,10 @@ import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
-import { Header, Profile } from '@components/common';
+import { Header, Profile, SectionNav } from '@components/common';
 import { ErrorBoundary } from '@utils/ErrorHandler';
 import { getOneAction } from '@containers/User/GetOne';
 import { profileAction } from '@containers/Auth/Profile';
-
-import { SettingsNav } from '../components';
 
 const Section = styled.section`
   border-top-left-radius: 0 !important;
@@ -48,7 +46,7 @@ class ProfilePage extends Component {
 
         <Header.Protected />
         <Container fluid="yes">
-          <SettingsNav />
+          <SectionNav values={[{ url: '/settings', name: 'Profile' }]} />
           <Section className="shadow">
             <Row>
               <Col xs={12} sm={7} md={6}>

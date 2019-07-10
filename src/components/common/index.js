@@ -7,6 +7,7 @@ import CookieBanner from './CookieBanner';
 import OverlayCard from './OverlayCard';
 import ImageLightboxCard from './ImageLightboxCard';
 import Pagination from './Pagination';
+import SectionNav from './SectionNav';
 
 export {
   Header,
@@ -18,4 +19,5 @@ export {
   OverlayCard,
   ImageLightboxCard,
   Pagination,
+  SectionNav,
 };

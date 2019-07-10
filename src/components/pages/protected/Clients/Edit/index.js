@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import { Header, Profile } from '@components/common';
+import { Header, Profile, SectionNav } from '@components/common';
 
 import { ErrorBoundary } from '@utils/ErrorHandler';
 import { getOneAction } from '@containers/User/GetOne';
-import { SettingsNav } from '../components';
 
 import Verification from './components/Verification';
 
@@ -29,7 +28,9 @@ const UsersEdit = props => {
 
       <Header.Protected />
       <Container fluid="yes">
-        <SettingsNav />
+        <SectionNav
+          values={[{ url: '/clients', name: 'Todo' }, { url: '/clients/add', name: 'Add New' }]}
+        />
         <Section className="shadow">
           <Row>
             <Col xs={12} sm={7} md={6}>

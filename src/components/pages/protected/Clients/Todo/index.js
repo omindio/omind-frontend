@@ -2,10 +2,9 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import { Header } from '@components/common';
+import { Header, SectionNav } from '@components/common';
 
 import { ErrorBoundary } from '@utils/ErrorHandler';
-import { SettingsNav } from '../components';
 
 import { Table } from './components';
 
@@ -23,7 +22,9 @@ const ClientsTodo = () => {
 
       <Header.Protected />
       <Container fluid="yes">
-        <SettingsNav />
+        <SectionNav
+          values={[{ url: '/clients', name: 'Todo' }, { url: '/clients/add', name: 'Add New' }]}
+        />
         <Section className="shadow">
           <Row>
             <Col sm={12}>
