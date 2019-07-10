@@ -85,7 +85,7 @@ MainNav.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { profile } = state.user;
+  const { profile } = state.auth;
   const { name, lastName } = profile.user;
 
   return {

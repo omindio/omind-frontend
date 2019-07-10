@@ -6,5 +6,16 @@ import * as Profile from './Profile';
 import CookieBanner from './CookieBanner';
 import OverlayCard from './OverlayCard';
 import ImageLightboxCard from './ImageLightboxCard';
+import Pagination from './Pagination';
 
-export { Header, Footer, Loader, Profile, ButtonNav, CookieBanner, OverlayCard, ImageLightboxCard };
+export {
+  Header,
+  Footer,
+  Loader,
+  Profile,
+  ButtonNav,
+  CookieBanner,
+  OverlayCard,
+  ImageLightboxCard,
+  Pagination,
+};

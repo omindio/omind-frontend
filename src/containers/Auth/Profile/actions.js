@@ -1,8 +1,8 @@
-import USER_PROFILE from './types';
+import AUTH_PROFILE from './types';
 
 const profileAction = values => {
   return {
-    type: USER_PROFILE,
+    type: AUTH_PROFILE,
     values,
   };
 };

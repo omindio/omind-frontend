@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { StateErrorHandler } from '@utils/ErrorHandler';
 import { loginAction, validationSchema } from '@containers/Auth/Login';
-import { profileAction } from '@containers/User/Profile';
+import { profileAction } from '@containers/Auth/Profile';
 
 import styled from 'styled-components';
 

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
+
 import { getAllAction } from '@containers/User/GetAll';
 import { StateErrorHandler } from '@utils/ErrorHandler';
-import Pagination from './Pagination';
+import { Pagination } from '@components/common';
+
 import TableItems from './TableItems';
 
 class TableComponent extends Component {
@@ -17,7 +19,6 @@ class TableComponent extends Component {
   render() {
     const { pages, current, deleteError } = this.props;
     const { limit } = this.state;
-
     return (
       <React.Fragment>
         <StateErrorHandler error={deleteError} />
@@ -37,7 +38,7 @@ class TableComponent extends Component {
             <TableItems limit={limit} />
           </tbody>
         </Table>
-        <Pagination currentPage={current} pages={pages} limit={limit} />
+        <Pagination action={getAllAction} currentPage={current} pages={pages} limit={limit} />
       </React.Fragment>
     );
   }
@@ -53,15 +54,16 @@ const mapStateToProps = state => {
     deleteError: remove.error,
   };
 };
-
+/*
 const mapDispatchToProps = dispatch => {
   return {
     // dispatching actions returned by action creators
     fetch: values => dispatch(getAllAction(values)),
   };
 };
+*/
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+//  mapDispatchToProps,
 )(TableComponent);

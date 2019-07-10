@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert, Row, Col } from 'react-bootstrap';
 
 import { actions, validationSchema } from '@containers/User/Update';
 import { getOneAction } from '@containers/User/GetOne';
@@ -110,14 +110,17 @@ class ProfileForm extends Component {
               isInvalid={touched.passwordConfirmation && errors.passwordConfirmation}
               placeholder="Repeat Password"
             />
-
-            <Button
-              disabled={isFetchingUpdate || isFetchingData}
-              className="btn text-left"
-              type="submit"
-            >
-              {isFetchingUpdate || isFetchingData ? 'Wait...' : 'Save'}
-            </Button>
+            <Row>
+              <Col className="text-right">
+                <Button
+                  disabled={isFetchingUpdate || isFetchingData}
+                  className="btn text-left"
+                  type="submit"
+                >
+                  {isFetchingUpdate || isFetchingData ? 'Wait...' : 'Save'}
+                </Button>
+              </Col>
+            </Row>
           </Form>
         )}
       />

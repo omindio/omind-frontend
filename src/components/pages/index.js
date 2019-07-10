@@ -1,5 +1,13 @@
-import { Home, Projects, Contact, NotFound, Login, Products, CookiePolicy } from './public';
-import { Users, Dashboard, Settings } from './protected';
+import {
+  Home,
+  Projects as PublicProjects,
+  Contact,
+  NotFound,
+  Login,
+  Products,
+  CookiePolicy,
+} from './public';
+import { Users, Clients, Employees, Projects, Dashboard, Settings } from './protected';
 
 export {
   Contact,
@@ -7,6 +15,9 @@ export {
   Login,
   NotFound,
   Users,
+  Clients,
+  Employees,
+  PublicProjects,
   Dashboard,
   Settings,
   Projects,

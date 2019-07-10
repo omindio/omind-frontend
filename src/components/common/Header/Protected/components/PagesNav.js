@@ -7,7 +7,14 @@ import { NavLink } from 'react-router-dom';
 import { Navbar as NavbarBootstrap, Nav } from 'react-bootstrap';
 import { MediaQueries } from '@utils/Styles';
 
-import { MdPeopleOutline, MdSettings, MdDashboard } from 'react-icons/md';
+import {
+  MdPeopleOutline,
+  MdSettings,
+  MdDashboard,
+  MdBusinessCenter,
+  MdGroupWork,
+  MdWork,
+} from 'react-icons/md';
 
 import { Role } from '@utils/Auth';
 
@@ -76,8 +83,20 @@ const PagesNav = props => {
             </NavLink>
           </Nav.Item>
           <Nav.Item>
-            <NavLink className="nav-link" activeClassName="active" to="/proyects">
-              <MdPeopleOutline />
+            <NavLink className="nav-link" activeClassName="active" to="/clients">
+              <MdBusinessCenter />
+              Clients
+            </NavLink>
+          </Nav.Item>
+          <Nav.Item>
+            <NavLink className="nav-link" activeClassName="active" to="/employees">
+              <MdGroupWork />
+              Employees
+            </NavLink>
+          </Nav.Item>
+          <Nav.Item>
+            <NavLink className="nav-link" activeClassName="active" to="/employees">
+              <MdWork />
               Projects
             </NavLink>
           </Nav.Item>

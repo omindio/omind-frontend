@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { Header, Profile } from '@components/common';
 import { ErrorBoundary } from '@utils/ErrorHandler';
 import { getOneAction } from '@containers/User/GetOne';
-import { profileAction } from '@containers/User/Profile';
+import { profileAction } from '@containers/Auth/Profile';
 
 import { SettingsNav } from '../components';
 
@@ -43,7 +43,7 @@ class ProfilePage extends Component {
     return (
       <React.Fragment>
         <Helmet>
-          <title>Profile</title>
+          <title>Profile. Settings</title>
         </Helmet>
 
         <Header.Protected />

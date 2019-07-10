@@ -24,7 +24,7 @@ const UsersEdit = props => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>Edit User</title>
+        <title>Edit. Users</title>
       </Helmet>
 
       <Header.Protected />

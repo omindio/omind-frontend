@@ -26,7 +26,6 @@ class TableItems extends Component {
       showModal: false,
       userName: null,
       userId: null,
-      // index: null,
     };
   }
 

@@ -24,6 +24,7 @@ h5,
     border: 3px solid #1f1e1d;
     margin-top: 1rem;
     color: #6c6c6c;
+    padding: 0.7rem 0.6rem !important;
     &:focus {
       background: transparent;
       border-color: inherit;
@@ -275,13 +276,13 @@ section {
 }
 
 .form-control {
-  padding: 0.7rem 0.6rem !important;
+  //padding: 0.7rem 0.6rem !important;
   border-radius: 8px !important;
   height: auto !important;
   text-align: left;
   background: transparent;
   color: #6c6c6c;
-  border: 3px solid color('gray');
+  //border: 3px solid color('gray');
   &:focus {
     background: transparent;
     border-color: inherit;
@@ -308,9 +309,9 @@ select:-webkit-autofill:focus {
 }
 
 .invalid-feedback {
-  font-size: inherit;
-  font-weight: 500;
-  margin: 0.5em 0 0 0;
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin: 0.3em 0 0 0;
 }
 
 .alert-danger,
@@ -331,7 +332,8 @@ table,
   thead {
     background: #0e1111;
     th {
-      font-weight: 400;
+      font-weight: 600;
+      font-size: 0.85rem;
       border: 0;
       color: #fff;
     }

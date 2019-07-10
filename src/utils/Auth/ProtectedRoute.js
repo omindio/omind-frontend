@@ -3,25 +3,12 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { logoutAction } from '@containers/Auth/Logout';
-
-/*
-  TODO: Think about connect to store in parent (AppRoute)
-*/
-const checkAuth = (isAuthenticated, userRole, tokenExpires, allowedRoles, dispatch) => {
+const checkAuth = (isAuthenticated, userRole, allowedRoles) => {
   if (!isAuthenticated) {
     return false;
   }
 
   if (!allowedRoles.includes(userRole)) {
-    return false;
-  }
-
-  try {
-    if (tokenExpires < new Date().getTime() / 1000) {
-      dispatch(logoutAction());
-    }
-  } catch (e) {
     return false;
   }
 
@@ -32,15 +19,13 @@ const ProtectedRoute = ({
   component: Component,
   allowedRoles,
   isAuthenticated,
-  tokenExpires,
   userRole,
-  dispatch,
   ...rest
 }) => (
   <Route
     {...rest}
     render={props =>
-      checkAuth(isAuthenticated, userRole, tokenExpires, allowedRoles, dispatch) ? (
+      checkAuth(isAuthenticated, userRole, allowedRoles) ? (
         <Component {...props} />
       ) : (
         <Redirect to={{ pathname: '/' }} />
@@ -50,7 +35,7 @@ const ProtectedRoute = ({
 );
 
 ProtectedRoute.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  // dispatch: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   allowedRoles: PropTypes.array.isRequired,
@@ -60,11 +45,11 @@ ProtectedRoute.propTypes = {
 
 const mapStateToProps = state => {
   const { login } = state.auth;
-  const { isAuthenticated, tokenExpires, userRole } = login;
+  const { isAuthenticated, /* tokenExpires, */ userRole } = login;
   return {
     isAuthenticated,
     userRole,
-    tokenExpires,
+    // tokenExpires,
   };
 };
 
