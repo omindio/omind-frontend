@@ -64,7 +64,7 @@ class ClientProfileForm extends Component {
           passwordConfirmation: '',
           companyName: companyName || '',
           description: description || '',
-          logoFile: {},
+          logoFile: null,
           cif: cif || '',
           fiscalAddress: fiscalAddress || '',
           phone: phone || '',

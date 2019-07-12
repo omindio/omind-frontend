@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 import { Header, UserProfileForm, SectionNav } from '@components/common';
 import { ErrorBoundary } from '@utils/ErrorHandler';
-import { getOneAction } from '@containers/User/GetOne';
 import { profileAction } from '@containers/Auth/Profile';
 
 const Section = styled.section`
@@ -15,11 +14,6 @@ const Section = styled.section`
 `;
 
 class ProfilePage extends Component {
-  componentDidMount() {
-    const { fetch, userId } = this.props;
-    fetch({ id: userId });
-  }
-
   componentDidUpdate() {
     const { isUpdated, updateProfile, userUpdated } = this.props;
     if (isUpdated) {
@@ -85,7 +79,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetch: values => dispatch(getOneAction(values)),
     updateProfile: values => dispatch(profileAction(values)),
   };
 };

@@ -1,4 +1,4 @@
-# React & Redux - Docker
+# React & Redux
 
 _TODO_
 
@@ -8,30 +8,14 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Docker dependency. Install it from: [https://docs.docker.com/install/](https://docs.docker.com/install/)
+_TODO_
 
 ### Installing
 
 1. Copy _.env.dist_ and paste as _.env_
-2. Build Docker containers:
-
-```
-docker-compose build
-```
-
-3. Run containers:
-
-```
-docker-compose up -d
-```
-
-List all containers:
-
-```
-docker ps
-```
-
-- App: [http://0.0.0.0:3200](http://0.0.0.0:3200)
+2. npm install
+3. npm run dev
+4. Browser: [http://0.0.0.0:4000](http://0.0.0.0:4000)
 
 ### Proyect Organization
 

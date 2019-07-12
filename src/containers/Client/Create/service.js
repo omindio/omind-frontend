@@ -25,7 +25,6 @@ const api = async values => {
 
   try {
     const data = new FormData();
-
     Object.keys(values).map(key => {
       data.append(key, values[key]);
       return null;
