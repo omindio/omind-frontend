@@ -45,11 +45,10 @@ ProtectedRoute.propTypes = {
 
 const mapStateToProps = state => {
   const { login } = state.auth;
-  const { isAuthenticated, /* tokenExpires, */ userRole } = login;
+  const { isAuthenticated, userRole } = login;
   return {
     isAuthenticated,
     userRole,
-    // tokenExpires,
   };
 };
 

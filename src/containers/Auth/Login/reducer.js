@@ -12,6 +12,8 @@ const initialState = {
   userLastName: null,
   userEmail: null,
   tokenExpires: null,
+  clientId: null,
+  employeeId: null,
 };
 
 export default function(state = initialState, action) {
@@ -23,18 +25,14 @@ export default function(state = initialState, action) {
         isFetching: true,
         isAuthenticated: false,
       });
-    case LOGIN_SUCCESS:
-      return Object.assign({}, state, {
+    case LOGIN_SUCCESS: {
+      const data = Object.assign({}, state, action.response);
+      return Object.assign({}, data, {
         error: {},
         isFetching: false,
         isAuthenticated: true,
-        userId: action.response.userId,
-        userRole: action.response.userRole,
-        userName: action.response.userName,
-        userLastName: action.response.userLastName,
-        userEmail: action.response.userEmail,
-        tokenExpires: action.response.tokenExpires,
       });
+    }
     case LOGIN_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,

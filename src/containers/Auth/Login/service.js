@@ -1,6 +1,7 @@
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import { ValidationSchemaError, UnauthorizedError } from '@utils/Error';
+import { Role } from '@utils/Auth';
 
 import { UnauthorizedAccessError, UnverifiedUserError } from '../_Error';
 
@@ -12,18 +13,34 @@ const api = async values => {
     const response = await axios.post(API_ENDPOINT, values);
 
     const { token } = response.data;
-    const { id, role, name, lastName, email, exp } = jwt.decode(token);
-    localStorage.setItem('token', token);
+    const decoded = jwt.decode(token);
 
-    return {
+    const { id, role, name, lastName, email, exp } = decoded;
+
+    const data = {
       userName: name,
       userLastName: lastName,
       userEmail: email,
       userId: id,
       userRole: role,
-      // token,
       tokenExpires: exp,
     };
+
+    switch (role) {
+      case Role.Admin:
+        break;
+      case Role.Client:
+        data.clientId = decoded.clientId;
+        break;
+      case Role.Employee:
+        data.employeeId = decoded.employeeId;
+        break;
+      default:
+        break;
+    }
+    localStorage.setItem('token', token);
+
+    return data;
   } catch (err) {
     const classesMapping = {
       UnauthorizedAccessError,

@@ -142,14 +142,18 @@ class UserProfileForm extends Component {
 UserProfileForm.propTypes = {
   userId: PropTypes.string.isRequired,
   isFetchingUpdate: PropTypes.bool.isRequired,
+  isFetchingData: PropTypes.bool.isRequired,
   isUpdated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => {
-  const { update } = state.user;
+  const { update, getOne } = state.user;
   const { user, isFetching, success, error } = update;
 
   return {
+    isFetchingData: getOne.isFetching,
+    fetchDataError: getOne.error,
+    userFetched: getOne.user,
     userUpdated: user,
     isFetchingUpdate: isFetching,
     isUpdated: success,
