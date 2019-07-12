@@ -9,9 +9,9 @@ import { getOneAction } from '@containers/User/GetOne';
 
 import { StateErrorHandler } from '@utils/ErrorHandler';
 
-import Field from './Field';
+import { Text } from '../Field';
 
-class ProfileForm extends Component {
+class UserProfileForm extends Component {
   componentDidMount() {
     const { fetch, userId } = this.props;
     fetch({ id: userId });
@@ -56,60 +56,71 @@ class ProfileForm extends Component {
         render={({ values, handleSubmit, handleChange, errors, touched }) => (
           <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
             {updateError && <StateErrorHandler error={updateError} />}
+
             <Alert show={isUpdated} key={0} variant="success">
               Profile updated successfully.
             </Alert>
 
-            <Field
-              autoComplete="off"
-              type="text"
+            <Text
+              label="Name *"
+              placeholder="Name"
               name="name"
+              type="text"
+              autoComplete="off"
               disabled={isFetchingUpdate || isFetchingData}
               value={values.name}
               onChange={handleChange}
               isInvalid={touched.name && errors.name}
-              placeholder="Name"
             />
-            <Field
-              autoComplete="off"
-              type="text"
+
+            <Text
+              label="Last Name *"
+              placeholder="Last Name"
               name="lastName"
+              type="text"
+              autoComplete="off"
+              disabled={isFetchingUpdate || isFetchingData}
               value={values.lastName}
               onChange={handleChange}
-              disabled={isFetchingUpdate || isFetchingData}
               isInvalid={touched.lastName && errors.lastName}
-              placeholder="Last Name"
             />
-            <Field
-              autoComplete="off"
-              type="email"
+
+            <Text
+              label="Email *"
+              placeholder="Email"
               name="email"
+              type="email"
+              autoComplete="off"
+              disabled={isFetchingUpdate || isFetchingData}
               value={values.email}
               onChange={handleChange}
-              disabled={isFetchingUpdate || isFetchingData}
               isInvalid={touched.email && errors.email}
-              placeholder="Email"
             />
-            <Field
-              autoComplete="off"
-              type="password"
+
+            <Text
+              label="Password *"
+              placeholder="Password"
               name="password"
+              type="password"
+              autoComplete="off"
+              disabled={isFetchingUpdate || isFetchingData}
               value={values.password}
               onChange={handleChange}
-              disabled={isFetchingUpdate || isFetchingData}
               isInvalid={touched.password && errors.password}
-              placeholder="Password"
             />
-            <Field
-              autoComplete="off"
-              type="password"
+
+            <Text
+              label="Repeat Password *"
+              placeholder="Repeat Password"
               name="passwordConfirmation"
+              type="password"
+              autoComplete="off"
+              disabled={isFetchingUpdate || isFetchingData}
               value={values.passwordConfirmation}
               onChange={handleChange}
-              disabled={isFetchingUpdate || isFetchingData}
               isInvalid={touched.passwordConfirmation && errors.passwordConfirmation}
-              placeholder="Repeat Password"
             />
+
             <Row>
               <Col className="text-right">
                 <Button
@@ -128,7 +139,7 @@ class ProfileForm extends Component {
   }
 }
 
-ProfileForm.propTypes = {
+UserProfileForm.propTypes = {
   userId: PropTypes.string.isRequired,
   isFetchingUpdate: PropTypes.bool.isRequired,
   isUpdated: PropTypes.bool.isRequired,
@@ -158,4 +169,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ProfileForm);
+)(UserProfileForm);

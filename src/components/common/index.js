@@ -2,22 +2,28 @@ import * as Header from './Header';
 import Footer from './Footer';
 import Loader from './Loader';
 import ButtonNav from './ButtonNav';
-import * as Profile from './Profile';
+import UserProfileForm from './UserProfileForm';
+import ClientProfileForm from './ClientProfileForm';
 import CookieBanner from './CookieBanner';
 import OverlayCard from './OverlayCard';
 import ImageLightboxCard from './ImageLightboxCard';
 import Pagination from './Pagination';
 import SectionNav from './SectionNav';
+import * as Field from './Field';
+import UserVerification from './UserVerification';
 
 export {
   Header,
   Footer,
   Loader,
-  Profile,
+  UserProfileForm,
+  ClientProfileForm,
   ButtonNav,
   CookieBanner,
   OverlayCard,
   ImageLightboxCard,
   Pagination,
   SectionNav,
+  Field,
+  UserVerification,
 };

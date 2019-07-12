@@ -5,10 +5,10 @@ import { Form, Button, Alert, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import { actions, validationSchema } from '@containers/User/Create';
-
+import { Field } from '@components/common';
 import { StateErrorHandler } from '@utils/ErrorHandler';
 
-import Field from './Field';
+// import Field from './Field';
 
 class AddForm extends Component {
   componentWillUnmount() {
@@ -49,55 +49,64 @@ class AddForm extends Component {
               </LinkContainer>
             </Alert>
 
-            <Field
-              autoComplete="off"
-              type="text"
+            <Field.Text
+              label="Name *"
+              placeholder="Name"
               name="name"
+              type="text"
+              autoComplete="off"
               disabled={isFetching}
               value={values.name}
               onChange={handleChange}
               isInvalid={touched.name && errors.name}
-              placeholder="Name"
             />
-            <Field
-              autoComplete="off"
-              type="text"
+
+            <Field.Text
+              label="Last Name *"
+              placeholder="Last Name"
               name="lastName"
+              type="text"
+              autoComplete="off"
+              disabled={isFetching}
               value={values.lastName}
               onChange={handleChange}
-              disabled={isFetching}
               isInvalid={touched.lastName && errors.lastName}
-              placeholder="Last Name"
             />
-            <Field
-              autoComplete="off"
-              type="email"
+
+            <Field.Text
+              label="Email *"
+              placeholder="Email"
               name="email"
+              type="email"
+              autoComplete="off"
+              disabled={isFetching}
               value={values.email}
               onChange={handleChange}
-              disabled={isFetching}
               isInvalid={touched.email && errors.email}
-              placeholder="Email"
             />
-            <Field
-              autoComplete="off"
-              type="password"
+
+            <Field.Text
+              label="Password *"
+              placeholder="Password"
               name="password"
+              type="password"
+              autoComplete="off"
+              disabled={isFetching}
               value={values.password}
               onChange={handleChange}
-              disabled={isFetching}
               isInvalid={touched.password && errors.password}
-              placeholder="Password"
             />
-            <Field
-              autoComplete="off"
-              type="password"
+
+            <Field.Text
+              label="Repeat Password *"
+              placeholder="Repeat Password"
               name="passwordConfirmation"
+              type="password"
+              autoComplete="off"
+              disabled={isFetching}
               value={values.passwordConfirmation}
               onChange={handleChange}
-              disabled={isFetching}
               isInvalid={touched.passwordConfirmation && errors.passwordConfirmation}
-              placeholder="Repeat Password"
             />
 
             <Row>

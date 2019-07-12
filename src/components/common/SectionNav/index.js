@@ -8,15 +8,21 @@ import { Navbar as NavbarBootstrap, Nav } from 'react-bootstrap';
 import { MediaQueries } from '@utils/Styles';
 
 const Navbar = styled(NavbarBootstrap)`
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  &::-webkit-scrollbar {
+      display: none;
+  }
   padding: 0 1rem;
-
   ${MediaQueries.xs`border: 0;`}
-
   ${MediaQueries.sm`
-  padding: 0 1.5rem;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-`}
+    padding: 0 1.5rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  `}
   ${MediaQueries.md`padding: 0 1.5rem;`}
   ${MediaQueries.lg`padding: 0 2rem;`}
 
@@ -44,7 +50,7 @@ const Navbar = styled(NavbarBootstrap)`
         &::after {
           content: '';
           position: absolute;
-          bottom: -1px;
+          bottom: 2px;
           left: 0;
           width: 100%;
           height: 1px;

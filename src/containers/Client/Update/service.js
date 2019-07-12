@@ -13,14 +13,25 @@ import { ClientAlreadyExistsError, ClientNotFoundError } from '../_Error';
 
 const api = async values => {
   const { id } = values;
-  const token = localStorage.getItem('token');
+  const bearerToken = localStorage.getItem('token');
   const API_URL = `${process.env.API_URL}/clients/${id}`;
-  const headers = {
-    headers: { Authorization: `Bearer ${token}` },
-  };
 
+  const headers = {
+    headers: {
+      Authorization: `Bearer ${bearerToken}`,
+      Accept: 'application/json',
+      'Content-Type': 'multipart/form-data',
+    },
+  };
   try {
-    const response = await axios.patch(API_URL, values, headers);
+    const data = new FormData();
+
+    Object.keys(values).map(key => {
+      data.append(key, values[key]);
+      return null;
+    });
+
+    const response = await axios.patch(API_URL, data, headers);
 
     const { name, lastName, email } = response.data;
     return {

@@ -3,9 +3,9 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
-import { MdEdit, MdDelete } from 'react-icons/md';
+import { MdEdit, MdDelete, MdDone, MdWatchLater } from 'react-icons/md';
 import { connect } from 'react-redux';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Badge } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import { actions } from '@containers/User/Delete';
@@ -83,7 +83,17 @@ class TableItems extends Component {
           </td>
           <td>{user.email}</td>
           <td>{user.role}</td>
-          <td>{user.isVerified === true ? 'Yes' : 'No'}</td>
+          <td>
+            {user.isVerified === true ? (
+              <Badge variant="success">
+                <MdDone />
+              </Badge>
+            ) : (
+              <Badge variant="warning">
+                <MdWatchLater />
+              </Badge>
+            )}
+          </td>
           <td className="text-right">
             <LinkContainer to={`/users/edit/${user.id}`}>
               <Button disabled={isFetching} variant="primary" size="sm">

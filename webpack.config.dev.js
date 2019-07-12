@@ -5,7 +5,7 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+// const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const ImageminPlugin = require('imagemin-webpack');
@@ -38,11 +38,7 @@ module.exports = () => {
     devServer: {
       contentBase: path.resolve(__dirname, 'public'),
       port: process.env.PORT,
-      // compress: true,
-      // host: 'localhost',
-      // public: `localhost:${process.env.PORT}`,
       historyApiFallback: true,
-      // hot: true,
     },
     module: {
       rules: [
@@ -125,7 +121,7 @@ module.exports = () => {
           ],
         },
       }),
-
+      /*
       new BrowserSyncPlugin(
         {
           host: 'localhost',
@@ -136,6 +132,7 @@ module.exports = () => {
           reload: false,
         },
       ),
+      */
     ],
   };
 };

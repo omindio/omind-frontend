@@ -16,7 +16,8 @@ const api = async values => {
 
   try {
     response = await axios.get(API_URL, headers);
-
+    return response.data;
+    /*
     const { name, lastName, email, isVerified } = response.data;
     return {
       name,
@@ -24,6 +25,7 @@ const api = async values => {
       email,
       isVerified,
     };
+    */
   } catch (err) {
     const classesMapping = {
       UserNotFoundError,

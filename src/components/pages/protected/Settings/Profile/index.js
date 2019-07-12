@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
-import { Header, Profile, SectionNav } from '@components/common';
+import { Header, UserProfileForm, SectionNav } from '@components/common';
 import { ErrorBoundary } from '@utils/ErrorHandler';
 import { getOneAction } from '@containers/User/GetOne';
 import { profileAction } from '@containers/Auth/Profile';
@@ -51,7 +51,7 @@ class ProfilePage extends Component {
             <Row>
               <Col xs={12} sm={7} md={6}>
                 <ErrorBoundary>
-                  <Profile.Form
+                  <UserProfileForm
                     userId={userId}
                     isUpdated={isUpdated}
                     userUpdated={userUpdated}

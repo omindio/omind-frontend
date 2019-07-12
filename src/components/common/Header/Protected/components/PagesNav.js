@@ -19,6 +19,14 @@ import {
 import { Role } from '@utils/Auth';
 
 const Navbar = styled(NavbarBootstrap)`
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  &::-webkit-scrollbar {
+      display: none;
+  }
   ${MediaQueries.xs`padding: 0 1rem; margin-bottom: 0;`}
   ${MediaQueries.sm`padding: 0 1.5rem; margin-bottom: 1.3rem;`}
   ${MediaQueries.md`padding: 0 1.8rem; margin-bottom: 1.5rem;`}
@@ -42,7 +50,7 @@ const Navbar = styled(NavbarBootstrap)`
         &::after {
           content: '';
           position: absolute;
-          bottom: -1px;
+          bottom: 0;
           left: 0;
           width: 100%;
           height: 1px;

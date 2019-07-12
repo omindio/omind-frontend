@@ -3,18 +3,14 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
-import { MdEdit, MdDelete } from 'react-icons/md';
+import { MdEdit, MdDelete, MdDone, MdWarning, MdWatchLater } from 'react-icons/md';
 import { connect } from 'react-redux';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Badge } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import { actions } from '@containers/Client/Delete';
 import { getAllAction } from '@containers/Client/GetAll';
 import { Loader } from '@components/common';
-
-/*
-  TODO: Add modal as another component
-*/
 
 class TableItems extends Component {
   constructor(props, context) {
@@ -33,7 +29,6 @@ class TableItems extends Component {
   componentDidMount() {
     const { fetch, limit } = this.props;
     const page = 1;
-
     fetch({ page, limit });
   }
 
@@ -74,18 +69,44 @@ class TableItems extends Component {
         </tr>
       );
     }
-
     const items = clients.map((client, index) => {
       return [
         <tr key={index}>
           <td>{client.id}</td>
-          <td>{client.logo}</td>
+          {/*
+          <td>
+            {client.logo && (
+              <img width="100" alt="" src={`${process.env.API_URL_IMAGE}/${client.logo}`} />
+            )}
+          </td>
+          */}
           <td>{client.companyName}</td>
           <td>
             {client.user.name}&nbsp;{client.user.lastName}
           </td>
-          <td>{client.email}</td>
-          <td>{client.user.isVerified === true ? 'Yes' : 'No'}</td>
+          <td>{client.user.email}</td>
+          <td>
+            {client.published === true ? (
+              <Badge variant="success">
+                <MdDone />
+              </Badge>
+            ) : (
+              <Badge variant="warning">
+                <MdWarning />
+              </Badge>
+            )}
+          </td>
+          <td>
+            {client.user.isVerified === true ? (
+              <Badge variant="success">
+                <MdDone />
+              </Badge>
+            ) : (
+              <Badge variant="warning">
+                <MdWatchLater />
+              </Badge>
+            )}
+          </td>
           <td className="text-right">
             <LinkContainer to={`/clients/edit/${client.id}`}>
               <Button disabled={isFetching} variant="primary" size="sm">
@@ -133,7 +154,7 @@ class TableItems extends Component {
 }
 
 const mapStateToProps = state => {
-  const { getAll, delete: remove } = state.user;
+  const { getAll, delete: remove } = state.client;
   const { isFetching, success } = remove;
   const { isFetching: isFetchingData, clients, current } = getAll;
   return {

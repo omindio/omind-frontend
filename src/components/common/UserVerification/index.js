@@ -4,9 +4,9 @@ import { Button, Badge } from 'react-bootstrap';
 
 import { actions as verificationActions } from '@containers/User/Verification';
 import { actions as resetActions } from '@containers/User/VerificationReset';
-import { Loader } from '@components/common';
+import Loader from '../Loader';
 
-class Verification extends Component {
+class UserVerification extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
@@ -30,7 +30,7 @@ class Verification extends Component {
   render() {
     const { user, isVerified, fetchingVerification, fetchingReset, isFetchingData } = this.props;
 
-    if (isFetchingData) return <Loader />;
+    if (isFetchingData || !user) return <Loader />;
 
     return (
       <React.Fragment>
@@ -79,4 +79,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Verification);
+)(UserVerification);

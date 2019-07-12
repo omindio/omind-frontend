@@ -27,7 +27,7 @@ const UsersAdd = () => {
         />
         <Section className="shadow">
           <Row>
-            <Col xs={12} sm={7} md={6}>
+            <Col xs={12}>
               <ErrorBoundary>
                 <Form />
               </ErrorBoundary>

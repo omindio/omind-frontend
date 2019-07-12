@@ -14,13 +14,34 @@ import { ClientAlreadyExistsError, ClientNotFoundError } from '../_Error';
 const api = async values => {
   const bearerToken = localStorage.getItem('token');
   const API_URL = `${process.env.API_URL}/clients`;
+
   const headers = {
-    headers: { Authorization: `Bearer ${bearerToken}` },
+    headers: {
+      Authorization: `Bearer ${bearerToken}`,
+      Accept: 'application/json',
+      'Content-Type': 'multipart/form-data',
+    },
   };
 
   try {
-    const response = await axios.post(API_URL, values, headers);
+    const data = new FormData();
 
+    Object.keys(values).map(key => {
+      data.append(key, values[key]);
+      return null;
+    });
+
+    const response = await axios.post(API_URL, data, headers);
+
+    const { client, user, verificationToken } = response.data;
+
+    return {
+      id: client.id,
+      userId: user.id,
+      verificationToken: verificationToken.token,
+    };
+
+    /*
     const { user, verificationToken } = response.data;
     const { name, lastName, email, id } = user;
     const { token } = verificationToken;
@@ -32,6 +53,7 @@ const api = async values => {
       id,
       verificationToken: token,
     };
+    */
   } catch (err) {
     const classesMapping = {
       ClientAlreadyExistsError,

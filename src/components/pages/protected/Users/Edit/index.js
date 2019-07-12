@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import { Header, Profile, SectionNav } from '@components/common';
+import { Header, UserProfileForm, SectionNav, UserVerification } from '@components/common';
 
 import { ErrorBoundary } from '@utils/ErrorHandler';
 import { getOneAction } from '@containers/User/GetOne';
-
-import Verification from './components/Verification';
 
 const Section = styled.section`
   border-top-left-radius: 0 !important;
@@ -35,7 +33,7 @@ const UsersEdit = props => {
           <Row>
             <Col xs={12} sm={7} md={6}>
               <ErrorBoundary>
-                <Profile.Form
+                <UserProfileForm
                   userId={id}
                   isUpdated={isUpdated}
                   userUpdated={userUpdated}
@@ -47,7 +45,7 @@ const UsersEdit = props => {
             </Col>
             <Col xs={12} sm={7} md={6}>
               <ErrorBoundary>
-                <Verification isFetchingData={isFetchingData} user={userFetched} />
+                <UserVerification isFetchingData={isFetchingData} user={userFetched} />
               </ErrorBoundary>
             </Col>
           </Row>

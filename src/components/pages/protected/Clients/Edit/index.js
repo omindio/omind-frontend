@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import { Header, Profile, SectionNav } from '@components/common';
+import { Header, ClientProfileForm, SectionNav, UserVerification } from '@components/common';
 
 import { ErrorBoundary } from '@utils/ErrorHandler';
-import { getOneAction } from '@containers/User/GetOne';
-
-import Verification from './components/Verification';
+import { getOneAction } from '@containers/Client/GetOne';
 
 const Section = styled.section`
   border-top-left-radius: 0 !important;
@@ -16,14 +14,15 @@ const Section = styled.section`
 `;
 
 const UsersEdit = props => {
-  const { isUpdated, userUpdated, userFetched, isFetchingData, fetchDataError, match } = props;
+  const { isUpdated, clientUpdated, clientFetched, isFetchingData, fetchDataError, match } = props;
 
   const { id } = match.params;
+  const { user } = clientFetched;
 
   return (
     <React.Fragment>
       <Helmet>
-        <title>Edit User</title>
+        <title>Edit. Clients</title>
       </Helmet>
 
       <Header.Protected />
@@ -33,21 +32,21 @@ const UsersEdit = props => {
         />
         <Section className="shadow">
           <Row>
-            <Col xs={12} sm={7} md={6}>
+            <Col xs={12}>
               <ErrorBoundary>
-                <Profile.Form
-                  userId={id}
+                <ClientProfileForm
+                  clientId={id}
                   isUpdated={isUpdated}
-                  userUpdated={userUpdated}
-                  userFetched={userFetched}
+                  clientUpdated={clientUpdated}
+                  clientFetched={clientFetched}
                   isFetchingData={isFetchingData}
                   fetchDataError={fetchDataError}
                 />
               </ErrorBoundary>
             </Col>
-            <Col xs={12} sm={7} md={6}>
+            <Col xs={12}>
               <ErrorBoundary>
-                <Verification isFetchingData={isFetchingData} user={userFetched} />
+                <UserVerification isFetchingData={isFetchingData} user={user} />
               </ErrorBoundary>
             </Col>
           </Row>
@@ -58,12 +57,12 @@ const UsersEdit = props => {
 };
 
 const mapStateToProps = state => {
-  const { update, getOne } = state.user;
+  const { update, getOne } = state.client;
 
   return {
     isUpdated: update.success,
-    userUpdated: update.user,
-    userFetched: getOne.user,
+    clientUpdated: update.client,
+    clientFetched: getOne.client,
     isFetchingData: getOne.isFetching,
     fetchDataError: getOne.error,
   };

@@ -3,16 +3,21 @@ import React from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 import { ErrorMessage } from 'formik';
 
-const ProfileFormField = props => {
-  const { name, placeholder } = props;
-  const controlId = `profile_${name}`;
+const TextField = props => {
+  const { name, label, text } = props;
+  const controlId = `${name}`;
   return (
     <Form.Group as={Row} controlId={controlId}>
       <Form.Label column sm="5">
-        {placeholder}
+        {label}
       </Form.Label>
       <Col sm="7">
         <Form.Control {...props} />
+        {text && (
+          <Form.Text className="text-muted">
+            {text}
+          </Form.Text>
+        )}
         <Form.Control.Feedback type="invalid">
           <ErrorMessage name={name} component="span" />
         </Form.Control.Feedback>
@@ -21,4 +26,4 @@ const ProfileFormField = props => {
   );
 };
 
-export default ProfileFormField;
+export default TextField;

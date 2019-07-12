@@ -6,7 +6,7 @@ import { getAllAction } from '@containers/Client/GetAll';
 import { StateErrorHandler } from '@utils/ErrorHandler';
 import { Pagination } from '@components/common';
 
-// import TableItems from './TableItems';
+import TableItems from './TableItems';
 
 class TableComponent extends Component {
   constructor(props) {
@@ -28,15 +28,18 @@ class TableComponent extends Component {
           <thead>
             <tr>
               <th>id</th>
+              {/*
               <th>Logo</th>
+              */}
               <th>Company Name</th>
               <th>Full Name</th>
               <th>Email</th>
+              <th>Published</th>
               <th>Verified</th>
               <th>&nbsp;</th>
             </tr>
           </thead>
-          <tbody>{/* <TableItems limit={limit} /> */}</tbody>
+          <tbody>{<TableItems limit={limit} />}</tbody>
         </Table>
         <Pagination action={getAllAction} currentPage={current} pages={pages} limit={limit} />
       </React.Fragment>
