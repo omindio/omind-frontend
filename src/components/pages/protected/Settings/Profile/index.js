@@ -29,7 +29,7 @@ const mapStateToProps = state => {
   const { login } = state.auth;
 
   return {
-    role: login.role,
+    role: login.userRole,
   };
 };
 export default connect(

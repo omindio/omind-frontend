@@ -52,8 +52,7 @@ class ClientProfileForm extends Component {
     } = Object.assign({}, clientFetched, clientUpdated);
 
     const { name, lastName, email } = Object.assign({}, clientFetched.user, clientUpdated.user);
-    console.log(published);
-    console.log(clientFetched);
+
     return (
       <Formik
         initialValues={{
@@ -303,10 +302,13 @@ ClientProfileForm.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { update } = state.client;
+  const { update, getOne} = state.client;
   const { client, isFetching, success, error } = update;
 
   return {
+    isFetchingData: getOne.isFetching,
+    fetchDataError: getOne.error,
+    clientFetched: getOne.client,
     clientUpdated: client,
     isFetchingUpdate: isFetching,
     isUpdated: success,

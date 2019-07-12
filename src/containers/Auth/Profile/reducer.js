@@ -1,4 +1,4 @@
-import AUTH_PROFILE from './types';
+import AUTH_PROFILE_UPDATE from './types';
 
 const initialState = {
   error: {},
@@ -7,7 +7,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case AUTH_PROFILE:
+    case AUTH_PROFILE_UPDATE:
       return Object.assign({}, state, {
         error: {},
         user: action.values,

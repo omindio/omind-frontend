@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
-import { Header, UserProfileForm, SectionNav } from '@components/common';
+import { Header, ClientProfileForm, SectionNav } from '@components/common';
 import { ErrorBoundary } from '@utils/ErrorHandler';
 import { profileAction } from '@containers/Auth/Profile';
 
@@ -15,16 +15,20 @@ const Section = styled.section`
 
 class ProfilePage extends Component {
   componentDidUpdate() {
-    const { isUpdated, updateProfile, userUpdated } = this.props;
+    const { isUpdated, /* updateProfile, */ clientUpdated } = this.props;
+    console.log(isUpdated);
     if (isUpdated) {
-      const { name, lastName, email } = userUpdated;
+      console.log(clientUpdated);
+      /*
+      const { name, lastName, email } = clientUpdated.user;
 
       updateProfile({ name, lastName, email });
+      */
     }
   }
 
   render() {
-    const { userId } = this.props;
+    const { clientId } = this.props;
     return (
       <React.Fragment>
         <Helmet>
@@ -36,9 +40,9 @@ class ProfilePage extends Component {
           <SectionNav values={[{ url: '/settings', name: 'Profile' }]} />
           <Section className="shadow">
             <Row>
-              <Col xs={12} sm={7} md={6}>
+              <Col xs={12}>
                 <ErrorBoundary>
-                  <UserProfileForm userId={userId} />
+                  <ClientProfileForm clientId={clientId} />
                 </ErrorBoundary>
               </Col>
             </Row>
@@ -51,9 +55,12 @@ class ProfilePage extends Component {
 
 const mapStateToProps = state => {
   const { login } = state.auth;
+  const { update } = state.client;
 
   return {
-    userId: login.userId,
+    clientId: login.clientId,
+    isUpdated: update.success,
+    clientUpdated: update.client,
   };
 };
 

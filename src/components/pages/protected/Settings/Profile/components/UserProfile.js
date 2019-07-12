@@ -51,9 +51,12 @@ class ProfilePage extends Component {
 
 const mapStateToProps = state => {
   const { login } = state.auth;
+  const { update } = state.user;
 
   return {
     userId: login.userId,
+    isUpdated: update.success,
+    userUpdated: update.user,
   };
 };
 

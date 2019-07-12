@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import { Header, UserProfileForm, SectionNav, UserVerification } from '@components/common';
 
 import { ErrorBoundary } from '@utils/ErrorHandler';
-import { getOneAction } from '@containers/User/GetOne';
 
 const Section = styled.section`
   border-top-left-radius: 0 !important;
@@ -14,7 +13,7 @@ const Section = styled.section`
 `;
 
 const UsersEdit = props => {
-  const { isUpdated, userUpdated, userFetched, isFetchingData, fetchDataError, match } = props;
+  const { userFetched, isFetchingData, match } = props;
 
   const { id } = match.params;
 
@@ -33,14 +32,7 @@ const UsersEdit = props => {
           <Row>
             <Col xs={12} sm={7} md={6}>
               <ErrorBoundary>
-                <UserProfileForm
-                  userId={id}
-                  isUpdated={isUpdated}
-                  userUpdated={userUpdated}
-                  userFetched={userFetched}
-                  isFetchingData={isFetchingData}
-                  fetchDataError={fetchDataError}
-                />
+                <UserProfileForm userId={id} />
               </ErrorBoundary>
             </Col>
             <Col xs={12} sm={7} md={6}>
@@ -56,24 +48,15 @@ const UsersEdit = props => {
 };
 
 const mapStateToProps = state => {
-  const { update, getOne } = state.user;
+  const { getOne } = state.user;
 
   return {
-    isUpdated: update.success,
-    userUpdated: update.user,
     userFetched: getOne.user,
     isFetchingData: getOne.isFetching,
-    fetchDataError: getOne.error,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetch: values => dispatch(getOneAction(values)),
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  {},
 )(UsersEdit);
