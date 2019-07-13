@@ -302,7 +302,7 @@ ClientProfileForm.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { update, getOne} = state.client;
+  const { update, getOne } = state.client;
   const { client, isFetching, success, error } = update;
 
   return {

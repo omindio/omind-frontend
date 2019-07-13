@@ -32,13 +32,7 @@ const api = async values => {
     });
 
     const response = await axios.patch(API_URL, data, headers);
-
-    const { name, lastName, email } = response.data;
-    return {
-      name,
-      lastName,
-      email,
-    };
+    return response.data;
   } catch (err) {
     const classesMapping = {
       EmailAlreadyExistsError,

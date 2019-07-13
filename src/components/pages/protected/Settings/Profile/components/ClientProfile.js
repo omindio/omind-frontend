@@ -15,20 +15,18 @@ const Section = styled.section`
 
 class ProfilePage extends Component {
   componentDidUpdate() {
-    const { isUpdated, /* updateProfile, */ clientUpdated } = this.props;
-    console.log(isUpdated);
+    const { isUpdated, updateProfile, clientUpdated } = this.props;
     if (isUpdated) {
-      console.log(clientUpdated);
-      /*
-      const { name, lastName, email } = clientUpdated.user;
+      const { user } = clientUpdated;
+      const { name, lastName, email } = user;
 
       updateProfile({ name, lastName, email });
-      */
     }
   }
 
   render() {
     const { clientId } = this.props;
+
     return (
       <React.Fragment>
         <Helmet>
@@ -56,11 +54,12 @@ class ProfilePage extends Component {
 const mapStateToProps = state => {
   const { login } = state.auth;
   const { update } = state.client;
+  const { success, client } = update;
 
   return {
     clientId: login.clientId,
-    isUpdated: update.success,
-    clientUpdated: update.client,
+    isUpdated: success,
+    clientUpdated: client,
   };
 };
 
