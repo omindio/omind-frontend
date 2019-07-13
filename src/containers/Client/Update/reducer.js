@@ -18,6 +18,7 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         error: {},
         isFetching: true,
+        success: false,
         client: action.values,
       });
     case CLIENT_UPDATE_SUCCESS:
