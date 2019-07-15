@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
-import { getAllAction } from '@containers/User/GetAll';
+
+import { getAllAction } from '@containers/Employee/GetAll';
 import { StateErrorHandler } from '@utils/ErrorHandler';
-import Pagination from './Pagination';
+import { Pagination } from '@components/common';
+
 import TableItems from './TableItems';
 
 class TableComponent extends Component {
@@ -28,23 +30,21 @@ class TableComponent extends Component {
               <th>id</th>
               <th>Full Name</th>
               <th>Email</th>
-              <th>Role</th>
+              <th>Work Position</th>
               <th>Verified</th>
               <th>&nbsp;</th>
             </tr>
           </thead>
-          <tbody>
-            <TableItems limit={limit} />
-          </tbody>
+          <tbody>{<TableItems limit={limit} />}</tbody>
         </Table>
-        <Pagination currentPage={current} pages={pages} limit={limit} />
+        <Pagination action={getAllAction} currentPage={current} pages={pages} limit={limit} />
       </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { getAll, delete: remove } = state.user;
+  const { getAll, delete: remove } = state.client;
 
   return {
     pages: getAll.pages,
@@ -54,14 +54,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    // dispatching actions returned by action creators
-    fetch: values => dispatch(getAllAction(values)),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(TableComponent);
+export default connect(mapStateToProps)(TableComponent);

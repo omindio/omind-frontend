@@ -2,10 +2,9 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import { Header } from '@components/common';
+import { Header, SectionNav } from '@components/common';
 
 import { ErrorBoundary } from '@utils/ErrorHandler';
-import { SettingsNav } from '../components';
 
 import { Table } from './components';
 
@@ -14,16 +13,18 @@ const Section = styled.section`
   border-top-right-radius: 0 !important;
 `;
 
-const UsersTodo = () => {
+const EmployeesTodo = () => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>Users</title>
+        <title>Todo. Employees</title>
       </Helmet>
 
       <Header.Protected />
       <Container fluid="yes">
-        <SettingsNav />
+        <SectionNav
+          values={[{ url: '/employees', name: 'Todo' }, { url: '/employees/add', name: 'Add New' }]}
+        />
         <Section className="shadow">
           <Row>
             <Col sm={12}>
@@ -38,4 +39,4 @@ const UsersTodo = () => {
   );
 };
 
-export default UsersTodo;
+export default EmployeesTodo;

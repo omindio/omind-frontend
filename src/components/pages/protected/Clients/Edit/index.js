@@ -12,7 +12,7 @@ const Section = styled.section`
   border-top-right-radius: 0 !important;
 `;
 
-const UsersEdit = props => {
+const ClientsEdit = props => {
   const { clientFetched, isFetchingData, match } = props;
 
   const { id } = match.params;
@@ -60,4 +60,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {},
-)(UsersEdit);
+)(ClientsEdit);

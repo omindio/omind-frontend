@@ -58,16 +58,6 @@ const mapStateToProps = state => {
   };
 };
 
-/*
-const mapDispatchToProps = dispatch => {
-  return {
-    // dispatching actions returned by action creators
-    fetch: values => dispatch(getAllAction(values)),
-  };
-};
-*/
-
 export default connect(
   mapStateToProps,
-  // mapDispatchToProps,
 )(TableComponent);

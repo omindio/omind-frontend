@@ -13,7 +13,7 @@ const Section = styled.section`
   border-top-right-radius: 0 !important;
 `;
 
-const UsersAdd = () => {
+const ClientsAdd = () => {
   return (
     <React.Fragment>
       <Helmet>
@@ -39,4 +39,4 @@ const UsersAdd = () => {
   );
 };
 
-export default UsersAdd;
+export default ClientsAdd;

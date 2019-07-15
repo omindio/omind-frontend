@@ -4,6 +4,7 @@ import Loader from './Loader';
 import ButtonNav from './ButtonNav';
 import UserProfileForm from './UserProfileForm';
 import ClientProfileForm from './ClientProfileForm';
+import EmployeeProfileForm from './EmployeeProfileForm';
 import CookieBanner from './CookieBanner';
 import OverlayCard from './OverlayCard';
 import ImageLightboxCard from './ImageLightboxCard';
@@ -26,4 +27,5 @@ export {
   SectionNav,
   Field,
   UserVerification,
+  EmployeeProfileForm,
 };

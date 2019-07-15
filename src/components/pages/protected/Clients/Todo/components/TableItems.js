@@ -131,7 +131,13 @@ class TableItems extends Component {
 
     return (
       <React.Fragment>
-        {items}
+        {items.length === 0 ? (
+          <tr>
+            <td colSpan="7">No results found.</td>
+          </tr>
+        ) : (
+          items
+        )}
         <Modal show={showModal} onHide={this.handleCloseModal}>
           <Modal.Header>
             <Modal.Title>Delete</Modal.Title>

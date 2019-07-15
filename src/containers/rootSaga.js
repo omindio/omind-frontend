@@ -2,6 +2,7 @@ import { fork, all } from 'redux-saga/effects';
 
 import { saga as userSaga } from './User';
 import { saga as clientSaga } from './Client';
+import { saga as EmployeeSaga } from './Employee';
 import { saga as authSaga } from './Auth';
 
 const getWatchers = sagas => {
@@ -16,5 +17,5 @@ const getWatchers = sagas => {
 };
 
 export default function* rootSaga() {
-  yield all([...getWatchers([authSaga, userSaga, clientSaga])].map(fork));
+  yield all([...getWatchers([authSaga, userSaga, clientSaga, EmployeeSaga])].map(fork));
 }

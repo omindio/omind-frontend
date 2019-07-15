@@ -3,18 +3,14 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
-import { MdEdit, MdDelete } from 'react-icons/md';
+import { MdEdit, MdDelete, MdDone, MdWatchLater } from 'react-icons/md';
 import { connect } from 'react-redux';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Badge } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-import { actions } from '@containers/User/Delete';
-import { getAllAction } from '@containers/User/GetAll';
+import { actions } from '@containers/Employee/Delete';
+import { getAllAction } from '@containers/Employee/GetAll';
 import { Loader } from '@components/common';
-
-/*
-  TODO: Add modal as another component
-*/
 
 class TableItems extends Component {
   constructor(props, context) {
@@ -24,8 +20,8 @@ class TableItems extends Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.state = {
       showModal: false,
-      userName: null,
-      userId: null,
+      employeeName: null,
+      employeeID: null,
       // index: null,
     };
   }
@@ -33,7 +29,6 @@ class TableItems extends Component {
   componentDidMount() {
     const { fetch, limit } = this.props;
     const page = 1;
-
     fetch({ page, limit });
   }
 
@@ -47,9 +42,9 @@ class TableItems extends Component {
   }
 
   handleDelete() {
-    const { deleteUser } = this.props;
-    const { userId } = this.state;
-    deleteUser(userId);
+    const { deleteEmployee } = this.props;
+    const { employeeID } = this.state;
+    deleteEmployee(employeeID);
     this.handleCloseModal();
   }
 
@@ -58,14 +53,14 @@ class TableItems extends Component {
   }
 
   handleShowModal(name, id, index) {
-    this.setState({ showModal: true, userName: name, userId: id, index });
+    this.setState({ showModal: true, employeeName: name, employeeID: id, index });
   }
 
   render() {
-    const { users, isFetching, isFetchingData } = this.props;
-    const { showModal, userName } = this.state;
+    const { employees, isFetching, isFetchingData } = this.props;
+    const { showModal, employeeName } = this.state;
 
-    if (isFetchingData)
+    if (isFetchingData) {
       return (
         <tr>
           <td colSpan="6">
@@ -73,19 +68,29 @@ class TableItems extends Component {
           </td>
         </tr>
       );
-
-    const items = users.map(function(user, index) {
+    }
+    const items = employees.map((employee, index) => {
       return [
         <tr key={index}>
-          <td>{user.id}</td>
+          <td>{employee.id}</td>
           <td>
-            {user.name}&nbsp;{user.lastName}
+            {employee.user.name}&nbsp;{employee.user.lastName}
           </td>
-          <td>{user.email}</td>
-          <td>{user.role}</td>
-          <td>{user.isVerified === true ? 'Yes' : 'No'}</td>
+          <td>{employee.user.email}</td>
+          <td>{employee.workPosition}</td>
+          <td>
+            {employee.user.isVerified === true ? (
+              <Badge variant="success">
+                <MdDone />
+              </Badge>
+            ) : (
+              <Badge variant="warning">
+                <MdWatchLater />
+              </Badge>
+            )}
+          </td>
           <td className="text-right">
-            <LinkContainer to={`/users/edit/${user.id}`}>
+            <LinkContainer to={`/employees/edit/${employee.id}`}>
               <Button disabled={isFetching} variant="primary" size="sm">
                 <MdEdit />
               </Button>
@@ -93,7 +98,7 @@ class TableItems extends Component {
             <Button
               disabled={isFetching}
               onClick={() => {
-                this.handleShowModal(user.name, user.id);
+                this.handleShowModal(employee.user.name, employee.id);
               }}
               className="ml-1"
               variant="danger"
@@ -105,16 +110,21 @@ class TableItems extends Component {
         </tr>,
       ];
     }, this);
-
     return (
       <React.Fragment>
-        {items}
+        {items.length === 0 ? (
+          <tr>
+            <td colSpan="6">No results found.</td>
+          </tr>
+        ) : (
+          items
+        )}
         <Modal show={showModal} onHide={this.handleCloseModal}>
           <Modal.Header>
             <Modal.Title>Delete</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            Are you sure to delete&nbsp;<strong>{userName}</strong>?
+            Are you sure to delete&nbsp;<strong>{employeeName}</strong>?
           </Modal.Body>
           <Modal.Footer>
             <Button variant="link" onClick={this.handleCloseModal}>
@@ -131,12 +141,12 @@ class TableItems extends Component {
 }
 
 const mapStateToProps = state => {
-  const { getAll, delete: remove } = state.user;
+  const { getAll, delete: remove } = state.employee;
   const { isFetching, success } = remove;
-  const { isFetching: isFetchingData, users, current } = getAll;
+  const { isFetching: isFetchingData, employees, current } = getAll;
   return {
     isFetching,
-    users,
+    employees,
     isDeleted: success,
     isFetchingData,
     currentPage: current,
@@ -146,7 +156,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     // dispatching actions returned by action creators
-    deleteUser: id => dispatch(actions.deleteAction(id)),
+    deleteEmployee: id => dispatch(actions.deleteAction(id)),
     clear: () => dispatch(actions.clearAction()),
     fetch: values => dispatch(getAllAction(values)),
   };

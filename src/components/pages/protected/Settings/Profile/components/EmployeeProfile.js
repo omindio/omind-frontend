@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
-import { Header, UserProfileForm, SectionNav } from '@components/common';
+import { Header, EmployeeProfileForm, SectionNav } from '@components/common';
 import { ErrorBoundary } from '@utils/ErrorHandler';
 import { profileAction } from '@containers/Auth/Profile';
 
@@ -15,23 +15,18 @@ const Section = styled.section`
 
 class ProfilePage extends Component {
   componentDidUpdate() {
-    const { isUpdated, updateProfile, userUpdated } = this.props;
+    const { isUpdated, updateProfile, employeeUpdated } = this.props;
     if (isUpdated) {
-      const { name, lastName, email } = userUpdated;
+      const { user } = employeeUpdated;
+      const { name, lastName, email } = user;
 
       updateProfile({ name, lastName, email });
     }
   }
 
   render() {
-    const {
-      userId,
-      isUpdated,
-      userUpdated,
-      userFetched,
-      isFetchingData,
-      fetchDataError,
-    } = this.props;
+    const { employeeId } = this.props;
+
     return (
       <React.Fragment>
         <Helmet>
@@ -43,16 +38,9 @@ class ProfilePage extends Component {
           <SectionNav values={[{ url: '/settings', name: 'Profile' }]} />
           <Section className="shadow">
             <Row>
-              <Col xs={12} sm={7} md={6}>
+              <Col xs={12}>
                 <ErrorBoundary>
-                  <UserProfileForm
-                    userId={userId}
-                    isUpdated={isUpdated}
-                    userUpdated={userUpdated}
-                    userFetched={userFetched}
-                    isFetchingData={isFetchingData}
-                    fetchDataError={fetchDataError}
-                  />
+                  <EmployeeProfileForm employeeId={employeeId} />
                 </ErrorBoundary>
               </Col>
             </Row>
@@ -65,15 +53,13 @@ class ProfilePage extends Component {
 
 const mapStateToProps = state => {
   const { login } = state.auth;
-  const { update, getOne } = state.user;
+  const { update } = state.employee;
+  const { success, employee } = update;
 
   return {
-    userId: login.userId,
-    isUpdated: update.success,
-    userUpdated: update.user,
-    userFetched: getOne.user,
-    isFetchingData: getOne.isFetching,
-    fetchDataError: getOne.error,
+    employeeId: login.employeeId,
+    isUpdated: success,
+    employeeUpdated: employee,
   };
 };
 

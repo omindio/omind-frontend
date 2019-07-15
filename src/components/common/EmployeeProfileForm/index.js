@@ -1,212 +1,235 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import { Form, Button, Alert, Row, Col } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 
-import { actions, validationSchema } from '@containers/Employee/Create';
-import { Field } from '@components/common';
+import { actions, validationSchema } from '@containers/Employee/Update';
+import { getOneAction } from '@containers/Employee/GetOne';
+
 import { StateErrorHandler } from '@utils/ErrorHandler';
 
-// import Field from './Field';
+import { Text } from '../Field';
 
-class AddForm extends Component {
+class EmployeeProfileForm extends Component {
+  componentDidMount() {
+    const { fetch, employeeId } = this.props;
+    fetch({ id: employeeId });
+  }
+
   componentWillUnmount() {
     const { clear } = this.props;
     clear();
   }
 
   render() {
-    const { create, hasError, isFetching, isCreated, verificationToken, id } = this.props;
+    const {
+      update,
+      employeeId,
+      employeeFetched,
+      employeeUpdated,
+      isFetchingData,
+      isFetchingUpdate,
+      updateError,
+      fetchDataError,
+      isUpdated,
+    } = this.props;
+
+    if (fetchDataError) return <StateErrorHandler error={fetchDataError} />;
+
+    const {
+      workPosition,
+      dni,
+      fiscalAddress,
+      phone,
+      socialLinkedin,
+      socialFacebook,
+      socialInstagram,
+      web,
+    } = Object.assign({}, employeeFetched, employeeUpdated);
+
+    const { name, lastName, email } = Object.assign({}, employeeFetched.user, employeeUpdated.user);
 
     return (
       <Formik
         initialValues={{
-          name: '',
-          lastName: '',
-          email: '',
+          name: name || '',
+          lastName: lastName || '',
+          email: email || '',
           password: '',
           passwordConfirmation: '',
-          workPosition: '',
-          dni: '',
-          fiscalAddress: '',
-          phone: '',
-          socialLinkedin: '',
-          socialFacebook: '',
-          socialInstagram: '',
-          web: '',
+          workPosition: workPosition || '',
+          dni: dni || '',
+          fiscalAddress: fiscalAddress || '',
+          phone: phone || '',
+          socialLinkedin: socialLinkedin || '',
+          socialFacebook: socialFacebook || '',
+          socialInstagram: socialInstagram || '',
+          web: web || '',
         }}
         validationSchema={validationSchema}
         onSubmit={values => {
-          create(values);
+          update(Object.assign({}, values, { id: employeeId }));
         }}
+        enableReinitialize="true"
         render={({ values, handleSubmit, handleChange, errors, touched }) => (
           <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-            {hasError && <StateErrorHandler error={hasError} />}
+            {updateError && <StateErrorHandler error={updateError} />}
 
-            <Alert show={isCreated} key={0} variant="success">
-              Employee added successfully.
-              <br />
-              Verifcation token:&nbsp;
-              {verificationToken}
-              <br />
-              <LinkContainer to={`/employees/edit/${id}`}>
-                <Button variant="primary" size="sm">
-                  view profile
-                </Button>
-              </LinkContainer>
+            <Alert show={isUpdated} key={0} variant="success">
+              Profile updated successfully.
             </Alert>
 
             <Row>
               <Col xs={12} md={6}>
-                <Field.Text
+                <Text
                   label="Name *"
                   placeholder="Name"
                   name="name"
                   type="text"
                   autoComplete="off"
-                  disabled={isFetching}
+                  disabled={isFetchingUpdate || isFetchingData}
                   value={values.name}
                   onChange={handleChange}
                   isInvalid={touched.name && errors.name}
                 />
 
-                <Field.Text
+                <Text
                   label="Last Name *"
                   placeholder="Last Name"
                   name="lastName"
                   type="text"
                   autoComplete="off"
-                  disabled={isFetching}
+                  disabled={isFetchingUpdate || isFetchingData}
                   value={values.lastName}
                   onChange={handleChange}
                   isInvalid={touched.lastName && errors.lastName}
                 />
 
-                <Field.Text
+                <Text
                   label="Email *"
                   placeholder="Email"
                   name="email"
                   type="email"
                   autoComplete="off"
-                  disabled={isFetching}
+                  disabled={isFetchingUpdate || isFetchingData}
                   value={values.email}
                   onChange={handleChange}
                   isInvalid={touched.email && errors.email}
                 />
 
-                <Field.Text
+                <Text
                   label="Password *"
                   placeholder="Password"
                   name="password"
                   type="password"
                   autoComplete="off"
-                  disabled={isFetching}
+                  disabled={isFetchingUpdate || isFetchingData}
                   value={values.password}
                   onChange={handleChange}
                   isInvalid={touched.password && errors.password}
                 />
 
-                <Field.Text
+                <Text
                   label="Repeat Password *"
                   placeholder="Repeat Password"
                   name="passwordConfirmation"
                   type="password"
                   autoComplete="off"
-                  disabled={isFetching}
+                  disabled={isFetchingUpdate || isFetchingData}
                   value={values.passwordConfirmation}
                   onChange={handleChange}
                   isInvalid={touched.passwordConfirmation && errors.passwordConfirmation}
                 />
-                <Field.Text
+                <Text
                   label="Phone"
                   placeholder="Phone"
                   name="phone"
                   type="text"
                   autoComplete="off"
-                  disabled={isFetching}
+                  disabled={isFetchingUpdate || isFetchingData}
                   value={values.phone}
                   onChange={handleChange}
                   isInvalid={touched.phone && errors.phone}
                 />
-                <Field.Text
+                <Text
                   label="Dni"
                   placeholder="Dni"
                   name="dni"
                   type="text"
                   autoComplete="off"
-                  disabled={isFetching}
+                  disabled={isFetchingUpdate || isFetchingData}
                   value={values.dni}
                   onChange={handleChange}
                   isInvalid={touched.dni && errors.dni}
                 />
               </Col>
               <Col xs={12} md={6}>
-                <Field.Text
+                <Text
                   label="Fiscal Address"
                   placeholder="Fiscal Address"
                   name="fiscalAddress"
                   type="text"
                   autoComplete="off"
-                  disabled={isFetching}
+                  disabled={isFetchingUpdate || isFetchingData}
                   value={values.fiscalAddress}
                   onChange={handleChange}
                   isInvalid={touched.fiscalAddress && errors.fiscalAddress}
                   text="Format: C\ Rocafort 66 2-3 08014, Barcelona. España"
                 />
-                <Field.Text
+                <Text
                   label="Work Position"
                   placeholder="Work Position"
                   name="workPosition"
                   autoComplete="off"
-                  disabled={isFetching}
+                  disabled={isFetchingUpdate || isFetchingData}
                   value={values.workPosition}
                   onChange={handleChange}
                   isInvalid={touched.workPosition && errors.workPosition}
                 />
 
-                <Field.Text
+                <Text
                   label="Linkedin"
                   placeholder="Linkedin"
                   name="socialLinkedin"
                   type="text"
                   autoComplete="off"
-                  disabled={isFetching}
+                  disabled={isFetchingUpdate || isFetchingData}
                   value={values.socialLinkedin}
                   onChange={handleChange}
                   isInvalid={touched.socialLinkedin && errors.socialLinkedin}
                   text="Format: https://linkedin.com"
                 />
 
-                <Field.Text
+                <Text
                   label="Facebook"
                   placeholder="Facebook"
                   name="socialFacebook"
                   type="text"
                   autoComplete="off"
-                  disabled={isFetching}
+                  disabled={isFetchingUpdate || isFetchingData}
                   value={values.socialFacebook}
                   onChange={handleChange}
                   isInvalid={touched.socialFacebook && errors.socialFacebook}
                 />
-                <Field.Text
+                <Text
                   label="Instagram"
                   placeholder="Instagram"
                   name="socialInstagram"
                   type="text"
                   autoComplete="off"
-                  disabled={isFetching}
+                  disabled={isFetchingUpdate || isFetchingData}
                   value={values.socialInstagram}
                   onChange={handleChange}
                   isInvalid={touched.socialInstagram && errors.socialInstagram}
                 />
-                <Field.Text
+                <Text
                   label="Web"
                   placeholder="Web"
                   name="web"
                   type="text"
                   autoComplete="off"
-                  disabled={isFetching}
+                  disabled={isFetchingUpdate || isFetchingData}
                   value={values.web}
                   onChange={handleChange}
                   isInvalid={touched.web && errors.web}
@@ -216,8 +239,12 @@ class AddForm extends Component {
 
             <Row>
               <Col className="text-right">
-                <Button disabled={isFetching} className="btn text-left" type="submit">
-                  {isFetching ? 'Wait...' : 'Save'}
+                <Button
+                  disabled={isFetchingUpdate || isFetchingData}
+                  className="btn text-left"
+                  type="submit"
+                >
+                  {isFetchingUpdate || isFetchingData ? 'Wait...' : 'Save'}
                 </Button>
               </Col>
             </Row>
@@ -228,22 +255,32 @@ class AddForm extends Component {
   }
 }
 
+EmployeeProfileForm.propTypes = {
+  employeeId: PropTypes.string.isRequired,
+  isFetchingUpdate: PropTypes.bool.isRequired,
+  isUpdated: PropTypes.bool.isRequired,
+};
+
 const mapStateToProps = state => {
-  const { create } = state.employee;
-  const { isFetching, success, error } = create;
+  const { update, getOne } = state.employee;
+  const { employee, isFetching, success, error } = update;
 
   return {
-    isFetching,
-    isCreated: success,
-    hasError: error,
-    verificationToken: create.employee.verificationToken,
-    id: create.employee.id,
+    isFetchingData: getOne.isFetching,
+    fetchDataError: getOne.error,
+    employeeFetched: getOne.employee,
+    employeeUpdated: employee,
+    isFetchingUpdate: isFetching,
+    isUpdated: success,
+    updateError: error,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    create: values => dispatch(actions.createAction(values)),
+    // dispatching actions returned by action creators
+    fetch: values => dispatch(getOneAction(values)),
+    update: values => dispatch(actions.updateAction(values)),
     clear: () => dispatch(actions.clearAction()),
   };
 };
@@ -251,4 +288,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(AddForm);
+)(EmployeeProfileForm);

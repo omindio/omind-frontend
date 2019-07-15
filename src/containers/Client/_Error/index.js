@@ -1,4 +1,4 @@
-import ClientAlreadyExistsError from './ClienAlreadyExistsError';
+import ClientAlreadyExistsError from './ClientAlreadyExistsError';
 import ClientNotFoundError from './ClientNotFoundError';
 
 export { ClientAlreadyExistsError, ClientNotFoundError };

@@ -9,40 +9,32 @@ import {
   UserNotFoundError,
 } from '@containers/User/_Error';
 
-import { ClientAlreadyExistsError, ClientNotFoundError } from '../_Error';
+import { EmployeeAlreadyExistsError, EmployeeNotFoundError } from '../_Error';
 
 const api = async values => {
   const bearerToken = localStorage.getItem('token');
-  const API_URL = `${process.env.API_URL}/clients`;
+  const API_URL = `${process.env.API_URL}/employees`;
 
   const headers = {
     headers: {
       Authorization: `Bearer ${bearerToken}`,
-      Accept: 'application/json',
-      'Content-Type': 'multipart/form-data',
     },
   };
 
   try {
-    const data = new FormData();
-    Object.keys(values).map(key => {
-      data.append(key, values[key]);
-      return null;
-    });
+    const response = await axios.post(API_URL, values, headers);
 
-    const response = await axios.post(API_URL, data, headers);
-
-    const { client, user, verificationToken } = response.data;
+    const { employee, user, verificationToken } = response.data;
 
     return {
-      id: client.id,
+      id: employee.id,
       userId: user.id,
       verificationToken: verificationToken.token,
     };
   } catch (err) {
     const classesMapping = {
-      ClientAlreadyExistsError,
-      ClientNotFoundError,
+      EmployeeAlreadyExistsError,
+      EmployeeNotFoundError,
       EmailAlreadyExistsError,
       SamePasswordError,
       UserNotFoundError,
