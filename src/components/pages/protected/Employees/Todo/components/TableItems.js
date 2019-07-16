@@ -1,7 +1,4 @@
-/* eslint-disable func-names */
-/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import { MdEdit, MdDelete, MdDone, MdWatchLater } from 'react-icons/md';
 import { connect } from 'react-redux';
@@ -22,7 +19,6 @@ class TableItems extends Component {
       showModal: false,
       employeeName: null,
       employeeID: null,
-      // index: null,
     };
   }
 
@@ -52,8 +48,8 @@ class TableItems extends Component {
     this.setState({ showModal: false });
   }
 
-  handleShowModal(name, id, index) {
-    this.setState({ showModal: true, employeeName: name, employeeID: id, index });
+  handleShowModal(name, id) {
+    this.setState({ showModal: true, employeeName: name, employeeID: id });
   }
 
   render() {
@@ -69,62 +65,64 @@ class TableItems extends Component {
         </tr>
       );
     }
-    const items = employees.map((employee, index) => {
-      return [
-        <tr key={index}>
-          <td>{employee.id}</td>
-          <td>
-            {employee.user.name}&nbsp;{employee.user.lastName}
-          </td>
-          <td>{employee.user.email}</td>
-          <td>{employee.workPosition}</td>
-          <td>
-            {employee.user.isVerified === true ? (
-              <Badge variant="success">
-                <MdDone />
-              </Badge>
-            ) : (
-              <Badge variant="warning">
-                <MdWatchLater />
-              </Badge>
-            )}
-          </td>
-          <td className="text-right">
-            <LinkContainer to={`/employees/edit/${employee.id}`}>
-              <Button disabled={isFetching} variant="primary" size="sm">
-                <MdEdit />
-              </Button>
-            </LinkContainer>
-            <Button
-              disabled={isFetching}
-              onClick={() => {
-                this.handleShowModal(employee.user.name, employee.id);
-              }}
-              className="ml-1"
-              variant="danger"
-              size="sm"
-            >
-              <MdDelete />
-            </Button>
-          </td>
-        </tr>,
-      ];
-    }, this);
+
     return (
       <React.Fragment>
-        {items.length === 0 ? (
+        {employees.length > 0 ? (
+          employees.map(employee => (
+            <tr key={employee.id}>
+              <td>{employee.id}</td>
+              <td>
+                {employee.user.name}
+                &nbsp;
+                {employee.user.lastName}
+              </td>
+              <td>{employee.user.email}</td>
+              <td>{employee.workPosition}</td>
+              <td>
+                {employee.user.isVerified === true ? (
+                  <Badge variant="success">
+                    <MdDone />
+                  </Badge>
+                ) : (
+                  <Badge variant="warning">
+                    <MdWatchLater />
+                  </Badge>
+                )}
+              </td>
+              <td className="text-right">
+                <LinkContainer to={`/employees/edit/${employee.id}`}>
+                  <Button disabled={isFetching} variant="primary" size="sm">
+                    <MdEdit />
+                  </Button>
+                </LinkContainer>
+                <Button
+                  disabled={isFetching}
+                  onClick={() => {
+                    this.handleShowModal(employee.user.name, employee.id);
+                  }}
+                  className="ml-1"
+                  variant="danger"
+                  size="sm"
+                >
+                  <MdDelete />
+                </Button>
+              </td>
+            </tr>
+          ))
+        ) : (
           <tr>
             <td colSpan="6">No results found.</td>
           </tr>
-        ) : (
-          items
         )}
+
         <Modal show={showModal} onHide={this.handleCloseModal}>
           <Modal.Header>
             <Modal.Title>Delete</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            Are you sure to delete&nbsp;<strong>{employeeName}</strong>?
+            Are you sure to delete &nbsp;
+            <strong>{employeeName}</strong>?
           </Modal.Body>
           <Modal.Footer>
             <Button variant="link" onClick={this.handleCloseModal}>

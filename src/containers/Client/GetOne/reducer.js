@@ -3,7 +3,27 @@ import { CLIENT_GET_ONE_REQUEST, CLIENT_GET_ONE_SUCCESS, CLIENT_GET_ONE_FAILURE 
 const initialState = {
   isFetching: false,
   error: {},
-  client: {},
+  client: {
+    id: '',
+    companyName: '',
+    logo: '',
+    logoFile: null,
+    published: false,
+    name: '',
+    lastName: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+    description: '',
+    cif: '',
+    fiscalAddress: '',
+    phone: '',
+    socialLinkedin: '',
+    socialFacebook: '',
+    socialInstagram: '',
+    web: '',
+    user: {},
+  },
 };
 
 export default function(state = initialState, action) {
@@ -13,15 +33,17 @@ export default function(state = initialState, action) {
         error: null,
         isFetching: true,
         success: false,
-        client: action.values,
+        client: Object.assign({}, state.client, action.values),
       });
-    case CLIENT_GET_ONE_SUCCESS:
+    case CLIENT_GET_ONE_SUCCESS: {
+      const { response } = action;
       return Object.assign({}, state, {
         error: null,
         isFetching: false,
         success: false,
-        client: action.response,
+        client: Object.assign({}, state.client, response, response.user),
       });
+    }
     case CLIENT_GET_ONE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,

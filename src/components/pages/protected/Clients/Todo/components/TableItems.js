@@ -1,7 +1,4 @@
-/* eslint-disable func-names */
-/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import { MdEdit, MdDelete, MdDone, MdWarning, MdWatchLater } from 'react-icons/md';
 import { connect } from 'react-redux';
@@ -52,8 +49,8 @@ class TableItems extends Component {
     this.setState({ showModal: false });
   }
 
-  handleShowModal(name, id, index) {
-    this.setState({ showModal: true, companyName: name, clientId: id, index });
+  handleShowModal(name, id) {
+    this.setState({ showModal: true, companyName: name, clientId: id });
   }
 
   render() {
@@ -69,74 +66,64 @@ class TableItems extends Component {
         </tr>
       );
     }
-    const items = clients.map((client, index) => {
-      return [
-        <tr key={index}>
-          <td>{client.id}</td>
-          {/*
-          <td>
-            {client.logo && (
-              <img width="100" alt="" src={`${process.env.API_URL_IMAGE}/${client.logo}`} />
-            )}
-          </td>
-          */}
-          <td>{client.companyName}</td>
-          <td>
-            {client.user.name}&nbsp;{client.user.lastName}
-          </td>
-          <td>{client.user.email}</td>
-          <td>
-            {client.published === true ? (
-              <Badge variant="success">
-                <MdDone />
-              </Badge>
-            ) : (
-              <Badge variant="warning">
-                <MdWarning />
-              </Badge>
-            )}
-          </td>
-          <td>
-            {client.user.isVerified === true ? (
-              <Badge variant="success">
-                <MdDone />
-              </Badge>
-            ) : (
-              <Badge variant="warning">
-                <MdWatchLater />
-              </Badge>
-            )}
-          </td>
-          <td className="text-right">
-            <LinkContainer to={`/clients/edit/${client.id}`}>
-              <Button disabled={isFetching} variant="primary" size="sm">
-                <MdEdit />
-              </Button>
-            </LinkContainer>
-            <Button
-              disabled={isFetching}
-              onClick={() => {
-                this.handleShowModal(client.companyName, client.id);
-              }}
-              className="ml-1"
-              variant="danger"
-              size="sm"
-            >
-              <MdDelete />
-            </Button>
-          </td>
-        </tr>,
-      ];
-    }, this);
 
     return (
       <React.Fragment>
-        {items.length === 0 ? (
+        {clients.length > 0 ? (
+          clients.map(client => (
+            <tr key={client.id}>
+              <td>{client.id}</td>
+              <td>{client.companyName}</td>
+              <td>
+                {client.user.name}&nbsp;{client.user.lastName}
+              </td>
+              <td>{client.user.email}</td>
+              <td>
+                {client.published === true ? (
+                  <Badge variant="success">
+                    <MdDone />
+                  </Badge>
+                ) : (
+                  <Badge variant="warning">
+                    <MdWarning />
+                  </Badge>
+                )}
+              </td>
+              <td>
+                {client.user.isVerified === true ? (
+                  <Badge variant="success">
+                    <MdDone />
+                  </Badge>
+                ) : (
+                  <Badge variant="warning">
+                    <MdWatchLater />
+                  </Badge>
+                )}
+              </td>
+              <td className="text-right">
+                <LinkContainer to={`/clients/edit/${client.id}`}>
+                  <Button disabled={isFetching} variant="primary" size="sm">
+                    <MdEdit />
+                  </Button>
+                </LinkContainer>
+                <Button
+                  disabled={isFetching}
+                  onClick={() => {
+                    this.handleShowModal(client.companyName, client.id);
+                  }}
+                  className="ml-1"
+                  variant="danger"
+                  size="sm"
+                >
+                  <MdDelete />
+                </Button>
+              </td>
+            </tr>
+          ))
+        ) : (
           <tr>
             <td colSpan="7">No results found.</td>
           </tr>
-        ) : (
-          items
         )}
         <Modal show={showModal} onHide={this.handleCloseModal}>
           <Modal.Header>

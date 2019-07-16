@@ -57,12 +57,13 @@ const AboutSection = () => {
           <Col>
             <h1 className="text-primary">Hello,</h1>
             <p>
-              We are a full service multimedia & technology brand, and we’re ready to provide you
-              with everything you need, in terms of creativity.
+              We are a brand which offers full-fledged Techno-creative multimedia products and
+              services as per your needs and flexibility.
             </p>
             <p>
               <strong>
-                We do it in the most effective way so that you can reach all your audience.
+                We execute the work in the most efficient manner that helps you to boost your reach
+                to your prospects.
               </strong>
             </p>
           </Col>

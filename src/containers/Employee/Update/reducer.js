@@ -9,7 +9,22 @@ const initialState = {
   isFetching: false,
   success: false,
   error: {},
-  employee: {},
+  employee: {
+    name: '',
+    lastName: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+    workPosition: '',
+    dni: '',
+    fiscalAddress: '',
+    phone: '',
+    socialLinkedin: '',
+    socialFacebook: '',
+    socialInstagram: '',
+    web: '',
+    user: {},
+  },
 };
 
 export default function(state = initialState, action) {
@@ -19,15 +34,17 @@ export default function(state = initialState, action) {
         error: {},
         isFetching: true,
         success: false,
-        employee: action.values,
+        employee: Object.assign({}, state.employee, action.values),
       });
-    case EMPLOYEE_UPDATE_SUCCESS:
+    case EMPLOYEE_UPDATE_SUCCESS: {
+      const { response } = action;
       return Object.assign({}, state, {
         error: {},
         isFetching: false,
         success: true,
-        employee: action.response,
+        employee: Object.assign({}, state.employee, response, response.user),
       });
+    }
     case EMPLOYEE_UPDATE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,

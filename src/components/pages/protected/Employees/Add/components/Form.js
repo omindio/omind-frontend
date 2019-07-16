@@ -8,8 +8,6 @@ import { actions, validationSchema } from '@containers/Employee/Create';
 import { Field } from '@components/common';
 import { StateErrorHandler } from '@utils/ErrorHandler';
 
-// import Field from './Field';
-
 class AddForm extends Component {
   componentWillUnmount() {
     const { clear } = this.props;
@@ -17,25 +15,11 @@ class AddForm extends Component {
   }
 
   render() {
-    const { create, hasError, isFetching, isCreated, verificationToken, id } = this.props;
+    const { create, hasError, isFetching, isCreated, employee } = this.props;
 
     return (
       <Formik
-        initialValues={{
-          name: '',
-          lastName: '',
-          email: '',
-          password: '',
-          passwordConfirmation: '',
-          workPosition: '',
-          dni: '',
-          fiscalAddress: '',
-          phone: '',
-          socialLinkedin: '',
-          socialFacebook: '',
-          socialInstagram: '',
-          web: '',
-        }}
+        initialValues={employee}
         validationSchema={validationSchema}
         onSubmit={values => {
           create(values);
@@ -48,9 +32,9 @@ class AddForm extends Component {
               Employee added successfully.
               <br />
               Verifcation token:&nbsp;
-              {verificationToken}
+              {employee.verificationToken}
               <br />
-              <LinkContainer to={`/employees/edit/${id}`}>
+              <LinkContainer to={`/employees/edit/${employee.id}`}>
                 <Button variant="primary" size="sm">
                   view profile
                 </Button>
@@ -236,8 +220,7 @@ const mapStateToProps = state => {
     isFetching,
     isCreated: success,
     hasError: error,
-    verificationToken: create.employee.verificationToken,
-    id: create.employee.id,
+    employee: create.employee,
   };
 };
 

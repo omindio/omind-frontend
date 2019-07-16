@@ -17,17 +17,10 @@ class AddForm extends Component {
   }
 
   render() {
-    const { create, hasError, isFetching, isCreated, verificationToken, id } = this.props;
-
+    const { create, hasError, isFetching, isCreated, user } = this.props;
     return (
       <Formik
-        initialValues={{
-          name: '',
-          lastName: '',
-          email: '',
-          password: '',
-          passwordConfirmation: '',
-        }}
+        initialValues={user}
         validationSchema={validationSchema}
         onSubmit={values => {
           create(values);
@@ -40,9 +33,9 @@ class AddForm extends Component {
               User added successfully.
               <br />
               Verifcation token:&nbsp;
-              {verificationToken}
+              {user.verificationToken}
               <br />
-              <LinkContainer to={`/users/edit/${id}`}>
+              <LinkContainer to={`/users/edit/${user.id}`}>
                 <Button variant="primary" size="sm">
                   view profile
                 </Button>
@@ -131,8 +124,7 @@ const mapStateToProps = state => {
     isFetching,
     isCreated: success,
     hasError: error,
-    verificationToken: create.user.verificationToken,
-    id: create.user.id,
+    user: create.user,
   };
 };
 

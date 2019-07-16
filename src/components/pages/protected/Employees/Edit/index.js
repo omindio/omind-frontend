@@ -13,10 +13,9 @@ const Section = styled.section`
 `;
 
 const EmployeesEdit = props => {
-  const { employeeFetched, isFetchingData, match } = props;
+  const { employeeFetched, isFetchingData, match, isUpdated, employeeUpdated } = props;
 
   const { id } = match.params;
-  const { user } = employeeFetched;
 
   return (
     <React.Fragment>
@@ -38,7 +37,10 @@ const EmployeesEdit = props => {
             </Col>
             <Col xs={12}>
               <ErrorBoundary>
-                <UserVerification isFetchingData={isFetchingData} user={user} />
+                <UserVerification
+                  isFetchingData={isFetchingData}
+                  user={isUpdated ? employeeUpdated.user : employeeFetched.user}
+                />
               </ErrorBoundary>
             </Col>
           </Row>
@@ -49,11 +51,13 @@ const EmployeesEdit = props => {
 };
 
 const mapStateToProps = state => {
-  const { getOne } = state.employee;
+  const { getOne, update } = state.employee;
 
   return {
     employeeFetched: getOne.employee,
     isFetchingData: getOne.isFetching,
+    isUpdated: update.success,
+    employeeUpdated: update.employee,
   };
 };
 

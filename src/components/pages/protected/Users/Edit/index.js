@@ -13,7 +13,7 @@ const Section = styled.section`
 `;
 
 const UsersEdit = props => {
-  const { userFetched, isFetchingData, match } = props;
+  const { userFetched, isFetchingData, match, isUpdated, userUpdated } = props;
 
   const { id } = match.params;
 
@@ -37,7 +37,10 @@ const UsersEdit = props => {
             </Col>
             <Col xs={12} sm={7} md={6}>
               <ErrorBoundary>
-                <UserVerification isFetchingData={isFetchingData} user={userFetched} />
+                <UserVerification
+                  isFetchingData={isFetchingData}
+                  user={isUpdated ? userUpdated : userFetched}
+                />
               </ErrorBoundary>
             </Col>
           </Row>
@@ -48,11 +51,13 @@ const UsersEdit = props => {
 };
 
 const mapStateToProps = state => {
-  const { getOne } = state.user;
+  const { getOne, update } = state.user;
 
   return {
     userFetched: getOne.user,
     isFetchingData: getOne.isFetching,
+    isUpdated: update.success,
+    userUpdated: update.user,
   };
 };
 

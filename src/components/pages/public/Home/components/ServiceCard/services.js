@@ -2,71 +2,77 @@
 const services = [
   {
     title: 'Strategy & Organization',
-    description: 'We help you to reinvent your company to stay on top of your game.',
+    description:
+      'We work with you and innovate new ways to help your organisation stay ahead in the race.',
   },
   {
     title: 'Design & Technology',
     description:
-      'We build the tools and put the platforms in place which accelerate digital growth.',
+      'We forge new tools and stack the platforms by setting them up to thrust your growth.',
   },
   {
     title: 'Big data and high load',
     description:
-      'Working with automated systems means the creation of scalable projects. That’s why we work with multiple types of databases.',
+      'Automated system equals scalable projects, we work with them all, so you don’t have to worry about that, and of course we work with multiple types of databases.',
   },
+  /*
   {
     title: 'Cryptocurrency',
     description:
       'We use cryptocurrency in our blockchain projects, helping our clients to digitalize their assets.',
   },
+  */
   {
     title: 'Graphic Design',
     description:
-      'Graphics designed with your audience in mind. We really understand your goals and what you want to achieve.',
+      'We make that design in your mind come alive or make one for you. We understand your target segment and goals you wish to accomplish.',
   },
   {
     title: 'Marketplaces: Shopify',
     description:
-      'We are the Shopify experts and work with you to create a whole new e-commerce experience for your customers',
+      'We are skilled in Shopify and together with you we can build a complete e-commerce platform for your customers.',
   },
   {
     title: 'Marketing Strategy',
     description:
-      'We find the right channels & target group, and help you to set your campaigns up perfectly.',
+      'Identification of suitable approach towards the aim, and setting up of your marketing campaigns, that’s what we do!',
   },
+  /*
   {
     title: 'Social Media',
     description:
       'Social media is at the heart of the new digital age. Harnessed effectively, social is an unrivaled tool for building rapport at scale, enabling round-the-clock engagement and one-on-one conversations.',
   },
+  */
   {
     title: 'Event Image',
     description:
-      'We add personality to your events. Don’t get on your nerves we take care of everything Everything!',
+      'We add that lively spark to your events, so you don’t have to worry about it, leave it to us and we will manage everything!',
   },
   {
     title: 'Motion Graphic',
     description:
-      'Motion Graphics are trending, don’t stay behind. Powerful stories come to life with a combination of graphics and animation.',
+      'Let’s add that motion and some special effects to your product in a dull and static graphic presentation, see it yourself, it attracts!',
   },
   {
     title: 'Video Production',
     description:
-      'We develop a real understanding of your ethos and values. We offer packages to suit all need types.',
+      'Lights, Camera, Action! Need your own video as per your idea and a customised package? We do it for you!',
   },
   {
     title: 'Photography',
-    description: 'We help you to put you in a good light. Each shoot will speak for itself.',
+    description:
+      'What’s a better way to present something? Just put it in a correct frame! Every click will put a life your product!',
   },
   {
     title: 'Agile Teams',
     description:
-      'A flexible team of proven experts to help you with every stage of your digital transformation.',
+      'Need a digital transformation? We have a team of experts that can assist you from scratch to the peak on every step.',
   },
   {
     title: 'Creative Advice',
     description:
-      'We develop a real understanding of your aims, we will advise you to present yourself to be successful in the market.',
+      'We help you in reaching your goals, with our consultations you can stand different in the market under the spotlight.',
   },
 ];
 

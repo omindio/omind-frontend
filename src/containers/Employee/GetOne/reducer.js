@@ -7,25 +7,44 @@ import {
 const initialState = {
   isFetching: false,
   error: {},
-  employee: {},
+  employee: {
+    id: '',
+    name: '',
+    lastName: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+    workPosition: '',
+    dni: '',
+    fiscalAddress: '',
+    phone: '',
+    socialLinkedin: '',
+    socialFacebook: '',
+    socialInstagram: '',
+    web: '',
+    user: {},
+  },
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case EMPLOYEE_GET_ONE_REQUEST:
+    case EMPLOYEE_GET_ONE_REQUEST: {
       return Object.assign({}, state, {
         error: null,
         isFetching: true,
         success: false,
-        employee: action.values,
+        employee: Object.assign({}, state.employee, action.values),
       });
-    case EMPLOYEE_GET_ONE_SUCCESS:
+    }
+    case EMPLOYEE_GET_ONE_SUCCESS: {
+      const { response } = action;
       return Object.assign({}, state, {
         error: null,
         isFetching: false,
         success: false,
-        employee: action.response,
+        employee: Object.assign({}, state.employee, response, response.user),
       });
+    }
     case EMPLOYEE_GET_ONE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,

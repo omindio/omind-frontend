@@ -27,7 +27,6 @@ class UserProfileForm extends Component {
       update,
       userId,
       userFetched,
-      userUpdated,
       isFetchingData,
       isFetchingUpdate,
       updateError,
@@ -37,17 +36,9 @@ class UserProfileForm extends Component {
 
     if (fetchDataError) return <StateErrorHandler error={fetchDataError} />;
 
-    const { name, lastName, email } = Object.assign({}, userFetched, userUpdated);
-
     return (
       <Formik
-        initialValues={{
-          name: name || '',
-          lastName: lastName || '',
-          email: email || '',
-          password: '',
-          passwordConfirmation: '',
-        }}
+        initialValues={userFetched}
         validationSchema={validationSchema}
         onSubmit={values => {
           update(Object.assign({}, values, { id: userId }));
@@ -148,13 +139,12 @@ UserProfileForm.propTypes = {
 
 const mapStateToProps = state => {
   const { update, getOne } = state.user;
-  const { user, isFetching, success, error } = update;
+  const { isFetching, success, error } = update;
 
   return {
     isFetchingData: getOne.isFetching,
     fetchDataError: getOne.error,
     userFetched: getOne.user,
-    userUpdated: user,
     isFetchingUpdate: isFetching,
     isUpdated: success,
     updateError: error,

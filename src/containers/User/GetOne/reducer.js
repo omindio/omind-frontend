@@ -3,7 +3,13 @@ import { USER_GET_ONE_REQUEST, USER_GET_ONE_SUCCESS, USER_GET_ONE_FAILURE } from
 const initialState = {
   isFetching: false,
   error: {},
-  user: {},
+  user: {
+    name: '',
+    lastName: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+  },
 };
 
 export default function(state = initialState, action) {
@@ -13,15 +19,17 @@ export default function(state = initialState, action) {
         error: null,
         isFetching: true,
         success: false,
-        user: action.values,
+        user: Object.assign({}, state.user, action.values),
       });
-    case USER_GET_ONE_SUCCESS:
+    case USER_GET_ONE_SUCCESS: {
+      const { response } = action;
       return Object.assign({}, state, {
         error: null,
         isFetching: false,
         success: false,
-        user: action.response,
+        user: Object.assign({}, state.user, response, response.user),
       });
+    }
     case USER_GET_ONE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,

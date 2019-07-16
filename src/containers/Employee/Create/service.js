@@ -24,11 +24,10 @@ const api = async values => {
   try {
     const response = await axios.post(API_URL, values, headers);
 
-    const { employee, user, verificationToken } = response.data;
+    const { employee, verificationToken } = response.data;
 
     return {
-      id: employee.id,
-      userId: user.id,
+      ...employee,
       verificationToken: verificationToken.token,
     };
   } catch (err) {

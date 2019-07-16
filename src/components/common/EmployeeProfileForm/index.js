@@ -27,7 +27,6 @@ class EmployeeProfileForm extends Component {
       update,
       employeeId,
       employeeFetched,
-      employeeUpdated,
       isFetchingData,
       isFetchingUpdate,
       updateError,
@@ -37,36 +36,9 @@ class EmployeeProfileForm extends Component {
 
     if (fetchDataError) return <StateErrorHandler error={fetchDataError} />;
 
-    const {
-      workPosition,
-      dni,
-      fiscalAddress,
-      phone,
-      socialLinkedin,
-      socialFacebook,
-      socialInstagram,
-      web,
-    } = Object.assign({}, employeeFetched, employeeUpdated);
-
-    const { name, lastName, email } = Object.assign({}, employeeFetched.user, employeeUpdated.user);
-
     return (
       <Formik
-        initialValues={{
-          name: name || '',
-          lastName: lastName || '',
-          email: email || '',
-          password: '',
-          passwordConfirmation: '',
-          workPosition: workPosition || '',
-          dni: dni || '',
-          fiscalAddress: fiscalAddress || '',
-          phone: phone || '',
-          socialLinkedin: socialLinkedin || '',
-          socialFacebook: socialFacebook || '',
-          socialInstagram: socialInstagram || '',
-          web: web || '',
-        }}
+        initialValues={employeeFetched}
         validationSchema={validationSchema}
         onSubmit={values => {
           update(Object.assign({}, values, { id: employeeId }));
@@ -263,13 +235,12 @@ EmployeeProfileForm.propTypes = {
 
 const mapStateToProps = state => {
   const { update, getOne } = state.employee;
-  const { employee, isFetching, success, error } = update;
+  const { isFetching, success, error } = update;
 
   return {
     isFetchingData: getOne.isFetching,
     fetchDataError: getOne.error,
     employeeFetched: getOne.employee,
-    employeeUpdated: employee,
     isFetchingUpdate: isFetching,
     isUpdated: success,
     updateError: error,

@@ -9,7 +9,27 @@ const initialState = {
   isFetching: false,
   success: false,
   error: {},
-  client: {},
+  client: {
+    id: '',
+    companyName: '',
+    logo: '',
+    logoFile: null,
+    published: false,
+    name: '',
+    lastName: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+    description: '',
+    cif: '',
+    fiscalAddress: '',
+    phone: '',
+    socialLinkedin: '',
+    socialFacebook: '',
+    socialInstagram: '',
+    web: '',
+    user: {},
+  },
 };
 
 export default function(state = initialState, action) {
@@ -21,13 +41,15 @@ export default function(state = initialState, action) {
         success: false,
         client: action.values,
       });
-    case CLIENT_UPDATE_SUCCESS:
+    case CLIENT_UPDATE_SUCCESS: {
+      const { response } = action;
       return Object.assign({}, state, {
         error: {},
         isFetching: false,
         success: true,
-        client: action.response,
+        client: Object.assign({}, state.client, response, response.user),
       });
+    }
     case CLIENT_UPDATE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,

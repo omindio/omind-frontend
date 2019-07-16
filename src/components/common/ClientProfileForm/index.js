@@ -27,7 +27,6 @@ class ClientProfileForm extends Component {
       update,
       clientId,
       clientFetched,
-      clientUpdated,
       isFetchingData,
       isFetchingUpdate,
       updateError,
@@ -37,42 +36,9 @@ class ClientProfileForm extends Component {
 
     if (fetchDataError) return <StateErrorHandler error={fetchDataError} />;
 
-    const {
-      companyName,
-      description,
-      cif,
-      logo,
-      published,
-      fiscalAddress,
-      phone,
-      socialLinkedin,
-      socialFacebook,
-      socialInstagram,
-      web,
-    } = Object.assign({}, clientFetched, clientUpdated);
-
-    const { name, lastName, email } = Object.assign({}, clientFetched.user, clientUpdated.user);
-
     return (
       <Formik
-        initialValues={{
-          name: name || '',
-          lastName: lastName || '',
-          email: email || '',
-          password: '',
-          passwordConfirmation: '',
-          companyName: companyName || '',
-          description: description || '',
-          logoFile: null,
-          cif: cif || '',
-          fiscalAddress: fiscalAddress || '',
-          phone: phone || '',
-          published: published || false,
-          socialLinkedin: socialLinkedin || '',
-          socialFacebook: socialFacebook || '',
-          socialInstagram: socialInstagram || '',
-          web: web || '',
-        }}
+        initialValues={clientFetched}
         validationSchema={validationSchema}
         onSubmit={values => {
           update(Object.assign({}, values, { id: clientId }));
@@ -192,7 +158,9 @@ class ClientProfileForm extends Component {
                   }}
                   isInvalid={touched.logoFile && errors.logoFile}
                 />
-                {logo && <img width="150" alt="" src={`${process.env.API_URL_IMAGE}/${logo}`} />}
+                {values.logo && (
+                  <img width="150" alt="" src={`${process.env.API_URL_IMAGE}/${values.logo}`} />
+                )}
               </Col>
               <Col xs={12} md={6}>
                 <Text
@@ -303,13 +271,12 @@ ClientProfileForm.propTypes = {
 
 const mapStateToProps = state => {
   const { update, getOne } = state.client;
-  const { client, isFetching, success, error } = update;
+  const { isFetching, success, error } = update;
 
   return {
     isFetchingData: getOne.isFetching,
     fetchDataError: getOne.error,
     clientFetched: getOne.client,
-    clientUpdated: client,
     isFetchingUpdate: isFetching,
     isUpdated: success,
     updateError: error,

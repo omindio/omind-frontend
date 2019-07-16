@@ -9,7 +9,14 @@ const initialState = {
   isFetching: false,
   success: false,
   error: {},
-  user: {},
+  user: {
+    name: '',
+    lastName: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+    verificationToken: ''
+  },
 };
 
 export default function(state = initialState, action) {
@@ -18,15 +25,17 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         error: {},
         isFetching: true,
-        user: action.values,
+        user: Object.assign({}, state.user, action.values),
       });
-    case USER_CREATE_SUCCESS:
+    case USER_CREATE_SUCCESS: {
+      const { response } = action;
       return Object.assign({}, state, {
         error: {},
         isFetching: false,
         success: true,
-        user: action.response,
+        user: Object.assign({}, state.user, response, response.user),
       });
+    }
     case USER_CREATE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,

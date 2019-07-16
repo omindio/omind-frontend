@@ -32,11 +32,10 @@ const api = async values => {
 
     const response = await axios.post(API_URL, data, headers);
 
-    const { client, user, verificationToken } = response.data;
+    const { client, verificationToken } = response.data;
 
     return {
-      id: client.id,
-      userId: user.id,
+      ...client,
       verificationToken: verificationToken.token,
     };
   } catch (err) {

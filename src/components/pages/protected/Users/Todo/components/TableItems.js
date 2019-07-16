@@ -1,7 +1,4 @@
-/* eslint-disable func-names */
-/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import { MdEdit, MdDelete, MdDone, MdWatchLater } from 'react-icons/md';
 import { connect } from 'react-redux';
@@ -11,10 +8,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { actions } from '@containers/User/Delete';
 import { getAllAction } from '@containers/User/GetAll';
 import { Loader } from '@components/common';
-
-/*
-  TODO: Add modal as another component
-*/
 
 class TableItems extends Component {
   constructor(props, context) {
@@ -56,8 +49,8 @@ class TableItems extends Component {
     this.setState({ showModal: false });
   }
 
-  handleShowModal(name, id, index) {
-    this.setState({ showModal: true, userName: name, userId: id, index });
+  handleShowModal(name, id) {
+    this.setState({ showModal: true, userName: name, userId: id });
   }
 
   render() {
@@ -74,57 +67,54 @@ class TableItems extends Component {
       );
     }
 
-    const items = users.map(function(user, index) {
-      return [
-        <tr key={index}>
-          <td>{user.id}</td>
-          <td>
-            {user.name}&nbsp;{user.lastName}
-          </td>
-          <td>{user.email}</td>
-          <td>{user.role}</td>
-          <td>
-            {user.isVerified === true ? (
-              <Badge variant="success">
-                <MdDone />
-              </Badge>
-            ) : (
-              <Badge variant="warning">
-                <MdWatchLater />
-              </Badge>
-            )}
-          </td>
-          <td className="text-right">
-            <LinkContainer to={`/users/edit/${user.id}`}>
-              <Button disabled={isFetching} variant="primary" size="sm">
-                <MdEdit />
-              </Button>
-            </LinkContainer>
-            <Button
-              disabled={isFetching}
-              onClick={() => {
-                this.handleShowModal(user.name, user.id);
-              }}
-              className="ml-1"
-              variant="danger"
-              size="sm"
-            >
-              <MdDelete />
-            </Button>
-          </td>
-        </tr>,
-      ];
-    }, this);
-
     return (
       <React.Fragment>
-        {items.length === 0 ? (
+        {users.length > 0 ? (
+          users.map(user => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>
+                {user.name}&nbsp;{user.lastName}
+              </td>
+              <td>{user.email}</td>
+              <td>{user.role}</td>
+              <td>
+                {user.isVerified === true ? (
+                  <Badge variant="success">
+                    <MdDone />
+                  </Badge>
+                ) : (
+                  <Badge variant="warning">
+                    <MdWatchLater />
+                  </Badge>
+                )}
+              </td>
+              <td className="text-right">
+                <LinkContainer to={`/users/edit/${user.id}`}>
+                  <Button disabled={isFetching} variant="primary" size="sm">
+                    <MdEdit />
+                  </Button>
+                </LinkContainer>
+                <Button
+                  disabled={isFetching}
+                  onClick={() => {
+                    this.handleShowModal(user.name, user.id);
+                  }}
+                  className="ml-1"
+                  variant="danger"
+                  size="sm"
+                >
+                  <MdDelete />
+                </Button>
+              </td>
+            </tr>
+          ))
+        ) : (
           <tr>
             <td colSpan="6">No results found.</td>
           </tr>
-        ) : (
-          items
         )}
+
         <Modal show={showModal} onHide={this.handleCloseModal}>
           <Modal.Header>
             <Modal.Title>Delete</Modal.Title>
