@@ -45,12 +45,12 @@ const services = [
   },
   */
   {
-    title: 'Event Image',
+    title: 'Event Management',
     description:
       'We add that lively spark to your events, so you don’t have to worry about it, leave it to us and we will manage everything!',
   },
   {
-    title: 'Motion Graphic',
+    title: 'Motion Graphics',
     description:
       'Let’s add that motion and some special effects to your product in a dull and static graphic presentation, see it yourself, it attracts!',
   },
@@ -62,7 +62,7 @@ const services = [
   {
     title: 'Photography',
     description:
-      'What’s a better way to present something? Just put it in a correct frame! Every click will put a life your product!',
+      'What’s a better way to present something? Just put it in a correct frame! Every click will put a life in your product!',
   },
   {
     title: 'Agile Teams',

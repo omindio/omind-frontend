@@ -8,8 +8,6 @@ import { actions, validationSchema } from '@containers/Client/Create';
 import { Field } from '@components/common';
 import { StateErrorHandler } from '@utils/ErrorHandler';
 
-// import Field from './Field';
-
 class AddForm extends Component {
   componentWillUnmount() {
     const { clear } = this.props;

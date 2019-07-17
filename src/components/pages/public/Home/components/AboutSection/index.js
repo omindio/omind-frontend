@@ -70,7 +70,7 @@ const AboutSection = () => {
         </Row>
         <Row>
           <Col>
-            <h2 className="text-primary">Thinks we do well.</h2>
+            <h2 className="text-primary">Our Expertise.</h2>
             <CardContainer className="services__container">
               {services.map(item => (
                 <ServiceCard key={item.title} title={item.title} description={item.description} />
