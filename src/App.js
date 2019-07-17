@@ -5,6 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import ScrollToTop from 'react-router-scroll-top';
 
 import { createBrowserHistory } from 'history';
+import GA from '@utils/GoogleAnalytics';
 import { CookieBanner } from '@components/common';
 
 import AppRoute from '@routes';
@@ -20,10 +21,13 @@ const App = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Router history={history}>
-          <ScrollToTop>
-            <AppRoute />
-            <CookieBanner />
-          </ScrollToTop>
+          <>
+            {GA.init() && <GA.RouteTracker />}
+            <ScrollToTop>
+              <AppRoute />
+              <CookieBanner />
+            </ScrollToTop>
+          </>
         </Router>
       </PersistGate>
     </Provider>
