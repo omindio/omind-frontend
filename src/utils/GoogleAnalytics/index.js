@@ -50,12 +50,12 @@ const RouteTracker = () => <Route component={GoogleAnalytics} />;
 
 const init = (options = {}) => {
   // const env = window._env_ || {};
-  const env = process.env || {};
-  const isGAEnabled = !!env.GA_TRACKING_ID;
-  console.log(env.GA_TRACKING_ID);
+  // const env = process.env || {};
+  const isGAEnabled = !!process.env.GA_TRACKING_ID;
+
   if (isGAEnabled) {
-    ReactGA.initialize(env.GA_TRACKING_ID, {
-      debug: env.REACT_APP_GA_DEBUG === 'true',
+    ReactGA.initialize(process.env.GA_TRACKING_ID, {
+      debug: process.env.GA_DEBUG === 'true',
       ...options,
     });
   }
