@@ -78,7 +78,7 @@ class Contact extends Component {
                 md={7}
                 className="m-0 vh-100 d-flex flex-column justify-content-center"
               >
-                <h2>Let&apos;s Talk</h2>
+                <h2>Let&apos;s Talk.</h2>
                 <Formik
                   initialValues={fields}
                   enableReinitialize
@@ -90,8 +90,9 @@ class Contact extends Component {
                     <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
                       <StateErrorHandler error={error} />
                       <Alert show={isSuccess || isClearSuccess} key={0} variant="success">
-                        Your message has been successfully sent. We will respond as soon as
-                        possible.
+                        Your message has been successfully sent.
+                        <br />
+                        We will respond as soon as possible.
                       </Alert>
                       <Form.Control
                         type="text"
