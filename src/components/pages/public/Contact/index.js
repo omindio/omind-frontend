@@ -168,7 +168,11 @@ class Contact extends Component {
               </Col>
             </Row>
           </Container>
-          <MessengerCustomerChat pageId="676296672772129" appId="2430579140565039" />
+          <MessengerCustomerChat
+            themeColor="#0e1111"
+            pageId="676296672772129"
+            appId="2430579140565039"
+          />
         </HeaderSection>
         <ButtonNav exclude="contact" />
         <Footer />
