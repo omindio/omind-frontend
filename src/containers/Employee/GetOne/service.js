@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { UnauthorizedError } from '@utils/Error';
+import { UnauthorizedError, TooManyRequestsError } from '@utils/Error';
 
 import { UserVerifiedError, UserNotFoundError } from '@containers/User/_Error';
 import { EmployeeNotFoundError } from '../_Error';
@@ -17,21 +17,13 @@ const api = async values => {
   try {
     response = await axios.get(API_URL, headers);
     return response.data;
-    /*
-    const { name, lastName, email, isVerified } = response.data;
-    return {
-      name,
-      lastName,
-      email,
-      isVerified,
-    };
-    */
   } catch (err) {
     const classesMapping = {
       UserNotFoundError,
       UserVerifiedError,
       UnauthorizedError,
       EmployeeNotFoundError,
+      TooManyRequestsError,
     };
     response = err.response.data;
     throw new classesMapping[response.type](response.message);

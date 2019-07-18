@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ValidationSchemaError, UnauthorizedError } from '@utils/Error';
+import { ValidationSchemaError, UnauthorizedError, TooManyRequestsError } from '@utils/Error';
 
 import {
   EmailAlreadyExistsError,
@@ -38,6 +38,7 @@ const api = async values => {
       UserVerifiedError,
       UnauthorizedError,
       ValidationSchemaError,
+      TooManyRequestsError,
     };
     const response = err.response.data;
     throw new classesMapping[response.type](response.message);

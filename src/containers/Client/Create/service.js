@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ValidationSchemaError, UnauthorizedError } from '@utils/Error';
+import { ValidationSchemaError, UnauthorizedError, TooManyRequestsError } from '@utils/Error';
 
 import {
   EmailAlreadyExistsError,
@@ -47,6 +47,7 @@ const api = async values => {
       UserNotFoundError,
       UserVerifiedError,
       UnauthorizedError,
+      TooManyRequestsError,
       ValidationSchemaError,
     };
     const response = err.response.data;

@@ -6,6 +6,7 @@ import UndefinedPropertyError from './UndefinedPropertyError';
 import ValidationSchemaError from './ValidationSchemaError';
 import UnauthorizedError from './UnauthorizedError';
 import InvalidRequestMethodError from './InvalidRequestMethodError';
+import TooManyRequestsError from './TooManyRequestsError';
 
 export {
   AppError,
@@ -16,4 +17,5 @@ export {
   ValidationSchemaError,
   UnauthorizedError,
   InvalidRequestMethodError,
+  TooManyRequestsError,
 };

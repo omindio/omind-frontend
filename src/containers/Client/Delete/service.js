@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { UnauthorizedError, UnauthorizedActionError } from '@utils/Error';
+import { UnauthorizedError, UnauthorizedActionError, TooManyRequestsError } from '@utils/Error';
 
 import { ClientNotFoundError } from '../_Error';
 
@@ -20,6 +20,7 @@ const api = async id => {
       ClientNotFoundError,
       UnauthorizedError,
       UnauthorizedActionError,
+      TooManyRequestsError,
     };
     response = err.response.data;
     throw new classesMapping[response.type](response.message);

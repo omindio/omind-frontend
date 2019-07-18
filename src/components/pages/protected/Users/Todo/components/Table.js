@@ -17,10 +17,14 @@ class TableComponent extends Component {
   }
 
   render() {
-    const { pages, current, deleteError } = this.props;
+    const { pages, current, deleteError, fetchDataError } = this.props;
     const { limit } = this.state;
+
+    // if (fetchDataError) return <StateErrorHandler error={fetchDataError} />;
+
     return (
       <React.Fragment>
+        <StateErrorHandler error={fetchDataError} />
         <StateErrorHandler error={deleteError} />
 
         <Table responsive="sm">
@@ -65,5 +69,5 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
   mapStateToProps,
-//  mapDispatchToProps,
+  //  mapDispatchToProps,
 )(TableComponent);

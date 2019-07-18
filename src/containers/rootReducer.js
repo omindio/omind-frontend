@@ -7,12 +7,14 @@ import { reducer as userReducer } from './User';
 import { reducer as clientReducer } from './Client';
 import { reducer as employeeReducer } from './Employee';
 import { reducer as uiReducer } from './UI';
+import { reducer as ContactReducer } from './Contact';
 
 const appReducer = combineReducers({
   auth: persistReducer({ key: 'auth', storage, whitelist: ['login', 'profile'] }, authReducer),
   client: clientReducer,
   employee: employeeReducer,
   user: userReducer,
+  contact: ContactReducer,
   ui: uiReducer,
 });
 

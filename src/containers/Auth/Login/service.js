@@ -1,6 +1,6 @@
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
-import { ValidationSchemaError, UnauthorizedError } from '@utils/Error';
+import { ValidationSchemaError, UnauthorizedError, TooManyRequestsError } from '@utils/Error';
 import { Role } from '@utils/Auth';
 
 import { UnauthorizedAccessError, UnverifiedUserError } from '../_Error';
@@ -47,6 +47,7 @@ const api = async values => {
       UnverifiedUserError,
       ValidationSchemaError,
       UnauthorizedError,
+      TooManyRequestsError,
     };
     const response = err.response.data;
     throw new classesMapping[response.type](response.message);

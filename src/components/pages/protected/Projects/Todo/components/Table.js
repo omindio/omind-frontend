@@ -15,12 +15,13 @@ class TableComponent extends Component {
   }
 
   render() {
-    const { pages, current, deleteError } = this.props;
+    const { pages, current, deleteError, fetchDataError } = this.props;
     const { limit } = this.state;
 
     return (
       <React.Fragment>
         <StateErrorHandler error={deleteError} />
+        <StateErrorHandler error={fetchDataError} />
 
         <Table responsive="sm">
           <thead>
