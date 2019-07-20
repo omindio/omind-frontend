@@ -1,7 +1,7 @@
 import { AppError } from '@utils/Error';
 
-export default class ClientlreadyExistsError extends AppError {
+export default class EmployeereadyExistsError extends AppError {
   constructor(message) {
-    super(message || 'Client already exists.', 404);
+    super(message || 'Employeee already exists.', 404);
   }
 }

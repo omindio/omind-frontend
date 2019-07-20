@@ -8,6 +8,8 @@ import {
 const initialState = {
   isFetching: false,
   error: null,
+  success: false,
+  showSuccessAlert: false,
   id: null,
 };
 
@@ -18,18 +20,22 @@ export default function(state = initialState, action) {
         error: null,
         isFetching: true,
         success: false,
+        showSuccessAlert: false,
         id: action.id,
       });
     case CLIENT_DELETE_SUCCESS:
       return Object.assign({}, state, {
         error: null,
         isFetching: false,
+        showSuccessAlert: true,
         success: true,
       });
     case CLIENT_DELETE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
         error: action.response,
+        showSuccessAlert: false,
+        succes: false,
       });
     case CLIENT_DELETE_CLEAR:
       return Object.assign({}, state, {

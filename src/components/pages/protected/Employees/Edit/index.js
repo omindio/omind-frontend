@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import { Header, EmployeeProfileForm, SectionNav, UserVerification } from '@components/common';
+import {
+  Header,
+  EmployeeProfileForm,
+  SectionNav,
+  UserVerification,
+  BankAccountForm,
+} from '@components/common';
 
 import { ErrorBoundary } from '@utils/ErrorHandler';
 
@@ -13,7 +19,14 @@ const Section = styled.section`
 `;
 
 const EmployeesEdit = props => {
-  const { employeeFetched, isFetchingData, match, isUpdated, employeeUpdated } = props;
+  const {
+    employeeFetched,
+    isFetchingData,
+    match,
+    isUpdated,
+    employeeUpdated,
+    isSuccessFetch,
+  } = props;
 
   const { id } = match.params;
 
@@ -34,6 +47,15 @@ const EmployeesEdit = props => {
               <ErrorBoundary>
                 <EmployeeProfileForm employeeId={id} />
               </ErrorBoundary>
+            </Col>
+            <Col xs={12} sm={7} md={6}>
+              {isSuccessFetch && (
+                <ErrorBoundary>
+                  <BankAccountForm
+                    userId={isUpdated ? employeeUpdated.user.id : employeeFetched.user.id}
+                  />
+                </ErrorBoundary>
+              )}
             </Col>
             <Col xs={12}>
               <ErrorBoundary>
@@ -56,12 +78,10 @@ const mapStateToProps = state => {
   return {
     employeeFetched: getOne.employee,
     isFetchingData: getOne.isFetching,
+    isSuccessFetch: getOne.success,
     isUpdated: update.success,
     employeeUpdated: update.employee,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {},
-)(EmployeesEdit);
+export default connect(mapStateToProps)(EmployeesEdit);

@@ -12,6 +12,7 @@ import Pagination from './Pagination';
 import SectionNav from './SectionNav';
 import * as Field from './Field';
 import UserVerification from './UserVerification';
+import BankAccountForm from './BankAccountForm';
 
 export {
   Header,
@@ -28,4 +29,5 @@ export {
   Field,
   UserVerification,
   EmployeeProfileForm,
+  BankAccountForm,
 };

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'react-bootstrap';
+import { Table, Alert } from 'react-bootstrap';
 
 import { getAllAction } from '@containers/Employee/GetAll';
 import { StateErrorHandler } from '@utils/ErrorHandler';
@@ -17,13 +17,15 @@ class TableComponent extends Component {
   }
 
   render() {
-    const { pages, current, deleteError, fetchDataError } = this.props;
+    const { pages, current, deleteError, fetchDataError, showSuccessAlert } = this.props;
     const { limit } = this.state;
-
     return (
       <React.Fragment>
         <StateErrorHandler error={deleteError} />
         <StateErrorHandler error={fetchDataError} />
+        <Alert show={showSuccessAlert} key={0} variant="success">
+          Employee deleted successfully.
+        </Alert>
 
         <Table responsive="sm">
           <thead>
@@ -45,13 +47,14 @@ class TableComponent extends Component {
 }
 
 const mapStateToProps = state => {
-  const { getAll, delete: remove } = state.client;
+  const { getAll, delete: remove } = state.employee;
 
   return {
     pages: getAll.pages,
     current: getAll.current,
     fetchDataError: getAll.error,
     deleteError: remove.error,
+    showSuccessAlert: remove.showSuccessAlert,
   };
 };
 

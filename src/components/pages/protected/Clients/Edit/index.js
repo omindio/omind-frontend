@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import { Header, ClientProfileForm, SectionNav, UserVerification } from '@components/common';
+import {
+  Header,
+  ClientProfileForm,
+  SectionNav,
+  UserVerification,
+  BankAccountForm,
+} from '@components/common';
 
 import { ErrorBoundary } from '@utils/ErrorHandler';
 
@@ -13,10 +19,10 @@ const Section = styled.section`
 `;
 
 const ClientsEdit = props => {
-  const { clientFetched, isFetchingData, match, clientUpdated, isUpdated } = props;
+  const { clientFetched, isFetchingData, match, clientUpdated, isUpdated, isSuccessFetch } = props;
 
   const { id } = match.params;
-
+  console.log(isSuccessFetch);
   return (
     <React.Fragment>
       <Helmet>
@@ -35,7 +41,16 @@ const ClientsEdit = props => {
                 <ClientProfileForm clientId={id} />
               </ErrorBoundary>
             </Col>
-            <Col xs={12}>
+            <Col xs={12} sm={7} md={6}>
+              {isSuccessFetch && (
+                <ErrorBoundary>
+                  <BankAccountForm
+                    userId={isUpdated ? clientUpdated.user.id : clientFetched.user.id}
+                  />
+                </ErrorBoundary>
+              )}
+            </Col>
+            <Col xs={12} sm={5} md={6}>
               <ErrorBoundary>
                 <UserVerification
                   isFetchingData={isFetchingData}
@@ -56,12 +71,10 @@ const mapStateToProps = state => {
   return {
     clientFetched: getOne.client,
     isFetchingData: getOne.isFetching,
+    isSuccessFetch: getOne.success,
     isSuccess: update.success,
     clientUpdated: update.user,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {},
-)(ClientsEdit);
+export default connect(mapStateToProps)(ClientsEdit);

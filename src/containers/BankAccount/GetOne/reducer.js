@@ -1,37 +1,44 @@
-import { USER_GET_ONE_REQUEST, USER_GET_ONE_SUCCESS, USER_GET_ONE_FAILURE } from './types';
+import {
+  BANK_ACCOUNT_GET_ONE_REQUEST,
+  BANK_ACCOUNT_GET_ONE_SUCCESS,
+  BANK_ACCOUNT_GET_ONE_FAILURE,
+} from './types';
 
 const initialState = {
   isFetching: false,
   success: false,
   error: {},
-  user: {
-    name: '',
-    lastName: '',
-    email: '',
-    password: '',
-    passwordConfirmation: '',
+  bankAccount: {
+    id: '',
+    vat: '',
+    swift: '',
+    iban: '',
+    bankName: '',
+    routeNumber: '',
+    user: '',
   },
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case USER_GET_ONE_REQUEST:
+    case BANK_ACCOUNT_GET_ONE_REQUEST: {
       return Object.assign({}, state, {
         error: null,
         isFetching: true,
         success: false,
-        user: Object.assign({}, state.user, action.values),
+        bankAccount: Object.assign({}, state.bankAccount, action.values),
       });
-    case USER_GET_ONE_SUCCESS: {
+    }
+    case BANK_ACCOUNT_GET_ONE_SUCCESS: {
       const { response } = action;
       return Object.assign({}, state, {
         error: null,
         isFetching: false,
         success: true,
-        user: Object.assign({}, state.user, response, response.user),
+        bankAccount: Object.assign({}, state.bankAccount, response),
       });
     }
-    case USER_GET_ONE_FAILURE:
+    case BANK_ACCOUNT_GET_ONE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
         success: false,

@@ -6,6 +6,7 @@ import {
 
 const initialState = {
   isFetching: false,
+  success: false,
   error: {},
   employee: {
     id: '',
@@ -41,13 +42,14 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         error: null,
         isFetching: false,
-        success: false,
+        success: true,
         employee: Object.assign({}, state.employee, response, response.user),
       });
     }
     case EMPLOYEE_GET_ONE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
+        success: false,
         error: action.response,
       });
     default:

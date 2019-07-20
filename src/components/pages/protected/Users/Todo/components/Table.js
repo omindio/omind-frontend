@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'react-bootstrap';
+import { Table, Alert } from 'react-bootstrap';
 
 import { getAllAction } from '@containers/User/GetAll';
 import { StateErrorHandler } from '@utils/ErrorHandler';
@@ -17,7 +17,7 @@ class TableComponent extends Component {
   }
 
   render() {
-    const { pages, current, deleteError, fetchDataError } = this.props;
+    const { pages, current, deleteError, fetchDataError, showSuccessAlert } = this.props;
     const { limit } = this.state;
 
     // if (fetchDataError) return <StateErrorHandler error={fetchDataError} />;
@@ -26,6 +26,9 @@ class TableComponent extends Component {
       <React.Fragment>
         <StateErrorHandler error={fetchDataError} />
         <StateErrorHandler error={deleteError} />
+        <Alert show={showSuccessAlert} key={0} variant="success">
+          User deleted successfully.
+        </Alert>
 
         <Table responsive="sm">
           <thead>
@@ -56,18 +59,8 @@ const mapStateToProps = state => {
     current: getAll.current,
     fetchDataError: getAll.error,
     deleteError: remove.error,
+    showSuccessAlert: remove.showSuccessAlert,
   };
 };
-/*
-const mapDispatchToProps = dispatch => {
-  return {
-    // dispatching actions returned by action creators
-    fetch: values => dispatch(getAllAction(values)),
-  };
-};
-*/
 
-export default connect(
-  mapStateToProps,
-  //  mapDispatchToProps,
-)(TableComponent);
+export default connect(mapStateToProps)(TableComponent);

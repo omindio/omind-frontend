@@ -2,6 +2,7 @@ import { CLIENT_GET_ONE_REQUEST, CLIENT_GET_ONE_SUCCESS, CLIENT_GET_ONE_FAILURE 
 
 const initialState = {
   isFetching: false,
+  success: false,
   error: {},
   client: {
     id: '',
@@ -22,7 +23,9 @@ const initialState = {
     socialFacebook: '',
     socialInstagram: '',
     web: '',
-    user: {},
+    user: {
+      id: '',
+    },
   },
 };
 
@@ -40,13 +43,14 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         error: null,
         isFetching: false,
-        success: false,
+        success: true,
         client: Object.assign({}, state.client, response, response.user),
       });
     }
     case CLIENT_GET_ONE_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
+        success: false,
         error: action.response,
       });
     default:

@@ -4,33 +4,23 @@ import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
-import { Header, EmployeeProfileForm, SectionNav } from '@components/common';
+import { Header, BankAccountForm, SectionNav } from '@components/common';
 import { ErrorBoundary } from '@utils/ErrorHandler';
-import { profileAction } from '@containers/Auth/Profile';
 
 const Section = styled.section`
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
 `;
 
-class ProfilePage extends Component {
-  componentDidUpdate() {
-    const { isUpdated, updateProfile, employeeUpdated } = this.props;
-    if (isUpdated) {
-      const { user } = employeeUpdated;
-      const { name, lastName, email } = user;
-
-      updateProfile({ name, lastName, email });
-    }
-  }
-
+// eslint-disable-next-line react/prefer-stateless-function
+class BankAccount extends Component {
   render() {
-    const { employeeId } = this.props;
+    const { userId } = this.props;
 
     return (
       <React.Fragment>
         <Helmet>
-          <title>Profile. Settings</title>
+          <title>Bank Account. Settings</title>
         </Helmet>
 
         <Header.Protected />
@@ -38,14 +28,14 @@ class ProfilePage extends Component {
           <SectionNav
             values={[
               { url: '/settings', name: 'Profile' },
-              { url: '/settings/bank-account', name: 'BankAccount' },
+              { url: '/settings/bank-account', name: 'Bank Account' },
             ]}
           />
           <Section className="shadow">
             <Row>
-              <Col xs={12}>
+              <Col xs={12} sm={7} md={6}>
                 <ErrorBoundary>
-                  <EmployeeProfileForm employeeId={employeeId} />
+                  <BankAccountForm userId={userId} />
                 </ErrorBoundary>
               </Col>
             </Row>
@@ -58,23 +48,13 @@ class ProfilePage extends Component {
 
 const mapStateToProps = state => {
   const { login } = state.auth;
-  const { update } = state.employee;
-  const { success, employee } = update;
 
   return {
-    employeeId: login.employeeId,
-    isUpdated: success,
-    employeeUpdated: employee,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    updateProfile: values => dispatch(profileAction(values)),
+    userId: login.userId,
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(ProfilePage);
+  {},
+)(BankAccount);

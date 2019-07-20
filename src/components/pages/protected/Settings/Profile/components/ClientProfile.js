@@ -35,7 +35,12 @@ class ProfilePage extends Component {
 
         <Header.Protected />
         <Container fluid="yes">
-          <SectionNav values={[{ url: '/settings', name: 'Profile' }]} />
+          <SectionNav
+            values={[
+              { url: '/settings', name: 'Profile' },
+              { url: '/settings/bank-account', name: 'BankAccount' },
+            ]}
+          />
           <Section className="shadow">
             <Row>
               <Col xs={12}>

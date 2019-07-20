@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import { Header, UserProfileForm, SectionNav, UserVerification } from '@components/common';
+import {
+  Header,
+  BankAccountForm,
+  UserProfileForm,
+  SectionNav,
+  UserVerification,
+} from '@components/common';
 
 import { ErrorBoundary } from '@utils/ErrorHandler';
 
@@ -30,12 +36,17 @@ const UsersEdit = props => {
         />
         <Section className="shadow">
           <Row>
-            <Col xs={12} sm={7} md={6}>
+            <Col xs={12} sm={6} md={6}>
               <ErrorBoundary>
                 <UserProfileForm userId={id} />
               </ErrorBoundary>
             </Col>
-            <Col xs={12} sm={7} md={6}>
+            <Col xs={12} sm={6} md={6}>
+              <ErrorBoundary>
+                <BankAccountForm userId={id} />
+              </ErrorBoundary>
+            </Col>
+            <Col xs={12} sm={6} md={6}>
               <ErrorBoundary>
                 <UserVerification
                   isFetchingData={isFetchingData}

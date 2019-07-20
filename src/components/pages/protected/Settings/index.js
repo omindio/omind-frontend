@@ -1,3 +1,4 @@
 import Profile from './Profile';
+import BankAccount from './BankAccount';
 
-export default { Profile };
+export { Profile, BankAccount };

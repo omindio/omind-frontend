@@ -38,6 +38,12 @@ const AppRoute = () => {
       />
 
       <ProtectedRoute
+        path="/settings/bank-account"
+        allowedRoles={[Role.Admin, Role.Client, Role.Employee]}
+        component={Settings.BankAccount}
+      />
+
+      <ProtectedRoute
         path="/settings"
         allowedRoles={[Role.Admin, Role.Client, Role.Employee]}
         component={Settings.Profile}

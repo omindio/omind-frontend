@@ -7,19 +7,12 @@ import {
   TooManyRequestsError,
 } from '@utils/Error';
 
-import {
-  EmailAlreadyExistsError,
-  SamePasswordError,
-  UserVerifiedError,
-  UserNotFoundError,
-} from '@containers/User/_Error';
-
-import { EmployeeAlreadyExistsError, EmployeeNotFoundError } from '../_Error';
+import { BankAccountAlreadyExistsError, BankAccountNotFoundError } from '../_Error';
 
 const api = async values => {
   const { id } = values;
   const bearerToken = localStorage.getItem('token');
-  const API_URL = `${process.env.API_URL}/employees/${id}`;
+  const API_URL = `${process.env.API_URL}/bank-accounts/${id}`;
 
   const headers = {
     headers: {
@@ -31,12 +24,8 @@ const api = async values => {
     return response.data;
   } catch (err) {
     const classesMapping = {
-      EmailAlreadyExistsError,
-      SamePasswordError,
-      UserNotFoundError,
-      EmployeeAlreadyExistsError,
-      EmployeeNotFoundError,
-      UserVerifiedError,
+      BankAccountAlreadyExistsError,
+      BankAccountNotFoundError,
       UnauthorizedError,
       ValidationSchemaError,
       TooManyRequestsError,

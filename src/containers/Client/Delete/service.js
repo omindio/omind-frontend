@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-import { UnauthorizedError, UnauthorizedActionError, TooManyRequestsError } from '@utils/Error';
+import {
+  ValidationSchemaError,
+  UnauthorizedError,
+  UnauthorizedActionError,
+  TooManyRequestsError,
+} from '@utils/Error';
 
 import { ClientNotFoundError } from '../_Error';
 
@@ -17,6 +22,7 @@ const api = async id => {
     return true;
   } catch (err) {
     const classesMapping = {
+      ValidationSchemaError,
       ClientNotFoundError,
       UnauthorizedError,
       UnauthorizedActionError,
