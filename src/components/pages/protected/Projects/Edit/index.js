@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { Container, Row, Col, Nav } from 'react-bootstrap';
+import { Container, Row, Col, Nav, Tab } from 'react-bootstrap';
 import styled from 'styled-components';
 import {
   Header,
@@ -16,6 +16,20 @@ import {
 const Section = styled.section`
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
+`;
+
+const NavLink = styled(Nav.Link)`
+  font-weight: 400;
+  border-radius: 8px;
+  color: #708498;
+  &.active {
+    background-color: #0f1111 !important;
+    border: 0;
+  }
+  &:hover {
+    border: 0;
+    color: #0f1111;
+  }
 `;
 
 const ProjectsEdit = props => {
@@ -37,17 +51,36 @@ const ProjectsEdit = props => {
         <Section className="shadow">
           <Row>
             <Col>
-              <Nav fill variant="tabs" defaultActiveKey="information">
-                <Nav.Item>
-                  <Nav.Link eventKey="information">Information</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="images">Images</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="videos">Videos</Nav.Link>
-                </Nav.Item>
-              </Nav>
+              <Tab.Container id="left-tabs-example" defaultActiveKey="information">
+                <Row>
+                  <Col sm={3}>
+                    <Nav variant="pills" className="flex-column">
+                      <Nav.Item>
+                        <NavLink eventKey="information">Information</NavLink>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <NavLink eventKey="images">Images</NavLink>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <NavLink eventKey="videos">Videos</NavLink>
+                      </Nav.Item>
+                    </Nav>
+                  </Col>
+                  <Col sm={9}>
+                    <Tab.Content>
+                      <Tab.Pane eventKey="information">
+                        <p>Ok</p>
+                      </Tab.Pane>
+                      <Tab.Pane eventKey="images">
+                        <p>Ok</p>
+                      </Tab.Pane>
+                      <Tab.Pane eventKey="videos">
+                        <p>Ok</p>
+                      </Tab.Pane>
+                    </Tab.Content>
+                  </Col>
+                </Row>
+              </Tab.Container>
             </Col>
           </Row>
         </Section>

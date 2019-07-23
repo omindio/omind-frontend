@@ -33,6 +33,9 @@ const NavDropdown = styled(NavDropdownBootstrap)`
     font-weight: 400;
     font-size: 1rem;
     color: #fff;
+    &:hover {
+      color: #0f1111 !important;
+    }
   }
   .dropdown-menu {
     border: 0;

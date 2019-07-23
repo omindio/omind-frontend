@@ -44,6 +44,9 @@ const Navbar = styled(NavbarBootstrap)`
       color: rgba(17, 51, 83, 0.6);
       padding: 1rem 0;
       font-weight: 400;
+      &:hover {
+        color: #0f1111 !important;
+      }
       &.active {
         color: #0d1111;
         text-decoration: none;
