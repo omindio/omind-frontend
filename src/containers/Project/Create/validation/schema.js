@@ -1,49 +1,33 @@
 import * as Yup from 'yup';
 
 const nameSchema = Yup.string()
-  .min(3)
-  .max(50);
-const lastNameSchema = Yup.string()
-  .min(3)
-  .max(50);
-const emailSchema = Yup.string()
-  .email()
-  .lowercase()
-  .min(4)
-  .max(62);
-const passwordSchema = Yup.string().min(8);
-
-const workPositionSchema = Yup.string()
   .min(2)
   .max(50);
-const dniSchema = Yup.string()
-  .min(9)
-  .max(11);
-const fiscalAddressSchema = Yup.string();
-const phoneSchema = Yup.string()
-  .min(9)
-  .max(11);
-const socialLinkedinSchema = Yup.string().url();
-const socialFacebookSchema = Yup.string().url();
-const socialInstagramSchema = Yup.string().url();
-const webSchema = Yup.string().url();
+const descriptionSchema = Yup.string()
+  .min(10)
+  .max(1000);
+const metaDescriptionSchema = Yup.string()
+  .min(2)
+  .max(250);
+const startedDateSchema = Yup.date();
+const finishedDateSchema = Yup.date();
+const publishedSchema = Yup.boolean();
+const statusSchema = Yup.string()
+  .min(1)
+  .max(2);
+const clientSchema = Yup.string();
+const tagsSchema = Yup.array();
 
 const Schema = Yup.object().shape({
-  workPosition: workPositionSchema.optional(),
-  dni: dniSchema.optional(),
-  fiscalAddress: fiscalAddressSchema.optional(),
-  phone: phoneSchema.optional(),
-  socialLinkedin: socialLinkedinSchema.optional(),
-  socialFacebook: socialFacebookSchema.optional(),
-  socialInstagram: socialInstagramSchema.optional(),
-  web: webSchema.optional(),
   name: nameSchema.required(),
-  lastName: lastNameSchema.required(),
-  email: emailSchema.required(),
-  password: passwordSchema.required(),
-  passwordConfirmation: passwordSchema
-    .oneOf([Yup.ref('password'), null], 'Passwords must match.')
-    .required(),
+  description: descriptionSchema.required(),
+  metaDescription: metaDescriptionSchema.optional(),
+  startedDate: startedDateSchema.required(),
+  finishedDate: finishedDateSchema.min(Yup.ref('startedDate')).required(),
+  published: publishedSchema.required(),
+  status: statusSchema.required(),
+  client: clientSchema.required(),
+  tags: tagsSchema.optional(),
 });
 
 export default Schema;

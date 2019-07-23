@@ -15,7 +15,7 @@ const initialState = {
     email: '',
     password: '',
     passwordConfirmation: '',
-    verificationToken: ''
+    verificationToken: '',
   },
 };
 
@@ -47,7 +47,14 @@ export default function(state = initialState, action) {
         isFetching: false,
         success: false,
         error: {},
-        user: {},
+        user: {
+          name: '',
+          lastName: '',
+          email: '',
+          password: '',
+          passwordConfirmation: '',
+          verificationToken: '',
+        },
       });
     default:
       return state;

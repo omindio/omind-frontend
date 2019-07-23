@@ -103,7 +103,7 @@ const PagesNav = props => {
             </NavLink>
           </Nav.Item>
           <Nav.Item>
-            <NavLink className="nav-link" activeClassName="active" to="/employees">
+            <NavLink className="nav-link" activeClassName="active" to="/projects">
               <MdWork />
               Projects
             </NavLink>

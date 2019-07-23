@@ -19,7 +19,17 @@ const api = async values => {
   };
 
   try {
-    const response = await axios.post(API_URL, values, headers);
+    const { tags } = values;
+
+    const tagsStr = tags.join(',');
+
+    const response = await axios.post(
+      API_URL,
+      Object.assign({}, values, {
+        tags: tagsStr,
+      }),
+      headers,
+    );
 
     return response.data;
   } catch (err) {

@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import { Form, Button, Alert, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-import { actions, validationSchema } from '@containers/Employee/Create';
+import { actions, validationSchema } from '@containers/Project/Create';
 import { Field } from '@components/common';
 import { StateErrorHandler } from '@utils/ErrorHandler';
 
@@ -15,28 +15,24 @@ class AddForm extends Component {
   }
 
   render() {
-    const { create, hasError, isFetching, isCreated, employee } = this.props;
+    const { create, hasError, isFetching, isCreated, project } = this.props;
 
     return (
       <Formik
-        initialValues={employee}
+        initialValues={project}
         validationSchema={validationSchema}
         onSubmit={values => {
           create(values);
         }}
-        render={({ values, handleSubmit, handleChange, errors, touched }) => (
+        render={({ values, handleSubmit, handleChange, errors, touched, setFieldValue }) => (
           <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
             {hasError && <StateErrorHandler error={hasError} />}
 
             <Alert show={isCreated} key={0} variant="success">
-              Employee added successfully.
-              <br />
-              Verifcation token:&nbsp;
-              {employee.verificationToken}
-              <br />
-              <LinkContainer to={`/employees/edit/${employee.id}`}>
+              Employee added successfully. &nbsp;&nbsp;
+              <LinkContainer to={`/projects/edit/${project.id}`}>
                 <Button variant="primary" size="sm">
-                  view profile
+                  Edit
                 </Button>
               </LinkContainer>
             </Alert>
@@ -54,146 +50,92 @@ class AddForm extends Component {
                   onChange={handleChange}
                   isInvalid={touched.name && errors.name}
                 />
+                <Field.Select
+                  label="Status *"
+                  name="status"
+                  disabled={isFetching}
+                  value={values.status}
+                  onChange={setFieldValue}
+                  isInvalid={touched.status && errors.status}
+                  options={[
+                    {
+                      id: '1',
+                      name: 'Created',
+                    },
+                  ]}
+                />
 
-                <Field.Text
-                  label="Last Name *"
-                  placeholder="Last Name"
-                  name="lastName"
+                <Field.Textarea
+                  label="Description *"
+                  placeholder="Description"
+                  name="description"
                   type="text"
                   autoComplete="off"
                   disabled={isFetching}
-                  value={values.lastName}
+                  value={values.description}
                   onChange={handleChange}
-                  isInvalid={touched.lastName && errors.lastName}
+                  isInvalid={touched.description && errors.description}
                 />
-
-                <Field.Text
-                  label="Email *"
-                  placeholder="Email"
-                  name="email"
-                  type="email"
-                  autoComplete="off"
+                <Field.DatePicker
+                  label="Started Date *"
+                  name="startedDate"
+                  placeholder="Started Date"
                   disabled={isFetching}
-                  value={values.email}
-                  onChange={handleChange}
-                  isInvalid={touched.email && errors.email}
+                  value={values.startedDate}
+                  onChange={setFieldValue}
+                  isInvalid={touched.startedDate && errors.startedDate}
                 />
-
-                <Field.Text
-                  label="Password *"
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  autoComplete="off"
+                <Field.DatePicker
+                  label="Finished Date *"
+                  name="finishedDate"
+                  placeholder="Finished Date"
                   disabled={isFetching}
-                  value={values.password}
-                  onChange={handleChange}
-                  isInvalid={touched.password && errors.password}
-                />
-
-                <Field.Text
-                  label="Repeat Password *"
-                  placeholder="Repeat Password"
-                  name="passwordConfirmation"
-                  type="password"
-                  autoComplete="off"
-                  disabled={isFetching}
-                  value={values.passwordConfirmation}
-                  onChange={handleChange}
-                  isInvalid={touched.passwordConfirmation && errors.passwordConfirmation}
-                />
-                <Field.Text
-                  label="Phone"
-                  placeholder="Phone"
-                  name="phone"
-                  type="text"
-                  autoComplete="off"
-                  disabled={isFetching}
-                  value={values.phone}
-                  onChange={handleChange}
-                  isInvalid={touched.phone && errors.phone}
-                />
-                <Field.Text
-                  label="Dni"
-                  placeholder="Dni"
-                  name="dni"
-                  type="text"
-                  autoComplete="off"
-                  disabled={isFetching}
-                  value={values.dni}
-                  onChange={handleChange}
-                  isInvalid={touched.dni && errors.dni}
+                  value={values.finishedDate}
+                  onChange={setFieldValue}
+                  isInvalid={touched.finishedDate && errors.finishedDate}
                 />
               </Col>
               <Col xs={12} md={6}>
                 <Field.Text
-                  label="Fiscal Address"
-                  placeholder="Fiscal Address"
-                  name="fiscalAddress"
+                  label="Client ID *"
+                  placeholder="Client ID"
+                  name="client"
                   type="text"
                   autoComplete="off"
                   disabled={isFetching}
-                  value={values.fiscalAddress}
+                  value={values.client}
                   onChange={handleChange}
-                  isInvalid={touched.fiscalAddress && errors.fiscalAddress}
-                  text="Format: C\ Rocafort 66 2-3 08014, Barcelona. España"
+                  isInvalid={touched.client && errors.client}
                 />
-                <Field.Text
-                  label="Work Position"
-                  placeholder="Work Position"
-                  name="workPosition"
-                  autoComplete="off"
-                  disabled={isFetching}
-                  value={values.workPosition}
-                  onChange={handleChange}
-                  isInvalid={touched.workPosition && errors.workPosition}
-                />
-
-                <Field.Text
-                  label="Linkedin"
-                  placeholder="Linkedin"
-                  name="socialLinkedin"
+                <Field.Textarea
+                  label="Meta Description"
+                  placeholder="Meta Description"
+                  name="metaDescription"
                   type="text"
                   autoComplete="off"
                   disabled={isFetching}
-                  value={values.socialLinkedin}
+                  value={values.metaDescription}
                   onChange={handleChange}
-                  isInvalid={touched.socialLinkedin && errors.socialLinkedin}
-                  text="Format: https://linkedin.com"
+                  isInvalid={touched.metaDescription && errors.metaDescription}
                 />
-
-                <Field.Text
-                  label="Facebook"
-                  placeholder="Facebook"
-                  name="socialFacebook"
-                  type="text"
-                  autoComplete="off"
+                <Field.Checkbox
+                  labeltext="Published"
+                  label=""
+                  placeholder=""
+                  name="published"
                   disabled={isFetching}
-                  value={values.socialFacebook}
+                  value={values.published}
                   onChange={handleChange}
-                  isInvalid={touched.socialFacebook && errors.socialFacebook}
+                  isInvalid={touched.published && errors.published}
                 />
-                <Field.Text
-                  label="Instagram"
-                  placeholder="Instagram"
-                  name="socialInstagram"
-                  type="text"
-                  autoComplete="off"
+                <Field.Tags
+                  label="Tags"
+                  placeholder="Add new Tag"
+                  name="tags"
                   disabled={isFetching}
-                  value={values.socialInstagram}
-                  onChange={handleChange}
-                  isInvalid={touched.socialInstagram && errors.socialInstagram}
-                />
-                <Field.Text
-                  label="Web"
-                  placeholder="Web"
-                  name="web"
-                  type="text"
-                  autoComplete="off"
-                  disabled={isFetching}
-                  value={values.web}
-                  onChange={handleChange}
-                  isInvalid={touched.web && errors.web}
+                  value={values.tags}
+                  onChange={setFieldValue}
+                  isInvalid={touched.published && errors.published}
                 />
               </Col>
             </Row>
@@ -213,14 +155,14 @@ class AddForm extends Component {
 }
 
 const mapStateToProps = state => {
-  const { create } = state.employee;
+  const { create } = state.project;
   const { isFetching, success, error } = create;
 
   return {
     isFetching,
     isCreated: success,
     hasError: error,
-    employee: create.employee,
+    project: create.project,
   };
 };
 

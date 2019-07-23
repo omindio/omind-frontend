@@ -23,6 +23,7 @@ h5,
   .form-control {
     border: 3px solid #1f1e1d;
     margin-top: 1rem;
+    height: auto !important;
     color: #6c6c6c;
     padding: 0.7rem 0.6rem !important;
     &:focus {
@@ -278,7 +279,7 @@ section {
 .form-control {
   //padding: 0.7rem 0.6rem !important;
   border-radius: 8px !important;
-  height: auto !important;
+  height: calc(1.5em + 0.8rem + 2px);
   text-align: left;
   background: transparent;
   color: #6c6c6c;
@@ -351,4 +352,53 @@ table,
 
 .btn {
   border-radius: 8px !important;
+}
+
+.react-datepicker__input-container,
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+/* REACT TAGS INPUT */
+.react-tagsinput {
+  overflow: hidden;
+}
+
+.react-tagsinput--focused {
+  border-color: #0f1111;
+}
+
+.react-tagsinput-tag {
+  background-color: #0f1111;
+  border-radius: 8px;
+  border: 1px solid #0f1111;
+  color: #fff;
+  display: inline-block;
+  font-family: sans-serif;
+  font-weight: 400;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding: 5px;
+}
+
+.react-tagsinput-remove {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.react-tagsinput-tag a::before {
+  content: ' ×';
+}
+
+.react-tagsinput-input {
+  background: transparent;
+  border: 0;
+  color: #777;
+  font-family: sans-serif;
+  font-weight: 400;
+  margin-bottom: 6px;
+  margin-top: 1px;
+  outline: none;
+  padding: 5px;
+  width: 50%;
 }

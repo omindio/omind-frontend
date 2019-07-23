@@ -6,6 +6,7 @@ import { saga as employeeSaga } from './Employee';
 import { saga as authSaga } from './Auth';
 import { saga as contactSaga } from './Contact';
 import { saga as bankAccountSaga } from './BankAccount';
+import { saga as projectSaga } from './Project';
 
 const getWatchers = sagas => {
   const watchers = [];
@@ -25,7 +26,15 @@ const getWatchers = sagas => {
 export default function* rootSaga() {
   yield all(
     [
-      ...getWatchers([authSaga, userSaga, clientSaga, employeeSaga, bankAccountSaga, contactSaga]),
+      ...getWatchers([
+        authSaga,
+        userSaga,
+        clientSaga,
+        projectSaga,
+        employeeSaga,
+        bankAccountSaga,
+        contactSaga,
+      ]),
     ].map(fork),
   );
 }

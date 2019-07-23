@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { Component } from 'react';
-import { MdEdit, MdDelete, MdDone, MdWatchLater } from 'react-icons/md';
+import { MdEdit, MdDelete, MdDone, MdWarning } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { Button, Modal, Badge } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-import { actions } from '@containers/Employee/Delete';
-import { getAllAction } from '@containers/Employee/GetAll';
+import { actions } from '@containers/Project/Delete';
+import { getAllAction } from '@containers/Project/GetAll';
 import { Loader } from '@components/common';
 
 class TableItems extends Component {
@@ -17,8 +17,8 @@ class TableItems extends Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.state = {
       showModal: false,
-      employeeName: null,
-      employeeID: null,
+      projectName: null,
+      projectID: null,
     };
   }
 
@@ -38,9 +38,9 @@ class TableItems extends Component {
   }
 
   handleDelete() {
-    const { deleteEmployee } = this.props;
-    const { employeeID } = this.state;
-    deleteEmployee(employeeID);
+    const { deleteProject } = this.props;
+    const { projectID } = this.state;
+    deleteProject(projectID);
     this.handleCloseModal();
   }
 
@@ -49,17 +49,17 @@ class TableItems extends Component {
   }
 
   handleShowModal(name, id) {
-    this.setState({ showModal: true, employeeName: name, employeeID: id });
+    this.setState({ showModal: true, projectName: name, projectID: id });
   }
 
   render() {
-    const { employees, isFetching, isFetchingData } = this.props;
-    const { showModal, employeeName } = this.state;
+    const { projects, isFetching, isFetchingData } = this.props;
+    const { showModal, projectName } = this.state;
 
     if (isFetchingData) {
       return (
         <tr>
-          <td colSpan="6">
+          <td colSpan="5">
             <Loader />
           </td>
         </tr>
@@ -68,30 +68,25 @@ class TableItems extends Component {
 
     return (
       <React.Fragment>
-        {employees.length > 0 ? (
-          employees.map(employee => (
-            <tr key={employee.id}>
-              <td>{employee.id}</td>
+        {projects.length > 0 ? (
+          projects.map(project => (
+            <tr key={project.id}>
+              <td>{project.id}</td>
+              <td>{project.name}</td>
+              <td>{project.client.companyName}</td>
               <td>
-                {employee.user.name}
-                &nbsp;
-                {employee.user.lastName}
-              </td>
-              <td>{employee.user.email}</td>
-              <td>{employee.workPosition}</td>
-              <td>
-                {employee.user.isVerified === true ? (
+                {project.published === true ? (
                   <Badge variant="success">
                     <MdDone />
                   </Badge>
                 ) : (
                   <Badge variant="warning">
-                    <MdWatchLater />
+                    <MdWarning />
                   </Badge>
                 )}
               </td>
               <td className="text-right">
-                <LinkContainer to={`/employees/edit/${employee.id}`}>
+                <LinkContainer to={`/projects/edit/${project.id}`}>
                   <Button disabled={isFetching} variant="primary" size="sm">
                     <MdEdit />
                   </Button>
@@ -99,7 +94,7 @@ class TableItems extends Component {
                 <Button
                   disabled={isFetching}
                   onClick={() => {
-                    this.handleShowModal(employee.user.name, employee.id);
+                    this.handleShowModal(project.name, project.id);
                   }}
                   className="ml-1"
                   variant="danger"
@@ -112,7 +107,7 @@ class TableItems extends Component {
           ))
         ) : (
           <tr>
-            <td colSpan="6">No results found.</td>
+            <td colSpan="5">No results found.</td>
           </tr>
         )}
 
@@ -122,7 +117,7 @@ class TableItems extends Component {
           </Modal.Header>
           <Modal.Body>
             Are you sure to delete &nbsp;
-            <strong>{employeeName}</strong>?
+            <strong>{projectName}</strong>?
           </Modal.Body>
           <Modal.Footer>
             <Button variant="link" onClick={this.handleCloseModal}>
@@ -139,12 +134,12 @@ class TableItems extends Component {
 }
 
 const mapStateToProps = state => {
-  const { getAll, delete: remove } = state.employee;
+  const { getAll, delete: remove } = state.project;
   const { isFetching, success } = remove;
-  const { isFetching: isFetchingData, employees, current } = getAll;
+  const { isFetching: isFetchingData, projects, current } = getAll;
   return {
     isFetching,
-    employees,
+    projects,
     isDeleted: success,
     isFetchingData,
     currentPage: current,
@@ -154,7 +149,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     // dispatching actions returned by action creators
-    deleteEmployee: id => dispatch(actions.deleteAction(id)),
+    deleteProject: id => dispatch(actions.deleteAction(id)),
     clear: () => dispatch(actions.clearAction()),
     fetch: values => dispatch(getAllAction(values)),
   };

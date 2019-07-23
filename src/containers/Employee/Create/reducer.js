@@ -58,7 +58,24 @@ export default function(state = initialState, action) {
         isFetching: false,
         success: false,
         error: {},
-        employee: {},
+        employee: {
+          id: '',
+          name: '',
+          lastName: '',
+          email: '',
+          password: '',
+          passwordConfirmation: '',
+          workPosition: '',
+          dni: '',
+          fiscalAddress: '',
+          phone: '',
+          socialLinkedin: '',
+          socialFacebook: '',
+          socialInstagram: '',
+          web: '',
+          verificationToken: '',
+          user: {},
+        },
       });
     default:
       return state;

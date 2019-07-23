@@ -16,9 +16,9 @@ const initialState = {
     startedDate: '',
     finishedDate: '',
     published: false,
-    status: '',
+    status: '1',
     tags: [],
-    client: {},
+    client: '',
   },
 };
 
@@ -51,7 +51,17 @@ export default function(state = initialState, action) {
         isFetching: false,
         success: false,
         error: {},
-        project: {},
+        project: {
+          name: '',
+          description: '',
+          metaDescription: '',
+          startedDate: '',
+          finishedDate: '',
+          published: false,
+          status: '1',
+          tags: [],
+          client: '',
+        },
       });
     default:
       return state;

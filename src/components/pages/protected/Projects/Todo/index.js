@@ -13,17 +13,17 @@ const Section = styled.section`
   border-top-right-radius: 0 !important;
 `;
 
-const EmployeesTodo = () => {
+const ProjectsTodo = () => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>Todo. Employees</title>
+        <title>Todo. Projects</title>
       </Helmet>
 
       <Header.Protected />
       <Container fluid="yes">
         <SectionNav
-          values={[{ url: '/employees', name: 'Todo' }, { url: '/employees/add', name: 'Add New' }]}
+          values={[{ url: '/projects', name: 'Todo' }, { url: '/projects/add', name: 'Add New' }]}
         />
         <Section className="shadow">
           <Row>
@@ -39,4 +39,4 @@ const EmployeesTodo = () => {
   );
 };
 
-export default EmployeesTodo;
+export default ProjectsTodo;

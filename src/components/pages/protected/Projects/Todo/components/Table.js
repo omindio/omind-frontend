@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table, Alert } from 'react-bootstrap';
 
-import { getAllAction } from '@containers/Employee/GetAll';
+import { getAllAction } from '@containers/Project/GetAll';
 import { StateErrorHandler } from '@utils/ErrorHandler';
 import { Pagination } from '@components/common';
 
@@ -24,17 +24,16 @@ class TableComponent extends Component {
         <StateErrorHandler error={deleteError} />
         <StateErrorHandler error={fetchDataError} />
         <Alert show={showSuccessAlert} key={0} variant="success">
-          Employee deleted successfully.
+          Project deleted successfully.
         </Alert>
 
         <Table responsive="sm">
           <thead>
             <tr>
               <th>id</th>
-              <th>Full Name</th>
-              <th>Email</th>
-              <th>Work Position</th>
-              <th>Verified</th>
+              <th>Name</th>
+              <th>Client</th>
+              <th>published</th>
               <th>&nbsp;</th>
             </tr>
           </thead>
@@ -47,7 +46,7 @@ class TableComponent extends Component {
 }
 
 const mapStateToProps = state => {
-  const { getAll, delete: remove } = state.employee;
+  const { getAll, delete: remove } = state.project;
 
   return {
     pages: getAll.pages,

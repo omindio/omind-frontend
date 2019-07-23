@@ -1,69 +1,53 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Nav } from 'react-bootstrap';
 import styled from 'styled-components';
 import {
   Header,
-  EmployeeProfileForm,
+  // EmployeeProfileForm,
   SectionNav,
-  UserVerification,
-  BankAccountForm,
+  // UserVerification,
+  // BankAccountForm,
 } from '@components/common';
 
-import { ErrorBoundary } from '@utils/ErrorHandler';
+// import { ErrorBoundary } from '@utils/ErrorHandler';
 
 const Section = styled.section`
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
 `;
 
-const EmployeesEdit = props => {
-  const {
-    employeeFetched,
-    isFetchingData,
-    match,
-    isUpdated,
-    employeeUpdated,
-    isSuccessFetch,
-  } = props;
+const ProjectsEdit = props => {
+  console.log(props);
 
-  const { id } = match.params;
+  // const { id } = match.params;
 
   return (
     <React.Fragment>
       <Helmet>
-        <title>Edit. Employees</title>
+        <title>Edit. Projects</title>
       </Helmet>
 
       <Header.Protected />
       <Container fluid="yes">
         <SectionNav
-          values={[{ url: '/employees', name: 'Todo' }, { url: '/employees/add', name: 'Add New' }]}
+          values={[{ url: '/projects', name: 'Todo' }, { url: '/projects/add', name: 'Add New' }]}
         />
         <Section className="shadow">
           <Row>
-            <Col xs={12}>
-              <ErrorBoundary>
-                <EmployeeProfileForm employeeId={id} />
-              </ErrorBoundary>
-            </Col>
-            <Col xs={12} sm={7} md={6}>
-              {isSuccessFetch && (
-                <ErrorBoundary>
-                  <BankAccountForm
-                    userId={isUpdated ? employeeUpdated.user.id : employeeFetched.user.id}
-                  />
-                </ErrorBoundary>
-              )}
-            </Col>
-            <Col xs={12}>
-              <ErrorBoundary>
-                <UserVerification
-                  isFetchingData={isFetchingData}
-                  user={isUpdated ? employeeUpdated.user : employeeFetched.user}
-                />
-              </ErrorBoundary>
+            <Col>
+              <Nav fill variant="tabs" defaultActiveKey="information">
+                <Nav.Item>
+                  <Nav.Link eventKey="information">Information</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="images">Images</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="videos">Videos</Nav.Link>
+                </Nav.Item>
+              </Nav>
             </Col>
           </Row>
         </Section>
@@ -84,4 +68,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(EmployeesEdit);
+export default connect(mapStateToProps)(ProjectsEdit);
