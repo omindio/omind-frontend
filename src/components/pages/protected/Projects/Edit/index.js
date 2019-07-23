@@ -3,50 +3,66 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import { Header, UserProfileForm } from '@components/common';
+import {
+  Header,
+  EmployeeProfileForm,
+  SectionNav,
+  UserVerification,
+  BankAccountForm,
+} from '@components/common';
 
 import { ErrorBoundary } from '@utils/ErrorHandler';
-import { getOneAction } from '@containers/User/GetOne';
-import { SettingsNav } from '../components';
-
-import Verification from './components/Verification';
 
 const Section = styled.section`
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
 `;
 
-const UsersEdit = props => {
-  const { isUpdated, userUpdated, userFetched, isFetchingData, fetchDataError, match } = props;
+const EmployeesEdit = props => {
+  const {
+    employeeFetched,
+    isFetchingData,
+    match,
+    isUpdated,
+    employeeUpdated,
+    isSuccessFetch,
+  } = props;
 
   const { id } = match.params;
 
   return (
     <React.Fragment>
       <Helmet>
-        <title>Edit User</title>
+        <title>Edit. Employees</title>
       </Helmet>
 
       <Header.Protected />
       <Container fluid="yes">
-        <SettingsNav />
+        <SectionNav
+          values={[{ url: '/employees', name: 'Todo' }, { url: '/employees/add', name: 'Add New' }]}
+        />
         <Section className="shadow">
           <Row>
-            <Col xs={12} sm={7} md={6}>
+            <Col xs={12}>
               <ErrorBoundary>
-                <UserProfileForm
-                  userId={id}
-                  isUpdated={isUpdated}
-                  userUpdated={userUpdated}
-                  userFetched={userFetched}
-                  isFetchingData={isFetchingData}
-                  fetchDataError={fetchDataError}
-                />
+                <EmployeeProfileForm employeeId={id} />
               </ErrorBoundary>
             </Col>
             <Col xs={12} sm={7} md={6}>
+              {isSuccessFetch && (
+                <ErrorBoundary>
+                  <BankAccountForm
+                    userId={isUpdated ? employeeUpdated.user.id : employeeFetched.user.id}
+                  />
+                </ErrorBoundary>
+              )}
+            </Col>
+            <Col xs={12}>
               <ErrorBoundary>
-                <Verification isFetchingData={isFetchingData} user={userFetched} />
+                <UserVerification
+                  isFetchingData={isFetchingData}
+                  user={isUpdated ? employeeUpdated.user : employeeFetched.user}
+                />
               </ErrorBoundary>
             </Col>
           </Row>
@@ -57,24 +73,15 @@ const UsersEdit = props => {
 };
 
 const mapStateToProps = state => {
-  const { update, getOne } = state.user;
+  const { getOne, update } = state.employee;
 
   return {
-    isUpdated: update.success,
-    userUpdated: update.user,
-    userFetched: getOne.user,
+    employeeFetched: getOne.employee,
     isFetchingData: getOne.isFetching,
-    fetchDataError: getOne.error,
+    isSuccessFetch: getOne.success,
+    isUpdated: update.success,
+    employeeUpdated: update.employee,
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetch: values => dispatch(getOneAction(values)),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(UsersEdit);
+export default connect(mapStateToProps)(EmployeesEdit);

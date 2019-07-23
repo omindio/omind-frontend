@@ -11,10 +11,9 @@ const api = async values => {
   const headers = {
     headers: { Authorization: `Bearer ${token}` },
   };
-  let response;
 
   try {
-    response = await axios.get(API_URL, headers);
+    const response = await axios.get(API_URL, headers);
 
     const { name, lastName, email, isVerified } = response.data;
     return {
@@ -30,7 +29,7 @@ const api = async values => {
       UnauthorizedError,
       TooManyRequestsError,
     };
-    response = err.response.data;
+    const response = err.response.data;
     throw new classesMapping[response.type](response.message);
   }
 };

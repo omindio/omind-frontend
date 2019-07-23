@@ -2,13 +2,12 @@ import axios from 'axios';
 
 import { UnauthorizedError, TooManyRequestsError } from '@utils/Error';
 
-import { UserVerifiedError, UserNotFoundError } from '@containers/User/_Error';
-import { ClientNotFoundError } from '../_Error';
+import { ProjectNotFoundError } from '../_Error';
 
 const api = async values => {
   const { id } = values;
   const token = localStorage.getItem('token');
-  const API_URL = `${process.env.API_URL}/clients/${id}`;
+  const API_URL = `${process.env.API_URL}/projects/${id}`;
   const headers = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -18,10 +17,8 @@ const api = async values => {
     return response.data;
   } catch (err) {
     const classesMapping = {
-      UserNotFoundError,
-      UserVerifiedError,
+      ProjectNotFoundError,
       UnauthorizedError,
-      ClientNotFoundError,
       TooManyRequestsError,
     };
     const response = err.response.data;

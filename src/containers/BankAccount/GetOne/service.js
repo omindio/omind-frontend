@@ -11,10 +11,9 @@ const api = async values => {
   const headers = {
     headers: { Authorization: `Bearer ${token}` },
   };
-  let response;
 
   try {
-    response = await axios.get(API_URL, headers);
+    const response = await axios.get(API_URL, headers);
     return response.data;
   } catch (err) {
     const classesMapping = {
@@ -22,7 +21,7 @@ const api = async values => {
       BankAccountNotFoundError,
       TooManyRequestsError,
     };
-    response = err.response.data;
+    const response = err.response.data;
     throw new classesMapping[response.type](response.message);
   }
 };

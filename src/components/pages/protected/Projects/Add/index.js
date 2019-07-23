@@ -2,10 +2,9 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import { Header } from '@components/common';
+import { Header, SectionNav } from '@components/common';
 
 import { ErrorBoundary } from '@utils/ErrorHandler';
-import { SettingsNav } from '../components';
 
 import Form from './components/Form';
 
@@ -14,19 +13,21 @@ const Section = styled.section`
   border-top-right-radius: 0 !important;
 `;
 
-const UsersAdd = () => {
+const EmployeesAdd = () => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>Add User</title>
+        <title>Add Employee</title>
       </Helmet>
 
       <Header.Protected />
       <Container fluid="yes">
-        <SettingsNav />
+        <SectionNav
+          values={[{ url: '/employees', name: 'Todo' }, { url: '/employees/add', name: 'Add New' }]}
+        />
         <Section className="shadow">
           <Row>
-            <Col xs={12} sm={7} md={6}>
+            <Col xs={12}>
               <ErrorBoundary>
                 <Form />
               </ErrorBoundary>
@@ -38,4 +39,4 @@ const UsersAdd = () => {
   );
 };
 
-export default UsersAdd;
+export default EmployeesAdd;

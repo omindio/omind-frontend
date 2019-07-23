@@ -2,34 +2,37 @@ import axios from 'axios';
 
 import { UnauthorizedError, TooManyRequestsError } from '@utils/Error';
 
-import { UserVerifiedError, UserNotFoundError } from '@containers/User/_Error';
-import { ClientNotFoundError } from '../_Error';
+import { ProjectNotFoundError } from '../_Error';
 
 const api = async values => {
-  const { id } = values;
+  const { page, limit } = values;
   const token = localStorage.getItem('token');
-  const API_URL = `${process.env.API_URL}/clients/${id}`;
+  const API_URL = `${process.env.API_URL}/projects/${page}/${limit}`;
   const headers = {
     headers: { Authorization: `Bearer ${token}` },
   };
-
+  let response;
   try {
-    const response = await axios.get(API_URL, headers);
-    return response.data;
+    response = await axios.get(API_URL, headers);
+    const { pages, current, projects } = response.data;
+
+    return {
+      pages,
+      current,
+      projects,
+    };
   } catch (err) {
     const classesMapping = {
-      UserNotFoundError,
-      UserVerifiedError,
+      ProjectNotFoundError,
       UnauthorizedError,
-      ClientNotFoundError,
       TooManyRequestsError,
     };
-    const response = err.response.data;
+    response = err.response.data;
     throw new classesMapping[response.type](response.message);
   }
 };
 
-const getOne = async values => {
+const getAll = async values => {
   try {
     return await api(values);
   } catch (err) {
@@ -37,4 +40,4 @@ const getOne = async values => {
   }
 };
 
-export default getOne;
+export default getAll;
