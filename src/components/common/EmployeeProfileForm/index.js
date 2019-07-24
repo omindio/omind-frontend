@@ -9,7 +9,7 @@ import { getOneAction } from '@containers/Employee/GetOne';
 
 import { StateErrorHandler } from '@utils/ErrorHandler';
 
-import { Text } from '../Field';
+import { Text, Readonly } from '../Field';
 
 class EmployeeProfileForm extends Component {
   componentDidMount() {
@@ -54,6 +54,8 @@ class EmployeeProfileForm extends Component {
 
             <Row>
               <Col xs={12} md={6}>
+                <Readonly label="ID" name="id" value={employeeId} />
+
                 <Text
                   label="Name *"
                   placeholder="Name"

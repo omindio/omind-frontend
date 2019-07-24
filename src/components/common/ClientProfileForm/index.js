@@ -9,7 +9,7 @@ import { getOneAction } from '@containers/Client/GetOne';
 
 import { StateErrorHandler } from '@utils/ErrorHandler';
 
-import { Text, Checkbox, Textarea, File } from '../Field';
+import { Text, Checkbox, Textarea, File, Readonly } from '../Field';
 
 class ClientProfileForm extends Component {
   componentDidMount() {
@@ -31,6 +31,7 @@ class ClientProfileForm extends Component {
       isFetchingUpdate,
       updateError,
       fetchDataError,
+      clientUpdated,
       isUpdated,
     } = this.props;
 
@@ -54,6 +55,13 @@ class ClientProfileForm extends Component {
 
             <Row>
               <Col xs={12} md={6}>
+                <Readonly label="ID" name="id" value={clientFetched.id} />
+                <Readonly
+                  label="Slug"
+                  name="slug"
+                  value={isUpdated ? clientUpdated.slug : clientFetched.slug}
+                />
+
                 <Text
                   label="Company Name *"
                   placeholder="Company Name"
@@ -136,17 +144,7 @@ class ClientProfileForm extends Component {
                   onChange={handleChange}
                   isInvalid={touched.phone && errors.phone}
                 />
-                <Text
-                  label="Cif"
-                  placeholder="Cif"
-                  name="cif"
-                  type="text"
-                  autoComplete="off"
-                  disabled={isFetchingUpdate || isFetchingData}
-                  value={values.cif}
-                  onChange={handleChange}
-                  isInvalid={touched.cif && errors.cif}
-                />
+
                 <File
                   label="Logo"
                   placeholder="Logo"
@@ -163,6 +161,17 @@ class ClientProfileForm extends Component {
                 )}
               </Col>
               <Col xs={12} md={6}>
+                <Text
+                  label="Cif"
+                  placeholder="Cif"
+                  name="cif"
+                  type="text"
+                  autoComplete="off"
+                  disabled={isFetchingUpdate || isFetchingData}
+                  value={values.cif}
+                  onChange={handleChange}
+                  isInvalid={touched.cif && errors.cif}
+                />
                 <Text
                   label="Fiscal Address"
                   placeholder="Fiscal Address"
@@ -279,6 +288,7 @@ const mapStateToProps = state => {
     clientFetched: getOne.client,
     isFetchingUpdate: isFetching,
     isUpdated: success,
+    clientUpdated: update.client,
     updateError: error,
   };
 };

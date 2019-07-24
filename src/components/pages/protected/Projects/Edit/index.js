@@ -49,6 +49,7 @@ class ProjectsEdit extends React.Component {
       updateInformation,
       fetchDataError,
       match,
+      projectUpdated,
     } = this.props;
     const { id } = match.params;
     return (
@@ -96,6 +97,8 @@ class ProjectsEdit extends React.Component {
                               error={updateError}
                               onSubmit={updateInformation}
                               id={id}
+                              isUpdated={isUpdated}
+                              projectUpdated={projectUpdated}
                             />
                           </ErrorBoundary>
                         </Tab.Pane>
@@ -128,9 +131,9 @@ const mapStateToProps = state => {
     fetchDataError: getOne.error,
     isSuccessFetch: getOne.success,
     isUpdated: success,
+    projectUpdated: update.project,
     isFetchingUpdate: isFetching,
     updateError: error,
-    // projectUpdated: update.project,
   };
 };
 

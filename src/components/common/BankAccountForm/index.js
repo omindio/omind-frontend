@@ -53,6 +53,30 @@ class BankAccountForm extends Component {
             </Alert>
 
             <Text
+              label="Bank Name *"
+              placeholder="Bank Name"
+              name="bankName"
+              type="text"
+              autoComplete="off"
+              disabled={isFetchingUpdate || isFetchingData}
+              value={values.bankName}
+              onChange={handleChange}
+              isInvalid={touched.bankName && errors.bankName}
+            />
+
+            <Text
+              label="Iban *"
+              placeholder="Iban"
+              name="iban"
+              type="text"
+              autoComplete="off"
+              disabled={isFetchingUpdate || isFetchingData}
+              value={values.iban}
+              onChange={handleChange}
+              isInvalid={touched.iban && errors.iban}
+            />
+
+            <Text
               label="Vat"
               placeholder="Vat"
               name="vat"
@@ -74,30 +98,6 @@ class BankAccountForm extends Component {
               value={values.swift}
               onChange={handleChange}
               isInvalid={touched.swift && errors.swift}
-            />
-
-            <Text
-              label="Iban"
-              placeholder="Iban"
-              name="iban"
-              type="text"
-              autoComplete="off"
-              disabled={isFetchingUpdate || isFetchingData}
-              value={values.iban}
-              onChange={handleChange}
-              isInvalid={touched.iban && errors.iban}
-            />
-
-            <Text
-              label="Bank Name"
-              placeholder="Bank Name"
-              name="bankName"
-              type="text"
-              autoComplete="off"
-              disabled={isFetchingUpdate || isFetchingData}
-              value={values.bankName}
-              onChange={handleChange}
-              isInvalid={touched.bankName && errors.bankName}
             />
 
             <Text

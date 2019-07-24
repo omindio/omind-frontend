@@ -17,9 +17,9 @@ const bankNameSchema = Yup.string()
 const Schema = Yup.object().shape({
   vat: vatSchema.optional(),
   swift: swiftSchema.optional(),
-  iban: ibanSchema.optional(),
+  iban: ibanSchema.required(),
   routeNumber: routeNumberSchema.optional(),
-  bankName: bankNameSchema.optional(),
+  bankName: bankNameSchema.required(),
 });
 
 export default Schema;

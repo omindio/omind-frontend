@@ -12,7 +12,16 @@ class ProjectInformationForm extends Component {
   }
 
   render() {
-    const { onSubmit, error, isFetching, initialValues, validationSchema, id } = this.props;
+    const {
+      onSubmit,
+      error,
+      isFetching,
+      initialValues,
+      validationSchema,
+      id,
+      isUpdated,
+      projectUpdated,
+    } = this.props;
 
     return (
       <Formik
@@ -32,6 +41,17 @@ class ProjectInformationForm extends Component {
 
             <Row>
               <Col xs={12} md={6}>
+                {id && (
+                  <>
+                    <Field.Readonly label="ID" name="id" value={initialValues.id} />
+                    <Field.Readonly
+                      label="Slug"
+                      name="slug"
+                      value={isUpdated ? projectUpdated.slug : initialValues.slug}
+                    />
+                  </>
+                )}
+
                 <Field.Text
                   label="Name *"
                   placeholder="Name"
@@ -43,6 +63,7 @@ class ProjectInformationForm extends Component {
                   onChange={handleChange}
                   isInvalid={touched.name && errors.name}
                 />
+
                 <Field.Select
                   label="Status *"
                   name="status"

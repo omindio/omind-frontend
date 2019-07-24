@@ -73,7 +73,15 @@ class TableItems extends Component {
             <tr key={project.id}>
               <td>{project.id}</td>
               <td>{project.name}</td>
-              <td>{project.client.companyName}</td>
+              <td>
+                <LinkContainer to={`/clients/edit/${project.client.id}`}>
+                  <Button disabled={isFetching} variant="primary" size="sm">
+                    <MdEdit />
+                  </Button>
+                </LinkContainer>{' '}
+                &nbsp;
+                {project.client.companyName}
+              </td>
               <td>
                 {project.published === true ? (
                   <Badge variant="success">
