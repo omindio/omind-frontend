@@ -13,7 +13,7 @@ const initialState = {
     published: false,
     status: '',
     tags: [],
-    client: {},
+    client: '',
   },
 };
 
@@ -33,7 +33,7 @@ export default function(state = initialState, action) {
         error: null,
         isFetching: false,
         success: true,
-        project: Object.assign({}, state.project, response, response.user),
+        project: Object.assign({}, state.project, response),
       });
     }
     case PROJECT_GET_ONE_FAILURE:

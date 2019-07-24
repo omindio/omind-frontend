@@ -21,7 +21,7 @@ const api = async values => {
   try {
     const { tags } = values;
 
-    const tagsStr = tags.join(',');
+    const tagsStr = tags.length > 0 ? tags.join(',') : null;
 
     const response = await axios.post(
       API_URL,

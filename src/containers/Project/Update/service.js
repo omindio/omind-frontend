@@ -7,6 +7,8 @@ import {
   TooManyRequestsError,
 } from '@utils/Error';
 
+import { ClientNotFoundError } from '@containers/Client/_Error';
+
 import {
   ProjectAlreadyExistsError,
   ProjectNotFoundError,
@@ -24,7 +26,18 @@ const api = async values => {
     },
   };
   try {
-    const response = await axios.patch(API_URL, values, headers);
+    const { tags } = values;
+
+    const tagsStr = tags.length > 0 ? tags.join(',') : null;
+
+    const response = await axios.patch(
+      API_URL,
+      Object.assign({}, values, {
+        tags: tagsStr,
+        client: Object.hasOwnProperty.call(values.client, 'id') ? values.client.id : values.client,
+      }),
+      headers,
+    );
     return response.data;
   } catch (err) {
     const classesMapping = {
@@ -35,6 +48,7 @@ const api = async values => {
       ValidationSchemaError,
       TooManyRequestsError,
       UnauthorizedActionError,
+      ClientNotFoundError,
     };
     const response = err.response.data;
     throw new classesMapping[response.type](response.message);

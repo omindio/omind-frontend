@@ -1,17 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { Container, Row, Col, Nav, Tab } from 'react-bootstrap';
+import { Container, Row, Col, Nav, Tab, Alert } from 'react-bootstrap';
 import styled from 'styled-components';
-import {
-  Header,
-  // EmployeeProfileForm,
-  SectionNav,
-  // UserVerification,
-  // BankAccountForm,
-} from '@components/common';
 
-// import { ErrorBoundary } from '@utils/ErrorHandler';
+import { actions, validationSchema } from '@containers/Project/Update';
+import { getOneAction } from '@containers/Project/GetOne';
+
+import { Header, ProjectForm, SectionNav } from '@components/common';
+
+import { ErrorBoundary, StateErrorHandler } from '@utils/ErrorHandler';
 
 const Section = styled.section`
   border-top-left-radius: 0 !important;
@@ -32,73 +30,119 @@ const NavLink = styled(Nav.Link)`
   }
 `;
 
-const ProjectsEdit = props => {
-  console.log(props);
+class ProjectsEdit extends React.Component {
+  componentDidMount() {
+    const { fetch, match } = this.props;
+    const { id } = match.params;
 
-  // const { id } = match.params;
+    fetch({ id });
+  }
 
-  return (
-    <React.Fragment>
-      <Helmet>
-        <title>Edit. Projects</title>
-      </Helmet>
+  render() {
+    const {
+      projectFetched,
+      isFetchingData,
+      isUpdated,
+      isFetchingUpdate,
+      updateError,
+      clearInformation,
+      updateInformation,
+      fetchDataError,
+      match,
+    } = this.props;
+    const { id } = match.params;
+    return (
+      <React.Fragment>
+        <Helmet>
+          <title>Edit. Projects</title>
+        </Helmet>
 
-      <Header.Protected />
-      <Container fluid="yes">
-        <SectionNav
-          values={[{ url: '/projects', name: 'Todo' }, { url: '/projects/add', name: 'Add New' }]}
-        />
-        <Section className="shadow">
-          <Row>
-            <Col>
-              <Tab.Container id="left-tabs-example" defaultActiveKey="information">
-                <Row>
-                  <Col sm={3}>
-                    <Nav variant="pills" className="flex-column">
-                      <Nav.Item>
-                        <NavLink eventKey="information">Information</NavLink>
-                      </Nav.Item>
-                      <Nav.Item>
-                        <NavLink eventKey="images">Images</NavLink>
-                      </Nav.Item>
-                      <Nav.Item>
-                        <NavLink eventKey="videos">Videos</NavLink>
-                      </Nav.Item>
-                    </Nav>
-                  </Col>
-                  <Col sm={9}>
-                    <Tab.Content>
-                      <Tab.Pane eventKey="information">
-                        <p>Ok</p>
-                      </Tab.Pane>
-                      <Tab.Pane eventKey="images">
-                        <p>Ok</p>
-                      </Tab.Pane>
-                      <Tab.Pane eventKey="videos">
-                        <p>Ok</p>
-                      </Tab.Pane>
-                    </Tab.Content>
-                  </Col>
-                </Row>
-              </Tab.Container>
-            </Col>
-          </Row>
-        </Section>
-      </Container>
-    </React.Fragment>
-  );
-};
+        <Header.Protected />
+        <Container fluid="yes">
+          <SectionNav
+            values={[{ url: '/projects', name: 'Todo' }, { url: '/projects/add', name: 'Add New' }]}
+          />
+          <Section className="shadow">
+            <Row>
+              <Col>
+                <Tab.Container id="left-tabs-example" defaultActiveKey="information">
+                  <Row>
+                    <Col sm={3}>
+                      <Nav variant="pills" className="flex-column">
+                        <Nav.Item>
+                          <NavLink eventKey="information">Information</NavLink>
+                        </Nav.Item>
+                        <Nav.Item>
+                          <NavLink eventKey="images">Images</NavLink>
+                        </Nav.Item>
+                        <Nav.Item>
+                          <NavLink eventKey="videos">Videos</NavLink>
+                        </Nav.Item>
+                      </Nav>
+                    </Col>
+                    <Col sm={9}>
+                      <Tab.Content>
+                        <Tab.Pane eventKey="information">
+                          <StateErrorHandler error={fetchDataError} />
+                          <Alert show={isUpdated} key={0} variant="success">
+                            Project updated successfully.
+                          </Alert>
+                          <ErrorBoundary>
+                            <ProjectForm.Information
+                              clear={clearInformation}
+                              validationSchema={validationSchema}
+                              initialValues={projectFetched}
+                              isFetching={isFetchingData || isFetchingUpdate}
+                              error={updateError}
+                              onSubmit={updateInformation}
+                              id={id}
+                            />
+                          </ErrorBoundary>
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="images">
+                          <p>Ok</p>
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="videos">
+                          <p>Ok</p>
+                        </Tab.Pane>
+                      </Tab.Content>
+                    </Col>
+                  </Row>
+                </Tab.Container>
+              </Col>
+            </Row>
+          </Section>
+        </Container>
+      </React.Fragment>
+    );
+  }
+}
 
 const mapStateToProps = state => {
-  const { getOne, update } = state.employee;
+  const { getOne, update } = state.project;
+  const { isFetching, success, error } = update;
 
   return {
-    employeeFetched: getOne.employee,
+    projectFetched: getOne.project,
     isFetchingData: getOne.isFetching,
+    fetchDataError: getOne.error,
     isSuccessFetch: getOne.success,
-    isUpdated: update.success,
-    employeeUpdated: update.employee,
+    isUpdated: success,
+    isFetchingUpdate: isFetching,
+    updateError: error,
+    // projectUpdated: update.project,
   };
 };
 
-export default connect(mapStateToProps)(ProjectsEdit);
+const mapDispatchToProps = dispatch => {
+  return {
+    clearInformation: () => dispatch(actions.clearAction()),
+    fetch: values => dispatch(getOneAction(values)),
+    updateInformation: values => dispatch(actions.updateAction(values)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ProjectsEdit);

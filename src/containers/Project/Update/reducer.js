@@ -18,7 +18,7 @@ const initialState = {
     published: false,
     status: '',
     tags: [],
-    client: {},
+    client: '',
   },
 };
 

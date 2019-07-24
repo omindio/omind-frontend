@@ -13,6 +13,7 @@ import SectionNav from './SectionNav';
 import * as Field from './Field';
 import UserVerification from './UserVerification';
 import BankAccountForm from './BankAccountForm';
+import * as ProjectForm from './ProjectForm';
 
 export {
   Header,
@@ -30,4 +31,5 @@ export {
   UserVerification,
   EmployeeProfileForm,
   BankAccountForm,
+  ProjectForm,
 };
