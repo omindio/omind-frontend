@@ -7,7 +7,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import { actions } from '@containers/Client/Delete';
 import { getAllAction } from '@containers/Client/GetAll';
-import { Loader } from '@components/common';
+import { Loader, IdTooltip } from '@components/common';
 
 class TableItems extends Component {
   constructor(props, context) {
@@ -72,7 +72,9 @@ class TableItems extends Component {
         {clients.length > 0 ? (
           clients.map(client => (
             <tr key={client.id}>
-              <td>{client.id}</td>
+              <td>
+                <IdTooltip id={client.id} />
+              </td>
               <td>{client.companyName}</td>
               <td>
                 {client.user.name}&nbsp;{client.user.lastName}

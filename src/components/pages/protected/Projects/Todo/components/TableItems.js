@@ -7,7 +7,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import { actions } from '@containers/Project/Delete';
 import { getAllAction } from '@containers/Project/GetAll';
-import { Loader } from '@components/common';
+import { Loader, IdTooltip } from '@components/common';
 
 class TableItems extends Component {
   constructor(props, context) {
@@ -71,7 +71,9 @@ class TableItems extends Component {
         {projects.length > 0 ? (
           projects.map(project => (
             <tr key={project.id}>
-              <td>{project.id}</td>
+              <td>
+                <IdTooltip id={project.id} />
+              </td>
               <td>{project.name}</td>
               <td>
                 <LinkContainer to={`/clients/edit/${project.client.id}`}>

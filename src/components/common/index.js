@@ -14,6 +14,7 @@ import * as Field from './Field';
 import UserVerification from './UserVerification';
 import BankAccountForm from './BankAccountForm';
 import * as ProjectForm from './ProjectForm';
+import IdTooltip from './IdTooltip';
 
 export {
   Header,
@@ -32,4 +33,5 @@ export {
   EmployeeProfileForm,
   BankAccountForm,
   ProjectForm,
+  IdTooltip,
 };
