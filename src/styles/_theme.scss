@@ -402,3 +402,8 @@ table,
   padding: 5px;
   width: 50%;
 }
+
+.form-control.is-invalid {
+  border-color: #dc3545 !important;
+  background-image: none;
+}
