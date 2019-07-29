@@ -32,8 +32,8 @@ class TableComponent extends Component {
             <tr>
               <th>id</th>
               <th>Name</th>
-              <th>Client</th>
-              <th>published</th>
+              <th className="d-none d-sm-table-cell">Client</th>
+              <th className="d-none d-sm-table-cell">published</th>
               <th>&nbsp;</th>
             </tr>
           </thead>

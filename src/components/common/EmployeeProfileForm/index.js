@@ -208,6 +208,7 @@ class EmployeeProfileForm extends Component {
                   onChange={handleChange}
                   isInvalid={touched.web && errors.web}
                 />
+                <Readonly label="Registration Date" name="id" value={employeeFetched.createdDate} />
               </Col>
             </Row>
 

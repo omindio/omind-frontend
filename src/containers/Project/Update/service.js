@@ -13,6 +13,8 @@ import {
   ProjectAlreadyExistsError,
   ProjectNotFoundError,
   ProjectInvalidDateError,
+  CoverPageImageAlreadyExistsError,
+  MainImageAlreadyExistsError,
 } from '../_Error';
 
 const api = async values => {
@@ -45,6 +47,8 @@ const api = async values => {
       ProjectNotFoundError,
       ProjectInvalidDateError,
       UnauthorizedError,
+      CoverPageImageAlreadyExistsError,
+      MainImageAlreadyExistsError,
       ValidationSchemaError,
       TooManyRequestsError,
       UnauthorizedActionError,

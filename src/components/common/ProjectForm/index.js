@@ -1,4 +1,4 @@
 import Information from './InformationForm';
+import Images from './ImagesForm';
 
-// eslint-disable-next-line import/prefer-default-export
-export { Information };
+export { Information, Images };

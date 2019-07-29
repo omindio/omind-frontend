@@ -75,12 +75,12 @@ class TableItems extends Component {
               <td>
                 <IdTooltip id={user.id} />
               </td>
-              <td>
+              <td className="d-none d-sm-table-cell">
                 {user.name}&nbsp;{user.lastName}
               </td>
               <td>{user.email}</td>
-              <td>{user.role}</td>
-              <td>
+              <td className="d-none d-sm-table-cell">{user.role}</td>
+              <td className="d-none d-sm-table-cell">
                 {user.isVerified === true ? (
                   <Badge variant="success">
                     <MdDone />

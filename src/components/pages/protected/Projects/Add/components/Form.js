@@ -19,6 +19,7 @@ const AddForm = ({ create, error, isFetching, isCreated, project, clear }) => {
         </LinkContainer>
       </Alert>
       <ProjectForm.Information
+        addForm
         clear={clear}
         validationSchema={validationSchema}
         initialValues={project}

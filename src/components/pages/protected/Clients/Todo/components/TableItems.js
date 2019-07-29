@@ -76,11 +76,11 @@ class TableItems extends Component {
                 <IdTooltip id={client.id} />
               </td>
               <td>{client.companyName}</td>
-              <td>
+              <td className="d-none d-sm-table-cell">
                 {client.user.name}&nbsp;{client.user.lastName}
               </td>
-              <td>{client.user.email}</td>
-              <td>
+              <td className="d-none d-sm-table-cell">{client.user.email}</td>
+              <td className="d-none d-sm-table-cell">
                 {client.published === true ? (
                   <Badge variant="success">
                     <MdDone />
@@ -91,7 +91,7 @@ class TableItems extends Component {
                   </Badge>
                 )}
               </td>
-              <td>
+              <td className="d-none d-sm-table-cell">
                 {client.user.isVerified === true ? (
                   <Badge variant="success">
                     <MdDone />

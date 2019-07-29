@@ -79,9 +79,9 @@ class TableItems extends Component {
                 &nbsp;
                 {employee.user.lastName}
               </td>
-              <td>{employee.user.email}</td>
-              <td>{employee.workPosition}</td>
-              <td>
+              <td className="d-none d-sm-table-cell">{employee.user.email}</td>
+              <td className="d-none d-sm-table-cell">{employee.workPosition}</td>
+              <td className="d-none d-sm-table-cell">
                 {employee.user.isVerified === true ? (
                   <Badge variant="success">
                     <MdDone />

@@ -50,6 +50,7 @@ class ProjectsEdit extends React.Component {
       fetchDataError,
       match,
       projectUpdated,
+      fetch,
     } = this.props;
     const { id } = match.params;
     return (
@@ -103,7 +104,14 @@ class ProjectsEdit extends React.Component {
                           </ErrorBoundary>
                         </Tab.Pane>
                         <Tab.Pane eventKey="images">
-                          <p>Ok</p>
+                          <ErrorBoundary>
+                            <ProjectForm.Images
+                              images={projectFetched.images}
+                              isFetching={isFetchingData || isFetchingUpdate}
+                              projectId={id}
+                              fetchProject={fetch}
+                            />
+                          </ErrorBoundary>
                         </Tab.Pane>
                         <Tab.Pane eventKey="videos">
                           <p>Ok</p>

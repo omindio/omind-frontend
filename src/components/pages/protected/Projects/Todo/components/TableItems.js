@@ -75,7 +75,7 @@ class TableItems extends Component {
                 <IdTooltip id={project.id} />
               </td>
               <td>{project.name}</td>
-              <td>
+              <td className="d-none d-sm-table-cell">
                 <LinkContainer to={`/clients/edit/${project.client.id}`}>
                   <Button disabled={isFetching} variant="primary" size="sm">
                     <MdEdit />
@@ -84,7 +84,7 @@ class TableItems extends Component {
                 &nbsp;
                 {project.client.companyName}
               </td>
-              <td>
+              <td className="d-none d-sm-table-cell">
                 {project.published === true ? (
                   <Badge variant="success">
                     <MdDone />
@@ -123,7 +123,7 @@ class TableItems extends Component {
 
         <Modal show={showModal} onHide={this.handleCloseModal}>
           <Modal.Header>
-            <Modal.Title>Delete</Modal.Title>
+            <Modal.Title>Delete Project</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             Are you sure to delete &nbsp;

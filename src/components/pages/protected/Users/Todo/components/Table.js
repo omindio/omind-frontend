@@ -34,10 +34,10 @@ class TableComponent extends Component {
           <thead>
             <tr>
               <th>id</th>
-              <th>Full Name</th>
+              <th className="d-none d-sm-table-cell">Full Name</th>
               <th>Email</th>
-              <th>Role</th>
-              <th>Verified</th>
+              <th className="d-none d-sm-table-cell">Role</th>
+              <th className="d-none d-sm-table-cell">Verified</th>
               <th>&nbsp;</th>
             </tr>
           </thead>

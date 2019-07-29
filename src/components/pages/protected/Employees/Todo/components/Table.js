@@ -32,9 +32,9 @@ class TableComponent extends Component {
             <tr>
               <th>id</th>
               <th>Full Name</th>
-              <th>Email</th>
-              <th>Work Position</th>
-              <th>Verified</th>
+              <th className="d-none d-sm-table-cell">Email</th>
+              <th className="d-none d-sm-table-cell">Work Position</th>
+              <th className="d-none d-sm-table-cell">Verified</th>
               <th>&nbsp;</th>
             </tr>
           </thead>

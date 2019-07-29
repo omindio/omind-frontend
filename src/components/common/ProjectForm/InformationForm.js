@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { StateErrorHandler } from '@utils/ErrorHandler';
 
-import * as Field from '../Field';
+import * as Field from '@components/common/Field';
 
 class ProjectInformationForm extends Component {
   componentWillUnmount() {
@@ -21,8 +21,8 @@ class ProjectInformationForm extends Component {
       id,
       isUpdated,
       projectUpdated,
+      addForm,
     } = this.props;
-
     return (
       <Formik
         initialValues={initialValues}
@@ -38,18 +38,14 @@ class ProjectInformationForm extends Component {
         render={({ values, handleSubmit, handleChange, errors, touched, setFieldValue }) => (
           <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
             {error && <StateErrorHandler error={error} />}
-
             <Row>
               <Col xs={12} md={6}>
                 {id && (
-                  <>
-                    <Field.Readonly label="ID" name="id" value={initialValues.id} />
-                    <Field.Readonly
-                      label="Slug"
-                      name="slug"
-                      value={isUpdated ? projectUpdated.slug : initialValues.slug}
-                    />
-                  </>
+                  <Field.Readonly
+                    label="Slug"
+                    name="slug"
+                    value={isUpdated ? projectUpdated.slug : initialValues.slug}
+                  />
                 )}
 
                 <Field.Text
@@ -137,16 +133,19 @@ class ProjectInformationForm extends Component {
                   onChange={handleChange}
                   isInvalid={touched.metaDescription && errors.metaDescription}
                 />
-                <Field.Checkbox
-                  labeltext="Published"
-                  label=""
-                  placeholder=""
-                  name="published"
-                  disabled={isFetching}
-                  value={values.published}
-                  onChange={handleChange}
-                  isInvalid={touched.published && errors.published}
-                />
+                {!addForm && (
+                  <Field.Checkbox
+                    labeltext="Published"
+                    label=""
+                    placeholder=""
+                    name="published"
+                    disabled={isFetching}
+                    value={values.published}
+                    onChange={handleChange}
+                    isInvalid={touched.published && errors.published}
+                  />
+                )}
+
                 <Field.Tags
                   label="Tags"
                   placeholder="Add new Tag"
@@ -156,6 +155,16 @@ class ProjectInformationForm extends Component {
                   onChange={setFieldValue}
                   isInvalid={touched.published && errors.published}
                 />
+                {id && (
+                  <>
+                    <Field.Readonly label="ID" name="id" value={initialValues.id} />
+                    <Field.Readonly
+                      label="Registration Date"
+                      name="createdDate"
+                      value={initialValues.createdDate}
+                    />
+                  </>
+                )}
               </Col>
             </Row>
 

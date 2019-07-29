@@ -10,6 +10,8 @@ const initialState = {
   success: false,
   error: {},
   project: {
+    id: '',
+    createdDate: '',
     name: '',
     description: '',
     metaDescription: '',
@@ -17,7 +19,9 @@ const initialState = {
     finishedDate: '',
     published: false,
     status: '',
+    images: [],
     tags: [],
+    slug: '',
     client: '',
   },
 };
