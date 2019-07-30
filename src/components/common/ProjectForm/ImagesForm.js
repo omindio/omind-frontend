@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
-import { DeleteImageModal, CreateImageModal, EditImageModal } from './Modal';
+import { DeleteImageModal, CreateImageModal, UpdateImageModal } from './Modal';
 import Table from './ImagesTable';
 
 class ProjectImagesForm extends React.Component {
@@ -11,7 +11,7 @@ class ProjectImagesForm extends React.Component {
     this.state = {
       imageId: null,
       projectId: null,
-      imageValues: {},
+      updateImageInitialValues: {},
       showDeleteModal: false,
       showCreateModal: false,
       showEditModal: false,
@@ -29,11 +29,21 @@ class ProjectImagesForm extends React.Component {
     if (projectId) this.setState({ projectId });
   }
 
-  openEditModal(imageId, published, title, main, coverPage) {
+  openEditModal(imageId, published, title, main, coverPage, path) {
     const { showEditModal } = this.state;
+    const { updateImageInitialValues } = this.props;
     if (!showEditModal) {
-      const imageValues = { published, title, main, coverPage };
-      this.setState({ showEditModal: true, imageId, imageValues });
+      this.setState({
+        showEditModal: true,
+        imageId,
+        updateImageInitialValues: Object.assign({}, updateImageInitialValues, {
+          published,
+          title,
+          main,
+          coverPage,
+          path,
+        }),
+      });
     }
   }
 
@@ -70,8 +80,9 @@ class ProjectImagesForm extends React.Component {
       showDeleteModal,
       showCreateModal,
       showEditModal,
-      imageValues,
+      updateImageInitialValues,
     } = this.state;
+    // console.log(imageValues);
     return (
       <>
         <Button
@@ -102,11 +113,12 @@ class ProjectImagesForm extends React.Component {
           closeModal={this.closeCreateModal}
           fetchProject={fetchProject}
         />
-        <EditImageModal
+        <UpdateImageModal
+          fetchProject={fetchProject}
           show={showEditModal}
           projectId={projectId}
           imageId={imageId}
-          image={imageValues}
+          initialValues={updateImageInitialValues}
           closeModal={this.closeEditModal}
         />
       </>
@@ -115,10 +127,11 @@ class ProjectImagesForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { deleteImage } = state.project;
+  const { updateImage } = state.project;
 
   return {
-    showSuccessAlert: deleteImage.showSuccessAlert,
+    showSuccessAlert: updateImage.successClear,
+    updateImageInitialValues: updateImage.image,
   };
 };
 

@@ -71,6 +71,7 @@ const ImagesTable = ({ showSuccessAlert, isFetching, images, openDeleteModal, op
                           image.title,
                           image.main,
                           image.coverPage,
+                          image.path,
                         )
                       }
                       disabled={isFetching}

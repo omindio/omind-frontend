@@ -10,8 +10,8 @@ import { Text, Checkbox, File } from '@components/common/Field';
 
 class EditImageModal extends React.Component {
   componentDidUpdate() {
-    const { isCreated, clear, fetchProject, projectId } = this.props;
-    if (isCreated) {
+    const { isUpdated, clear, fetchProject, projectId } = this.props;
+    if (isUpdated) {
       fetchProject({ id: projectId });
       clear();
     }
@@ -28,13 +28,13 @@ class EditImageModal extends React.Component {
       closeModal,
       projectId,
       imageId,
-      image,
+      initialValues,
       isFetching,
       update,
       error,
       successClear,
     } = this.props;
-    console.log(image);
+
     return (
       <>
         <Modal show={show} onHide={() => closeModal()}>
@@ -43,7 +43,7 @@ class EditImageModal extends React.Component {
           </Modal.Header>
 
           <Formik
-            initialValues={image}
+            initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={values => {
               update(Object.assign({}, values, { projectId, id: imageId }));
@@ -75,7 +75,7 @@ class EditImageModal extends React.Component {
                       type="text"
                       autoComplete="off"
                       disabled={isFetching}
-                      // value={values.title}
+                      value={values.title}
                       onChange={handleChange}
                       isInvalid={touched.title && errors.title}
                     />
@@ -129,15 +129,14 @@ class EditImageModal extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { createImage } = state.project;
-  const { isFetching, success, error, image, successClear } = createImage;
+  const { updateImage } = state.project;
+  const { isFetching, success, error, successClear } = updateImage;
 
   return {
     isFetching,
-    isCreated: success,
+    isUpdated: success,
     successClear,
     error,
-    image,
   };
 };
 

@@ -28,7 +28,7 @@ const api = async values => {
       return null;
     });
 
-    const response = await axios.post(API_URL, data, headers);
+    const response = await axios.patch(API_URL, data, headers);
 
     return response.data;
   } catch (err) {

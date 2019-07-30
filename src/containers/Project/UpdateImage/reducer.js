@@ -54,10 +54,11 @@ export default function(state = initialState, action) {
         error: '',
         successClear: true,
         image: {
-          projectId: null,
+          id: '',
+          projectId: '',
           title: '',
           path: '',
-          imageFile: null,
+          imageFile: '',
           coverPage: false,
           published: false,
           main: false,
