@@ -73,7 +73,7 @@ class ProjectImagesForm extends React.Component {
   }
 
   render() {
-    const { images, isFetching, showSuccessAlert, fetchProject } = this.props;
+    const { images, isFetching, fetchProject } = this.props;
     const {
       imageId,
       projectId,
@@ -93,7 +93,6 @@ class ProjectImagesForm extends React.Component {
           Add new
         </Button>
         <Table
-          showSuccessAlert={showSuccessAlert}
           openDeleteModal={this.openDeleteModal}
           openEditModal={this.openEditModal}
           images={images}
@@ -130,7 +129,6 @@ const mapStateToProps = state => {
   const { updateImage } = state.project;
 
   return {
-    showSuccessAlert: updateImage.successClear,
     updateImageInitialValues: updateImage.image,
   };
 };

@@ -29,8 +29,7 @@ const api = async values => {
     });
 
     const response = await axios.patch(API_URL, data, headers);
-
-    return response.data;
+    return response.data.projectImageDTO;
   } catch (err) {
     const classesMapping = {
       CoverPageImageAlreadyExistsError,

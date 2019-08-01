@@ -1,16 +1,13 @@
 import React from 'react';
-import { Table, Button, Badge, Alert } from 'react-bootstrap';
+import { Table, Button, Badge } from 'react-bootstrap';
 import { MdEdit, MdDelete, MdDone, MdWarning, MdClose } from 'react-icons/md';
 
 import IdTooltip from '../IdTooltip';
 import Loader from '../Loader';
 
-const ImagesTable = ({ showSuccessAlert, isFetching, images, openDeleteModal, openEditModal }) => {
+const ImagesTable = ({ isFetching, images, openDeleteModal, openEditModal }) => {
   return (
     <>
-      <Alert show={showSuccessAlert} key={0} variant="success">
-        Image deleted successfully.
-      </Alert>
       <Table responsive="sm">
         <thead>
           <tr>
@@ -19,13 +16,14 @@ const ImagesTable = ({ showSuccessAlert, isFetching, images, openDeleteModal, op
             <th className="d-none d-sm-table-cell">Title</th>
             <th className="d-none d-sm-table-cell">Published</th>
             <th className="d-none d-sm-table-cell">Main</th>
+            <th className="d-none d-sm-table-cell">Cover Page</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
           {(isFetching && (
             <tr>
-              <td colSpan="6">
+              <td colSpan="7">
                 <Loader />
               </td>
             </tr>
@@ -53,6 +51,17 @@ const ImagesTable = ({ showSuccessAlert, isFetching, images, openDeleteModal, op
                   </td>
                   <td className="d-none d-sm-table-cell">
                     {image.main === true ? (
+                      <Badge variant="success">
+                        <MdDone />
+                      </Badge>
+                    ) : (
+                      <Badge variant="warning">
+                        <MdClose />
+                      </Badge>
+                    )}
+                  </td>
+                  <td className="d-none d-sm-table-cell">
+                    {image.coverPage === true ? (
                       <Badge variant="success">
                         <MdDone />
                       </Badge>
@@ -93,7 +102,7 @@ const ImagesTable = ({ showSuccessAlert, isFetching, images, openDeleteModal, op
                 </tr>
               ))) || (
               <tr>
-                <td colSpan="6">No results found.</td>
+                <td colSpan="7">No results found.</td>
               </tr>
             )}
         </tbody>

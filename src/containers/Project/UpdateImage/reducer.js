@@ -8,7 +8,6 @@ import {
 const initialState = {
   isFetching: false,
   success: false,
-  successClear: false,
   error: '',
   image: {
     id: '',
@@ -28,7 +27,6 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         error: '',
         isFetching: true,
-        successClear: false,
         image: Object.assign({}, state.image, action.values),
       });
     case PROJECT_UPDATE_IMAGE_SUCCESS: {
@@ -44,7 +42,6 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         isFetching: false,
         success: false,
-        successClear: false,
         error: action.response,
       });
     case PROJECT_UPDATE_IMAGE_CLEAR:
@@ -52,7 +49,6 @@ export default function(state = initialState, action) {
         isFetching: false,
         success: false,
         error: '',
-        successClear: true,
         image: {
           id: '',
           projectId: '',

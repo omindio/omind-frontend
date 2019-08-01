@@ -6,6 +6,8 @@ import * as GetAll from './GetAll';
 import * as DeleteImage from './DeleteImage';
 import * as CreateImage from './CreateImage';
 import * as UpdateImage from './UpdateImage';
+import * as PublicGetOne from './PublicGetOne';
+import * as PublicGetAll from './PublicGetAll';
 
 import reducer from './reducer';
 import saga from './saga';
@@ -19,6 +21,8 @@ export {
   DeleteImage,
   CreateImage,
   UpdateImage,
+  PublicGetOne,
+  PublicGetAll,
   reducer,
   saga,
 };

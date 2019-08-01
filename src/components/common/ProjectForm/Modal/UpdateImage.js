@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, Form, Alert } from 'react-bootstrap';
+import { Button, Modal, Form, Row, Col } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
 
@@ -10,17 +10,19 @@ import { Text, Checkbox, File } from '@components/common/Field';
 
 class EditImageModal extends React.Component {
   componentDidUpdate() {
-    const { isUpdated, clear, fetchProject, projectId } = this.props;
+    const { isUpdated, fetchProject, projectId, clear } = this.props;
     if (isUpdated) {
       fetchProject({ id: projectId });
       clear();
     }
   }
 
+  /*
   componentWillUnmount() {
     const { clear } = this.props;
     clear();
   }
+  */
 
   render() {
     const {
@@ -32,9 +34,9 @@ class EditImageModal extends React.Component {
       isFetching,
       update,
       error,
-      successClear,
+      isUpdated,
+      image,
     } = this.props;
-
     return (
       <>
         <Modal show={show} onHide={() => closeModal()}>
@@ -54,12 +56,30 @@ class EditImageModal extends React.Component {
                 <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
                   <Modal.Body>
                     <StateErrorHandler error={error} />
-                    <Alert show={successClear} key={0} variant="success">
-                      Image modified successfully.
-                    </Alert>
+
+                    <Row style={{ marginBottom: '20px' }}>
+                      <Form.Label column sm="5">
+                        Image *
+                      </Form.Label>
+                      <Col sm="7" className="text-right">
+                        {isUpdated === true ? (
+                          <img
+                            width="100"
+                            alt=""
+                            src={`${process.env.API_URL_IMAGE}/${image.path}`}
+                          />
+                        ) : (
+                          <img
+                            width="100"
+                            alt=""
+                            src={`${process.env.API_URL_IMAGE}/${values.path}`}
+                          />
+                        )}
+                      </Col>
+                    </Row>
                     <File
-                      label="Image"
-                      placeholder="Image"
+                      label="Upload new Image"
+                      placeholder="Upload new Image"
                       name="imageFile"
                       autoComplete="off"
                       disabled={isFetching}
@@ -130,13 +150,14 @@ class EditImageModal extends React.Component {
 
 const mapStateToProps = state => {
   const { updateImage } = state.project;
-  const { isFetching, success, error, successClear } = updateImage;
+  const { isFetching, success, error, successClear, image } = updateImage;
 
   return {
     isFetching,
     isUpdated: success,
     successClear,
     error,
+    image,
   };
 };
 

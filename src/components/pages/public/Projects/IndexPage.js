@@ -1,10 +1,11 @@
-/* eslint-disable react/prefer-stateless-function */
-
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Container, Row, Col } from 'react-bootstrap';
 
+import { getPublicAllAction } from '@containers/Project/PublicGetAll';
 import { Header, Footer, ButtonNav, OverlayCard } from '@components/common';
 
 import movistarImg from './images/movistar/movistar1.jpeg';
@@ -37,6 +38,11 @@ const CardsContainer = styled.div`
 `;
 
 class IndexPage extends Component {
+  componentDidMount() {
+    const { fetch } = this.props;
+    fetch({ page: 1, limit: 50 });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -131,4 +137,24 @@ class IndexPage extends Component {
   }
 }
 
-export default IndexPage;
+const mapStateToProps = state => {
+  const { getPublicAll } = state.project;
+  const { projects, isFetching } = getPublicAll;
+
+  return {
+    projects,
+    isFetching,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    // dispatching actions returned by action creators
+    fetch: values => dispatch(getPublicAllAction(values)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(IndexPage);

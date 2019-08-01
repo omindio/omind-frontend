@@ -28,3 +28,11 @@ _TODO_
 ## Production Build
 
 _TODO_
+
+## UTILS
+
+- Kill webpack process:
+  Find:
+  lsof -i :3000
+  Kill:
+  kill -9 <PID>
