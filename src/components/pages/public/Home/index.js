@@ -1,33 +1,33 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable react/prefer-stateless-function */
-
-import React, { Component } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import { Header, Footer, ButtonNav } from '@components/common';
 
 import { AboutSection, HeaderSection } from './components';
 
-class Home extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <Helmet>
-          <title>Omind. Where you ideas evolve into products.</title>
-        </Helmet>
+const Home = () => {
+  return (
+    <React.Fragment>
+      <Helmet>
+        <title>Omind. Where you ideas evolve into products</title>
+        <meta
+          name="description"
+          // eslint-disable-next-line max-len
+          content="We are a brand which offers full-fledged Techno-creative multimedia products and services as per your needs and flexibility."
+        />
+      </Helmet>
 
-        <Header.Public color="white" />
+      <Header.Public color="white" />
 
-        <HeaderSection />
+      <HeaderSection />
 
-        <AboutSection />
+      <AboutSection />
 
-        <ButtonNav exclude="about" />
+      <ButtonNav exclude="about" />
 
-        <Footer />
-      </React.Fragment>
-    );
-  }
-}
+      <Footer />
+    </React.Fragment>
+  );
+};
 
 export default Home;
