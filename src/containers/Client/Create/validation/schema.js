@@ -32,7 +32,7 @@ const webSchema = Yup.string().url();
 
 const Schema = Yup.object().shape({
   companyName: companyNameSchema.required(),
-  description: descriptionSchema.optional(),
+  description: descriptionSchema.required(),
   cif: cifSchema.optional(),
   fiscalAddress: fiscalAddressSchema.optional(),
   phone: phoneSchema.optional(),

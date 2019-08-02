@@ -6,6 +6,9 @@ import * as GetAll from './GetAll';
 import * as DeleteImage from './DeleteImage';
 import * as CreateImage from './CreateImage';
 import * as UpdateImage from './UpdateImage';
+import * as DeleteVideo from './DeleteVideo';
+import * as CreateVideo from './CreateVideo';
+import * as UpdateVideo from './UpdateVideo';
 import * as PublicGetOne from './PublicGetOne';
 import * as PublicGetAll from './PublicGetAll';
 
@@ -21,6 +24,9 @@ export {
   DeleteImage,
   CreateImage,
   UpdateImage,
+  DeleteVideo,
+  CreateVideo,
+  UpdateVideo,
   PublicGetOne,
   PublicGetAll,
   reducer,

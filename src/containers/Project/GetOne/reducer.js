@@ -15,6 +15,7 @@ const initialState = {
     published: false,
     status: '',
     images: [],
+    videos: [],
     tags: [],
     slug: '',
     client: '',

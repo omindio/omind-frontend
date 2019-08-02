@@ -162,7 +162,7 @@ class AddForm extends Component {
                   text="Format: C\ Rocafort 66 2-3 08014, Barcelona. España"
                 />
                 <Field.Textarea
-                  label="Description"
+                  label="Description *"
                   placeholder="Description"
                   name="description"
                   autoComplete="off"

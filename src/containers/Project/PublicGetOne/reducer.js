@@ -2,12 +2,13 @@ import {
   PROJECT_PUBLIC_GET_ONE_REQUEST,
   PROJECT_PUBLIC_GET_ONE_SUCCESS,
   PROJECT_PUBLIC_GET_ONE_FAILURE,
+  PROJECT_PUBLIC_GET_ONE_CLEAR,
 } from './types';
 
 const initialState = {
   isFetching: false,
   success: false,
-  error: {},
+  error: null,
   project: {
     id: '',
     name: '',
@@ -44,6 +45,22 @@ export default function(state = initialState, action) {
         isFetching: false,
         success: false,
         error: action.response,
+      });
+    case PROJECT_PUBLIC_GET_ONE_CLEAR:
+      return Object.assign({}, state, {
+        isFetching: false,
+        success: false,
+        error: null,
+        project: {
+          id: '',
+          name: '',
+          description: '',
+          metaDescription: '',
+          images: [],
+          tags: [],
+          slug: '',
+          client: '',
+        },
       });
     default:
       return state;

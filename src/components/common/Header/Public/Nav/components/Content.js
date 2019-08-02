@@ -43,7 +43,28 @@ const MainNav = styled.ul`
     margin-bottom: 1.5rem;
     font-weight: 700;
     &.disabled {
+      position: relative;
+      &:before {
+        content: 'soon';
+        position: absolute;
+        transform: rotate(90deg);
+        ${MediaQueries.xs`
+        font-size: 0.8rem;
+        top: 23px;
+        left:-30px;`}
+        ${MediaQueries.sm`
+        font-size: 0.9rem;
+        top: 28px;`}
+        ${MediaQueries.md`
+        font-size: 1rem;
+        top: 33px;
+        left: -35px;`}
+        ${MediaQueries.lg`top: 25px;`}
+      }
       opacity: 0.1;
+      a {
+        cursor: default;
+      }
     }
     @media (max-width: 320px) {
       &.title {
@@ -112,8 +133,8 @@ const Content = props => {
                 </NavLink>
                 .
               </li>
-              <li className="title">
-                <NavLink onClick={close} activeClassName="active" to="/products">
+              <li className="title disabled">
+                <NavLink onClick={close} activeClassName="active" to="#">
                   Products
                 </NavLink>
                 .

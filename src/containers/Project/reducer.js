@@ -9,6 +9,9 @@ import { reducer as getPublicAllReducer } from './PublicGetAll';
 import { reducer as deleteImageReducer } from './DeleteImage';
 import { reducer as createImageReducer } from './CreateImage';
 import { reducer as updateImageReducer } from './UpdateImage';
+import { reducer as deleteVideoReducer } from './DeleteVideo';
+import { reducer as createVideoReducer } from './CreateVideo';
+import { reducer as updateVideoReducer } from './UpdateVideo';
 
 const reducer = combineReducers({
   update: updateReducer,
@@ -21,6 +24,9 @@ const reducer = combineReducers({
   deleteImage: deleteImageReducer,
   createImage: createImageReducer,
   updateImage: updateImageReducer,
+  deleteVideo: deleteVideoReducer,
+  createVideo: createVideoReducer,
+  updateVideo: updateVideoReducer,
 });
 
 export default reducer;

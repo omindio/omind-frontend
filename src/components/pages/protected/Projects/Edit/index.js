@@ -114,7 +114,14 @@ class ProjectsEdit extends React.Component {
                           </ErrorBoundary>
                         </Tab.Pane>
                         <Tab.Pane eventKey="videos">
-                          <p>Ok</p>
+                          <ErrorBoundary>
+                            <ProjectForm.Videos
+                              videos={projectFetched.videos}
+                              isFetching={isFetchingData || isFetchingUpdate}
+                              projectId={id}
+                              fetchProject={fetch}
+                            />
+                          </ErrorBoundary>
                         </Tab.Pane>
                       </Tab.Content>
                     </Col>

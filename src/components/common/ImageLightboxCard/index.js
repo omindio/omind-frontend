@@ -15,8 +15,7 @@ const CardProyect = styled.div`
   overflow: hidden;
 `;
 
-const ImageLightBoxCard = props => {
-  const { image, alt } = props;
+const ImageLightBoxCard = ({ image, alt }) => {
   return (
     <CardProyect>
       <Image fluid src={image} alt={alt} />

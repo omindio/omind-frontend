@@ -34,11 +34,12 @@ module.exports = () => {
       chunkFilename: '[name].js',
       filename: 'app.js',
     },
-    watch: true,
+    // watch: true,
     devServer: {
       contentBase: path.resolve(__dirname, 'public'),
       port: process.env.PORT,
       historyApiFallback: true,
+      hot: true,
     },
     module: {
       rules: [

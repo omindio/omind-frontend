@@ -8,6 +8,9 @@ import { saga as createSaga } from './Create';
 import { saga as deleteImageSaga } from './DeleteImage';
 import { saga as createImageSaga } from './CreateImage';
 import { saga as updateImageSaga } from './UpdateImage';
+import { saga as deleteVideoSaga } from './DeleteVideo';
+import { saga as createVideoSaga } from './CreateVideo';
+import { saga as updateVideoSaga } from './UpdateVideo';
 
 export default {
   updateSaga,
@@ -20,4 +23,7 @@ export default {
   deleteImageSaga,
   createImageSaga,
   updateImageSaga,
+  deleteVideoSaga,
+  createVideoSaga,
+  updateVideoSaga,
 };

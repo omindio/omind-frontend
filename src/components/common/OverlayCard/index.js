@@ -68,14 +68,16 @@ const Title = styled.h3`
 `;
 
 const OverlayCard = props => {
-  const { image, alt, title, to } = props;
+  const { image, name, to } = props;
   return (
     <CardProyect>
-      {image && <Image fluid src={image} alt={alt} />}
+      {image && (
+        <Image fluid src={`${process.env.API_URL_IMAGE}/${image.path}`} alt={image.title} />
+      )}
 
       <LinkContainer to={to}>
         <Mask>
-          <Title>{title}</Title>
+          <Title>{name}</Title>
         </Mask>
       </LinkContainer>
     </CardProyect>

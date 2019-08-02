@@ -1,14 +1,14 @@
 import React from 'react';
-import { Button, Modal, Form, Row, Col } from 'react-bootstrap';
+import { Button, Modal, Form } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
 
-import { actions, validationSchema } from '@containers/Project/UpdateImage';
+import { actions, validationSchema } from '@containers/Project/UpdateVideo';
 import { StateErrorHandler } from '@utils/ErrorHandler';
 
-import { Text, Checkbox, File } from '@components/common/Field';
+import { Text, Checkbox } from '@components/common/Field';
 
-class UpdateImageModal extends React.Component {
+class UpdateVideoModal extends React.Component {
   componentDidUpdate() {
     const { isUpdated, fetchProject, projectId, clear } = this.props;
     if (isUpdated) {
@@ -29,65 +29,32 @@ class UpdateImageModal extends React.Component {
       show,
       closeModal,
       projectId,
-      imageId,
+      videoId,
       initialValues,
       isFetching,
       update,
       error,
-      isUpdated,
-      image,
     } = this.props;
     return (
       <>
         <Modal show={show} onHide={() => closeModal()}>
           <Modal.Header>
-            <Modal.Title>Edit Image</Modal.Title>
+            <Modal.Title>Edit Video</Modal.Title>
           </Modal.Header>
 
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={values => {
-              update(Object.assign({}, values, { projectId, id: imageId }));
+              update(Object.assign({}, values, { projectId, id: videoId }));
             }}
             enableReinitialize="true"
-            render={({ values, handleSubmit, handleChange, errors, touched, setFieldValue }) => (
+            render={({ values, handleSubmit, handleChange, errors, touched }) => (
               <>
                 <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
                   <Modal.Body>
                     <StateErrorHandler error={error} />
 
-                    <Row style={{ marginBottom: '20px' }}>
-                      <Form.Label column sm="5">
-                        Image *
-                      </Form.Label>
-                      <Col sm="7" className="text-right">
-                        {isUpdated === true ? (
-                          <img
-                            width="100"
-                            alt=""
-                            src={`${process.env.API_URL_IMAGE}/${image.path}`}
-                          />
-                        ) : (
-                          <img
-                            width="100"
-                            alt=""
-                            src={`${process.env.API_URL_IMAGE}/${values.path}`}
-                          />
-                        )}
-                      </Col>
-                    </Row>
-                    <File
-                      label="Upload new Image"
-                      placeholder="Upload new Image"
-                      name="imageFile"
-                      autoComplete="off"
-                      disabled={isFetching}
-                      onChange={event => {
-                        setFieldValue('imageFile', event.currentTarget.files[0]);
-                      }}
-                      isInvalid={touched.imageFile && errors.imageFile}
-                    />
                     <Text
                       label="Title *"
                       placeholder="Title"
@@ -99,15 +66,29 @@ class UpdateImageModal extends React.Component {
                       onChange={handleChange}
                       isInvalid={touched.title && errors.title}
                     />
-                    <Checkbox
-                      labeltext="Main"
-                      label=""
-                      placeholder=""
-                      name="main"
+
+                    <Text
+                      label="URL *"
+                      placeholder="URL"
+                      name="url"
+                      type="text"
+                      autoComplete="off"
                       disabled={isFetching}
-                      value={values.main}
+                      value={values.url}
                       onChange={handleChange}
-                      isInvalid={touched.main && errors.main}
+                      isInvalid={touched.url && errors.url}
+                    />
+
+                    <Text
+                      label="Source"
+                      placeholder="Source"
+                      name="source"
+                      type="text"
+                      autoComplete="off"
+                      disabled={isFetching}
+                      value={values.source}
+                      onChange={handleChange}
+                      isInvalid={touched.source && errors.source}
                     />
                     <Checkbox
                       labeltext="Published"
@@ -118,16 +99,6 @@ class UpdateImageModal extends React.Component {
                       value={values.published}
                       onChange={handleChange}
                       isInvalid={touched.published && errors.published}
-                    />
-                    <Checkbox
-                      labeltext="Cover Page"
-                      label=""
-                      placeholder=""
-                      name="coverPage"
-                      disabled={isFetching}
-                      value={values.coverPage}
-                      onChange={handleChange}
-                      isInvalid={touched.coverPage && errors.coverPage}
                     />
                   </Modal.Body>
                   <Modal.Footer>
@@ -149,15 +120,15 @@ class UpdateImageModal extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { updateImage } = state.project;
-  const { isFetching, success, error, successClear, image } = updateImage;
+  const { updateVideo } = state.project;
+  const { isFetching, success, error, successClear, video } = updateVideo;
 
   return {
     isFetching,
     isUpdated: success,
     successClear,
     error,
-    image,
+    video,
   };
 };
 
@@ -171,4 +142,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UpdateImageModal);
+)(UpdateVideoModal);

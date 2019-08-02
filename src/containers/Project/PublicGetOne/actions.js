@@ -1,10 +1,16 @@
-import { PROJECT_PUBLIC_GET_ONE_REQUEST } from './types';
+import { PROJECT_PUBLIC_GET_ONE_REQUEST, PROJECT_PUBLIC_GET_ONE_CLEAR } from './types';
 
-const getOneAction = values => {
+const clearAction = () => {
+  return {
+    type: PROJECT_PUBLIC_GET_ONE_CLEAR,
+  };
+};
+
+const getPublicOneAction = values => {
   return {
     type: PROJECT_PUBLIC_GET_ONE_REQUEST,
     values,
   };
 };
 
-export default getOneAction;
+export { getPublicOneAction, clearAction };

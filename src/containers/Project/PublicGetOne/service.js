@@ -5,8 +5,8 @@ import { UnauthorizedError, TooManyRequestsError } from '@utils/Error';
 import { ProjectNotFoundError } from '../_Error';
 
 const api = async values => {
-  const { id } = values;
-  const API_URL = `${process.env.API_URL}/public/projects/${id}`;
+  const { slug } = values;
+  const API_URL = `${process.env.API_URL}/public/projects/${slug}`;
 
   try {
     const response = await axios.get(API_URL);

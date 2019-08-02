@@ -183,7 +183,7 @@ class ClientProfileForm extends Component {
                   text="Format: C\ Rocafort 66 2-3 08014, Barcelona. España"
                 />
                 <Textarea
-                  label="Description"
+                  label="Description *"
                   placeholder="Description"
                   name="description"
                   autoComplete="off"
