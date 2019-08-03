@@ -17,6 +17,11 @@ const ContentStyled = styled.div`
   z-index: 1;
   &.bg-primary {
     li {
+      &.disabled {
+        &:before {
+          color: #fff !important;
+        }
+      }
       a {
         color: #fff !important;
       }

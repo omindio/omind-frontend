@@ -10,19 +10,17 @@ import { Text, Checkbox, File } from '@components/common/Field';
 
 class UpdateImageModal extends React.Component {
   componentDidUpdate() {
-    const { isUpdated, fetchProject, projectId, clear } = this.props;
+    const { isUpdated, fetchProject, projectId } = this.props;
     if (isUpdated) {
       fetchProject({ id: projectId });
-      clear();
+      // clear();
     }
   }
 
-  /*
   componentWillUnmount() {
     const { clear } = this.props;
     clear();
   }
-  */
 
   render() {
     const {
@@ -150,12 +148,11 @@ class UpdateImageModal extends React.Component {
 
 const mapStateToProps = state => {
   const { updateImage } = state.project;
-  const { isFetching, success, error, successClear, image } = updateImage;
+  const { isFetching, success, error, image } = updateImage;
 
   return {
     isFetching,
     isUpdated: success,
-    successClear,
     error,
     image,
   };

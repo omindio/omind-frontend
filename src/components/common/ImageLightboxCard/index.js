@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import { Image } from 'react-bootstrap';
 import { MediaQueries } from '@utils/Styles';
 
+// background: #fffa94;
 const CardProyect = styled.div`
-  background: #fffa94;
+
   ${MediaQueries.xs`flex-basis: 100%;`}
   ${MediaQueries.sm`flex-basis: 100%;`}
   ${MediaQueries.md`flex-basis: 50%;`}

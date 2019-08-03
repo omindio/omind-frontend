@@ -10,19 +10,17 @@ import { Text, Checkbox } from '@components/common/Field';
 
 class UpdateVideoModal extends React.Component {
   componentDidUpdate() {
-    const { isUpdated, fetchProject, projectId, clear } = this.props;
+    const { isUpdated, fetchProject, projectId } = this.props;
     if (isUpdated) {
       fetchProject({ id: projectId });
-      clear();
+      // clear();
     }
   }
 
-  /*
   componentWillUnmount() {
     const { clear } = this.props;
     clear();
   }
-  */
 
   render() {
     const {

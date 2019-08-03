@@ -15,6 +15,7 @@ import UserVerification from './UserVerification';
 import BankAccountForm from './BankAccountForm';
 import * as ProjectForm from './ProjectForm';
 import IdTooltip from './IdTooltip';
+import YoutubeVideoCard from './YoutubeVideoCard';
 
 export {
   Header,
@@ -34,4 +35,5 @@ export {
   BankAccountForm,
   ProjectForm,
   IdTooltip,
+  YoutubeVideoCard,
 };
