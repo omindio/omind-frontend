@@ -17,7 +17,7 @@ const ProjectsAdd = () => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>Add Project</title>
+        <title>Add. Projects</title>
       </Helmet>
 
       <Header.Protected />

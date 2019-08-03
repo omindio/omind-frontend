@@ -18,7 +18,7 @@ const initialState = {
     startedDate: '',
     finishedDate: '',
     published: false,
-    status: '',
+    status: '1',
     images: [],
     tags: [],
     slug: '',

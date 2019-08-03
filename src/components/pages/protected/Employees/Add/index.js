@@ -17,7 +17,7 @@ const EmployeesAdd = () => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>Add Employee</title>
+        <title>Add. Employees</title>
       </Helmet>
 
       <Header.Protected />
