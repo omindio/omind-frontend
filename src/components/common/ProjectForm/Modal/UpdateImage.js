@@ -13,7 +13,6 @@ class UpdateImageModal extends React.Component {
     const { isUpdated, fetchProject, projectId } = this.props;
     if (isUpdated) {
       fetchProject({ id: projectId });
-      // clear();
     }
   }
 
