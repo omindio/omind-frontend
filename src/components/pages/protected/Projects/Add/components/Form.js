@@ -11,7 +11,7 @@ const AddForm = ({ create, error, isFetching, isCreated, project, clear }) => {
   return (
     <React.Fragment>
       <Alert show={isCreated} key={0} variant="success">
-        Employee added successfully. &nbsp;&nbsp;
+        Project added successfully. &nbsp;&nbsp;
         <LinkContainer to={`/projects/edit/${project.id}`}>
           <Button variant="primary" size="sm">
             Edit
