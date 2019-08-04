@@ -34,7 +34,7 @@ const NavDropdown = styled(NavDropdownBootstrap)`
     font-size: 1rem;
     color: #fff;
     &:hover {
-      color: #0f1111 !important;
+      color: #ffffff !important;
     }
   }
   .dropdown-menu {
@@ -48,6 +48,9 @@ const NavDropdown = styled(NavDropdownBootstrap)`
       &:active {
         background: transparent;
         font-weight: 600;
+      }
+      &:hover {
+        color: #0f1111 !important;
       }
     }
   }
