@@ -65,7 +65,7 @@ class Nav extends Component {
   handleScroll() {
     const windowsScrollTop = window.pageYOffset;
 
-    if (windowsScrollTop > 150) {
+    if (windowsScrollTop > 25) {
       this.setState({ className: 'sticky bg-primary', sticky: true });
     } else {
       this.setState({ className: 'bg-transparent', sticky: false });
