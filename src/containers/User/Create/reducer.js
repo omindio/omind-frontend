@@ -9,6 +9,7 @@ const initialState = {
   isFetching: false,
   success: false,
   error: {},
+  showSuccessAlert: false,
   user: {
     name: '',
     lastName: '',
@@ -25,6 +26,7 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         error: {},
         isFetching: true,
+        showSuccessAlert: false,
         user: Object.assign({}, state.user, action.values),
       });
     case USER_CREATE_SUCCESS: {
@@ -32,6 +34,8 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         error: {},
         isFetching: false,
+        showSuccessAlert: true,
+
         success: true,
         user: Object.assign({}, state.user, response, response.user),
       });
@@ -40,6 +44,7 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         isFetching: false,
         success: false,
+        showSuccessAlert: false,
         error: action.response,
       });
     case USER_CREATE_CLEAR:

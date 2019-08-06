@@ -32,6 +32,7 @@ class TableItems extends Component {
     const { isDeleted, fetch, limit, currentPage, clear } = this.props;
 
     if (isDeleted) {
+      this.handleCloseModal();
       fetch({ page: currentPage, limit });
       clear();
     }
@@ -41,7 +42,6 @@ class TableItems extends Component {
     const { deleteProject } = this.props;
     const { projectID } = this.state;
     deleteProject(projectID);
-    this.handleCloseModal();
   }
 
   handleCloseModal() {
@@ -130,11 +130,11 @@ class TableItems extends Component {
             <strong>{projectName}</strong>?
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="link" onClick={this.handleCloseModal}>
+            <Button disabled={isFetching} variant="link" onClick={this.handleCloseModal}>
               No
             </Button>
-            <Button variant="danger" onClick={this.handleDelete}>
-              Yes
+            <Button disabled={isFetching} variant="danger" onClick={this.handleDelete}>
+              {isFetching ? 'Wait...' : 'Yes'}
             </Button>
           </Modal.Footer>
         </Modal>

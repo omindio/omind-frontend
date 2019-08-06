@@ -11,16 +11,17 @@ import { StateErrorHandler } from '@utils/ErrorHandler';
 // import Field from './Field';
 
 class AddForm extends Component {
-  componentWillUnmount() {
-    const { clear } = this.props;
-    clear();
+  componentDidUpdate() {
+    const { clear, isCreated } = this.props;
+    if (isCreated) clear();
   }
 
   render() {
-    const { create, hasError, isFetching, isCreated, user } = this.props;
+    const { create, hasError, isFetching, showSuccessAlert, user } = this.props;
     return (
       <Formik
         initialValues={user}
+        // enableReinitialize="true"
         validationSchema={validationSchema}
         onSubmit={values => {
           create(values);
@@ -29,7 +30,7 @@ class AddForm extends Component {
           <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
             {hasError && <StateErrorHandler error={hasError} />}
 
-            <Alert show={isCreated} key={0} variant="success">
+            <Alert show={showSuccessAlert} key={0} variant="success">
               User added successfully.
               <br />
               Verifcation token:&nbsp;
@@ -118,13 +119,14 @@ class AddForm extends Component {
 
 const mapStateToProps = state => {
   const { create } = state.user;
-  const { isFetching, success, error } = create;
+  const { user, isFetching, success, error, showSuccessAlert } = create;
 
   return {
     isFetching,
     isCreated: success,
     hasError: error,
-    user: create.user,
+    user,
+    showSuccessAlert,
   };
 };
 

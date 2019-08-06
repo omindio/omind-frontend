@@ -6,15 +6,16 @@ import { actions } from '@containers/Project/DeleteImage';
 
 class DeleteImageModal extends React.Component {
   componentDidUpdate() {
-    const { isDeleted, clear, fetchProject, projectId } = this.props;
+    const { isDeleted, clear, fetchProject, projectId, closeModal } = this.props;
     if (isDeleted) {
       fetchProject({ id: projectId });
       clear();
+      closeModal();
     }
   }
 
   render() {
-    const { show, closeModal, deleteImage, projectId, imageId } = this.props;
+    const { show, closeModal, deleteImage, projectId, imageId, isFetching } = this.props;
     return (
       <>
         <Modal show={show} onHide={() => closeModal()}>
@@ -23,17 +24,17 @@ class DeleteImageModal extends React.Component {
           </Modal.Header>
           <Modal.Body>Are you sure to delete image?</Modal.Body>
           <Modal.Footer>
-            <Button variant="link" onClick={() => closeModal()}>
+            <Button disabled={isFetching} variant="link" onClick={() => closeModal()}>
               No
             </Button>
             <Button
+              disabled={isFetching}
               variant="danger"
               onClick={() => {
                 deleteImage(projectId, imageId);
-                closeModal();
               }}
             >
-              Yes
+              {isFetching ? 'Wait...' : 'Yes'}
             </Button>
           </Modal.Footer>
         </Modal>
@@ -48,6 +49,7 @@ const mapStateToProps = state => {
   return {
     showSuccessAlert: deleteImage.showSuccessAlert,
     isDeleted: deleteImage.success,
+    isFetching: deleteImage.isFetching,
   };
 };
 

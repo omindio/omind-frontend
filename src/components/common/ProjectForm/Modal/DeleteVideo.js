@@ -6,15 +6,16 @@ import { actions } from '@containers/Project/DeleteVideo';
 
 class DeleteVideoModal extends React.Component {
   componentDidUpdate() {
-    const { isDeleted, clear, fetchProject, projectId } = this.props;
+    const { isDeleted, clear, fetchProject, projectId, closeModal } = this.props;
     if (isDeleted) {
       fetchProject({ id: projectId });
       clear();
+      closeModal();
     }
   }
 
   render() {
-    const { show, closeModal, deleteVideo, projectId, videoId } = this.props;
+    const { show, closeModal, deleteVideo, projectId, videoId, isFetching } = this.props;
     return (
       <>
         <Modal show={show} onHide={() => closeModal()}>
@@ -23,17 +24,17 @@ class DeleteVideoModal extends React.Component {
           </Modal.Header>
           <Modal.Body>Are you sure to delete video?</Modal.Body>
           <Modal.Footer>
-            <Button variant="link" onClick={() => closeModal()}>
+            <Button disabled={isFetching} variant="link" onClick={() => closeModal()}>
               No
             </Button>
             <Button
               variant="danger"
+              disabled={isFetching}
               onClick={() => {
                 deleteVideo(projectId, videoId);
-                closeModal();
               }}
             >
-              Yes
+              {isFetching ? 'Wait...' : 'Yes'}
             </Button>
           </Modal.Footer>
         </Modal>
@@ -48,6 +49,7 @@ const mapStateToProps = state => {
   return {
     showSuccessAlert: deleteVideo.showSuccessAlert,
     isDeleted: deleteVideo.success,
+    isFetching: deleteVideo.isFetching,
   };
 };
 
