@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { logger } from 'redux-logger';
 import { persistStore } from 'redux-persist';
 
 import { middleware as AuthMiddleware } from '@utils/Auth';
@@ -8,8 +7,19 @@ import { middleware as AuthMiddleware } from '@utils/Auth';
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 
+const reduxLoger = process.env.NODE_ENV === 'development' ? require('redux-logger') : '';
+
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(rootReducer, applyMiddleware(AuthMiddleware, sagaMiddleware, logger));
+
+const middlewares = [sagaMiddleware, AuthMiddleware];
+
+if (reduxLoger) {
+  // const { logger } = require('redux-logger');
+
+  middlewares.push(reduxLoger.logger);
+}
+
+const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
 sagaMiddleware.run(rootSaga);
 
