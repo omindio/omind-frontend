@@ -31,7 +31,7 @@ class CreateImageModal extends React.Component {
       isFetching,
       create,
       error,
-      successClear,
+      showSuccessAlert,
     } = this.props;
     return (
       <>
@@ -52,7 +52,7 @@ class CreateImageModal extends React.Component {
                 <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
                   <Modal.Body>
                     <StateErrorHandler error={error} />
-                    <Alert show={successClear} key={0} variant="success">
+                    <Alert show={showSuccessAlert} key={0} variant="success">
                       Image created successfully.
                     </Alert>
                     <File
@@ -128,12 +128,12 @@ class CreateImageModal extends React.Component {
 
 const mapStateToProps = state => {
   const { createImage } = state.project;
-  const { isFetching, success, error, image, successClear } = createImage;
+  const { isFetching, success, error, image, showSuccessAlert } = createImage;
 
   return {
     isFetching,
     isCreated: success,
-    successClear,
+    showSuccessAlert,
     error,
     image,
   };
