@@ -94,6 +94,8 @@ const GalleryContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: stretch;
+  ${MediaQueries.xs`margin-bottom: 40px;`}
+  ${MediaQueries.md`margin-bottom: 80px;`}
 
   @media (min-width: 1920px) {
     max-width: 1920px;
@@ -189,6 +191,8 @@ class Project extends Component {
                     />
                   ),
               )}
+          </GalleryContainer>
+          <GalleryContainer>
             {videos.length > 0 &&
               videos.map(
                 video =>

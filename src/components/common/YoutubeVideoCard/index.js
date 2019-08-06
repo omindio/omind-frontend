@@ -16,7 +16,7 @@ const CardProyect = styled.div`
     ${MediaQueries.xs`height: 350px;`}
     ${MediaQueries.sm`height: 460px;`}
     ${MediaQueries.sm`height: 400px;`}
-    ${MediaQueries.lg`height: 100%;`}
+    ${MediaQueries.lg`height: 500px;`}
 
   }
 `;

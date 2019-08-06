@@ -14,8 +14,6 @@ const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware, AuthMiddleware];
 
 if (reduxLoger) {
-  // const { logger } = require('redux-logger');
-
   middlewares.push(reduxLoger.logger);
 }
 
