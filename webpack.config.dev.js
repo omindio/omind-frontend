@@ -75,6 +75,10 @@ module.exports = () => {
             },
           ],
         },
+        {
+          test: /\.xml$/i,
+          use: 'raw-loader',
+        },
       ],
     },
     optimization: {

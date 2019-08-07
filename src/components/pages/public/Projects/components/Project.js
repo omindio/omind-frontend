@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 
 import styled from 'styled-components';
 import { Container, Row, Col } from 'react-bootstrap';
-import { MediaQueries } from '@utils/Styles';
+import { MediaQueries, Keyframes } from '@utils/Styles';
 
 import { actions } from '@containers/Project/PublicGetOne';
 
@@ -19,10 +19,15 @@ const HeaderSection = styled.section`
   background-size: cover;
 
   &::before {
+    animation: ${Keyframes.fadeIn} ease-in 1;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+
     content: '';
     height: 100vh;
     width: 100%;
     position: absolute;
+    background-size: cover;
     z-index: 0;
     background: rgba(255, 250, 148, 0.79);
     left: 0;

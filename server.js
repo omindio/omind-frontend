@@ -22,6 +22,11 @@ app.get('*.js', function(req, res, next) {
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/sitemap.xml', function(req, res) {
+  res.contentType('application/xml');
+  res.sendFile('sitemap.xml', { root: __dirname });
+});
+
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
