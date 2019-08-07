@@ -10,7 +10,7 @@ import { actions, validationSchema } from '@containers/Contact';
 
 import { Container, Alert, Row, Col, Form, Button as ButtonBootsrap } from 'react-bootstrap';
 import { Header, Footer, ButtonNav } from '@components/common';
-import { MediaQueries } from '@utils/Styles';
+import { MediaQueries, sizes } from '@utils/Styles';
 import { StateErrorHandler } from '@utils/ErrorHandler';
 
 const HeaderSection = styled.section`
@@ -32,13 +32,22 @@ const HeaderSection = styled.section`
   .row {
     > div {
       &:first-child {
+        ${MediaQueries.xs`padding-left: 15px;`}
         ${MediaQueries.sm`height: 70vh !important;`}
         ${MediaQueries.md`height: 100vh !important;`}
+        @media (max-width: ${sizes.md}px) and (orientation: landscape) {
+          height: 100% !important;
+          padding: 100px 0 100px 15px !important;
+        }
       }
       &:last-child {
         ${MediaQueries.xs`padding-left: 15px; height: 40vh !important;`}
         ${MediaQueries.sm`height: 30vh !important;`}
         ${MediaQueries.md`padding-left: 6rem; height: 100vh !important;`}
+        @media (max-width: ${sizes.md}px) and (orientation: landscape) {
+          padding-bottom: 40px;
+          height: auto !important;
+        }
       }
     }
   }
