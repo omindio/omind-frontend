@@ -56,7 +56,7 @@ const FooterComponent = () => {
                 rel="noopener noreferrer"
                 target="_blank"
                 title="Omind Linkedin"
-                href="https://www.linkedin.com/company/omindbrand/"
+                href="https://www.linkedin.com/company/omind/"
               >
                 <FaLinkedin />
               </a>
@@ -64,7 +64,7 @@ const FooterComponent = () => {
                 rel="noopener noreferrer"
                 target="_blank"
                 title="Omind Instagram"
-                href="https://www.instagram.com/omindbrand/"
+                href="https://www.instagram.com/omind.io/"
               >
                 <FaInstagram />
               </a>
@@ -72,7 +72,7 @@ const FooterComponent = () => {
                 rel="noopener noreferrer"
                 target="_blank"
                 title="Omind Facebook"
-                href="https://www.facebook.com/omindbrand/"
+                href="https://www.facebook.com/omind.io/"
               >
                 <FaFacebook />
               </a>
