@@ -57,8 +57,9 @@ const AboutSection = () => {
           <Col>
             <h1 className="text-primary">Hello,</h1>
             <p>
-              We are a brand which offers full-fledged Techno-creative multimedia products and
-              services as per your needs and flexibility.
+              We are a team of professionals with high experience in Startup ecosystem which offers
+              full-fledged Techno-creative multimedia products and services as per your needs and
+              flexibility.
             </p>
             <p>
               <strong>
