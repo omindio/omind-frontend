@@ -57,7 +57,7 @@ const AboutSection = () => {
           <Col>
             <h1 className="text-primary">Hello,</h1>
             <p>
-              We are a team of professionals with high experience in Startup ecosystem which offers
+              We are a team of professionals highly experienced in startup ecosystem. We offers
               full-fledged Techno-creative multimedia products and services as per your needs and
               flexibility.
             </p>
