@@ -46,7 +46,7 @@ const FooterComponent = () => {
         <Row>
           <Col xs={12} sm={4}>
             <p className="text-left">
-              Copyright © 2019 Omind Brand. &nbsp;&nbsp;
+              © 2019 omind.io &nbsp;&nbsp;
               <NavLink to="/cookies-policy">Cookies Policy.</NavLink>
             </p>
           </Col>
