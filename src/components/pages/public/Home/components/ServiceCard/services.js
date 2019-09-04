@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 const services = [
   {
-    title: 'Strategy & Organization',
+    title: 'Strategy & Organisation',
     description:
       'We work with you and innovate new ways to help your organisation stay ahead in the race.',
   },
