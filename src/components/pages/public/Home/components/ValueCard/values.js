@@ -25,7 +25,7 @@ const values = [
     name: 'Balance',
   },
   {
-    name: 'Responsiblity',
+    name: 'Responsibility',
   },
 ];
 
