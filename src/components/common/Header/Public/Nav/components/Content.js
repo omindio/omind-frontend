@@ -138,8 +138,8 @@ const Content = props => {
                 </NavLink>
                 .
               </li>
-              <li className="title disabled">
-                <NavLink onClick={close} activeClassName="active" to="#">
+              <li className="title">
+                <NavLink onClick={close} activeClassName="active" to="/products">
                   Products
                 </NavLink>
                 .

@@ -7,6 +7,7 @@ import { saga as authSaga } from './Auth';
 import { saga as contactSaga } from './Contact';
 import { saga as bankAccountSaga } from './BankAccount';
 import { saga as projectSaga } from './Project';
+import { saga as productSaga } from './Product';
 
 const getWatchers = sagas => {
   const watchers = [];
@@ -31,6 +32,7 @@ export default function* rootSaga() {
         userSaga,
         clientSaga,
         projectSaga,
+        productSaga,
         employeeSaga,
         bankAccountSaga,
         contactSaga,

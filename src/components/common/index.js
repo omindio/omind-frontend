@@ -14,6 +14,7 @@ import * as Field from './Field';
 import UserVerification from './UserVerification';
 import BankAccountForm from './BankAccountForm';
 import * as ProjectForm from './ProjectForm';
+import * as ProductForm from './ProductForm';
 import IdTooltip from './IdTooltip';
 import YoutubeVideoCard from './YoutubeVideoCard';
 
@@ -34,6 +35,7 @@ export {
   EmployeeProfileForm,
   BankAccountForm,
   ProjectForm,
+  ProductForm,
   IdTooltip,
   YoutubeVideoCard,
 };

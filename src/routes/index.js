@@ -13,6 +13,7 @@ import {
   Dashboard,
   Settings,
   Products,
+  PublicProducts,
   NotFound,
   CookiePolicy,
 } from '@components/pages';
@@ -25,8 +26,8 @@ const AppRoute = () => {
       <Route exact path="/" component={Home} />
       <Route path="/our-work/:slug" component={PublicProjects.Info} />
       <Route path="/our-work" component={PublicProjects.Index} />
-      <Route path="/products/:slug" component={Products.Info} />
-      <Route path="/products" component={Products.Index} />
+      <Route path="/products/:slug" component={PublicProducts.Info} />
+      <Route path="/products" component={PublicProducts.Index} />
       <Route path="/contact" component={Contact} />
       <Route path="/cookies-policy" component={CookiePolicy} />
       <Route path="/login" component={Login} />
@@ -76,6 +77,22 @@ const AppRoute = () => {
       />
       <ProtectedRoute path="/projects/add" allowedRoles={[Role.Admin]} component={Projects.Add} />
       <ProtectedRoute path="/projects" allowedRoles={[Role.Admin]} component={Projects.Todo} />
+
+      <ProtectedRoute
+        path="/manage/products/edit/:id"
+        allowedRoles={[Role.Admin]}
+        component={Products.Edit}
+      />
+      <ProtectedRoute
+        path="/manage/products/add"
+        allowedRoles={[Role.Admin]}
+        component={Products.Add}
+      />
+      <ProtectedRoute
+        path="/manage/products"
+        allowedRoles={[Role.Admin]}
+        component={Products.Todo}
+      />
 
       <Route path="*" component={NotFound} />
     </Switch>

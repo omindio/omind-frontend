@@ -4,11 +4,11 @@ import {
   Contact,
   NotFound,
   Login,
-  Products,
+  Products as PublicProducts,
   CookiePolicy,
 } from './public';
 
-import { Users, Clients, Employees, Projects, Dashboard, Settings } from './protected';
+import { Users, Clients, Employees, Projects, Products, Dashboard, Settings } from './protected';
 
 export {
   Contact,
@@ -23,5 +23,6 @@ export {
   Settings,
   Projects,
   Products,
+  PublicProducts,
   CookiePolicy,
 };

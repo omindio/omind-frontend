@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/opacity.css';
+// import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import 'react-lazy-load-image-component/src/effects/opacity.css';
 
-// import { Image } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { MediaQueries } from '@utils/Styles';
+// import LazyLoad from 'react-lazyload';
 
 const CardProyect = styled.div`
   ${MediaQueries.xs`flex-basis: 100%;`}
@@ -73,13 +74,9 @@ const OverlayCard = props => {
   return (
     <CardProyect>
       {image && (
-        <LazyLoadImage
-          alt={image.title}
-          height="auto"
-          src={`${process.env.API_URL_IMAGE}/${image.path}`}
-          effect="opacity"
-          width="100%"
-        />
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <Image fluid src={`${process.env.API_URL_IMAGE}/${image.path}`} alt={image.title} />
+        </React.Suspense>
       )}
 
       <LinkContainer to={to}>

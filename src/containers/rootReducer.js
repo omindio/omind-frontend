@@ -10,6 +10,7 @@ import { reducer as uiReducer } from './UI';
 import { reducer as ContactReducer } from './Contact';
 import { reducer as BankAccountReducer } from './BankAccount';
 import { reducer as ProjectReducer } from './Project';
+import { reducer as ProductReducer } from './Product';
 
 const appReducer = combineReducers({
   auth: persistReducer({ key: 'auth', storage, whitelist: ['login', 'profile'] }, authReducer),
@@ -19,6 +20,7 @@ const appReducer = combineReducers({
   contact: ContactReducer,
   bankAccount: BankAccountReducer,
   project: ProjectReducer,
+  product: ProductReducer,
   ui: uiReducer,
 });
 

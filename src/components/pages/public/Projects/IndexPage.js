@@ -4,9 +4,10 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Container, Row, Col } from 'react-bootstrap';
 
-import { Header, Footer, ButtonNav } from '@components/common';
+import { Header, Footer, ButtonNav, Loader } from '@components/common';
 
-import { Projects } from './components';
+// import { Projects } from './components';
+const Projects = React.lazy(() => import('./components/Projects'));
 
 const HeaderSection = styled.section`
   overflow: hidden;
@@ -50,7 +51,9 @@ const IndexPage = () => {
 
       <section>
         <CardsContainer>
-          <Projects />
+          <React.Suspense fallback={<Loader />}>
+            <Projects />
+          </React.Suspense>
         </CardsContainer>
       </section>
 

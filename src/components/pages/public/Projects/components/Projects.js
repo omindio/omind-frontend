@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 import { getPublicAllAction } from '@containers/Project/PublicGetAll';
 import { OverlayCard, Loader } from '@components/common';
 import { Container, Row, Col } from 'react-bootstrap';
+// import LazyLoad from 'react-lazyload';
+// import ProjectLoader from './ProjectLoader';
+
+// import { Loader } from '@components/common';
+
+// const OverlayCard = React.lazy(() => import('@components/common/OverlayCard'));
 
 class Projects extends Component {
   componentDidMount() {
@@ -19,6 +25,7 @@ class Projects extends Component {
 
   render() {
     const { projects, isFetching } = this.props;
+
     if (isFetching)
       return (
         <Container>
@@ -32,7 +39,7 @@ class Projects extends Component {
 
     return (
       <React.Fragment>
-        {projects.length > 0 ? (
+        {projects.length > 0 &&
           projects.map(project => (
             <OverlayCard
               key={project.slug}
@@ -40,10 +47,7 @@ class Projects extends Component {
               to={`/our-work/${project.slug}`}
               name={project.name}
             />
-          ))
-        ) : (
-          <div>No results found.</div>
-        )}
+          ))}
       </React.Fragment>
     );
   }

@@ -111,6 +111,12 @@ const PagesNav = props => {
               Projects
             </NavLink>
           </Nav.Item>
+          <Nav.Item>
+            <NavLink className="nav-link" activeClassName="active" to="/manage/products">
+              <MdWork />
+              Products
+            </NavLink>
+          </Nav.Item>
         </>
       )}
 

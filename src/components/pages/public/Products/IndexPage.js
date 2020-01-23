@@ -5,10 +5,10 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 
 import { Row, Col } from 'react-bootstrap';
-import { Header, Footer, ButtonNav, OverlayCard } from '@components/common';
+import { Header, Footer, ButtonNav, Loader } from '@components/common';
 import { MediaQueries } from '@utils/Styles';
 
-import nomadcoworkImg from './images/nomadcowork.jpg';
+const ProductsComponent = React.lazy(() => import('./components/Products'));
 
 const HeaderSection = styled.section`
   overflow: hidden;
@@ -61,12 +61,9 @@ class Products extends Component {
         </HeaderSection>
         <section>
           <CardsContainer>
-            <OverlayCard
-              image={nomadcoworkImg}
-              to="/products/nomad-cowork"
-              title="Nomad Cowork"
-              alt=""
-            />
+            <React.Suspense fallback={<Loader />}>
+              <ProductsComponent />
+            </React.Suspense>
           </CardsContainer>
         </section>
         <ButtonNav exclude="products" />
