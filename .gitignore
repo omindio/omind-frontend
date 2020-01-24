@@ -7,6 +7,7 @@ scripts/flow/*/.flowconfig
 _SpecRunner.html
 __benchmarks__
 build/
+/public
 remote-repo/
 coverage/
 .module-cache
@@ -28,9 +29,3 @@ yarn.lock
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-public
-public/1.app.js
-public/1.app.js.gz
-public/*
-public/app.js
-public/app.js.gz
