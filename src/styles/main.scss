@@ -4,16 +4,13 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 
-@import 'variables';
-@import 'functions';
+@import '_variables';
+@import '_functions';
 
 @import '~bootstrap/scss/reboot';
 @import '~bootstrap/scss/type';
 @import '~bootstrap/scss/images';
 @import '~bootstrap/scss/code';
-/*
-@import '~bootstrap/scss/card';
-*/
 @import '~bootstrap/scss/dropdown';
 @import '~bootstrap/scss/grid';
 @import '~bootstrap/scss/buttons';
