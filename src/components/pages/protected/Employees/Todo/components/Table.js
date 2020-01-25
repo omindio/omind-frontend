@@ -38,7 +38,9 @@ class TableComponent extends Component {
               <th>&nbsp;</th>
             </tr>
           </thead>
-          <tbody>{<TableItems limit={limit} />}</tbody>
+          <tbody>
+            <TableItems limit={limit} />
+          </tbody>
         </Table>
         <Pagination action={getAllAction} currentPage={current} pages={pages} limit={limit} />
       </React.Fragment>

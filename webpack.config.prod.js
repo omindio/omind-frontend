@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -45,7 +46,7 @@ module.exports = () => {
               loader: MiniCssExtractPlugin.loader,
               options: {
                 // only enable hot in development
-                hmr: process.env.NODE_ENV === 'development',
+                hmr: process.env.NODE_ENV === 'production',
                 // if hmr does not work, this is a forceful method.
                 reloadAll: true,
               },
