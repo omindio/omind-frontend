@@ -9,6 +9,7 @@ import { MediaQueries, Keyframes } from '@utils/Styles';
 import { actions } from '@containers/Product/PublicGetOne';
 
 import { ImageLightboxCard, YoutubeVideoCard, Loader } from '@components/common';
+import { FaFacebook, FaInstagram, FaLinkedin, FaInternetExplorer } from 'react-icons/fa';
 
 const HeaderSection = styled.section`
   overflow: hidden;
@@ -139,7 +140,17 @@ class Product extends Component {
         </Container>
       );
 
-    const { images, tags, name, description, videos } = product;
+    const {
+      images,
+      tags,
+      name,
+      description,
+      videos,
+      webUrl,
+      facebookUrl,
+      linkedinUrl,
+      instagramUrl,
+    } = product;
     const coverPageImage = Product.getCoverPageImage(images);
 
     return (
@@ -169,7 +180,31 @@ class Product extends Component {
             <Row>
               <Col>
                 <h2>Description</h2>
-                <p>{description}</p>
+                <p dangerouslySetInnerHTML={{ __html: description }} />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                {webUrl && (
+                  <a target="_blank" rel="noopener noreferrer" href={webUrl}>
+                    <FaInternetExplorer className="icon-social-product" size="2em" />
+                  </a>
+                )}
+                {facebookUrl && (
+                  <a target="_blank" rel="noopener noreferrer" href={facebookUrl}>
+                    <FaFacebook className="icon-social-product" size="2em" />
+                  </a>
+                )}
+                {linkedinUrl && (
+                  <a target="_blank" rel="noopener noreferrer" href={linkedinUrl}>
+                    <FaLinkedin className="icon-social-product" size="2em" />
+                  </a>
+                )}
+                {instagramUrl && (
+                  <a target="_blank" rel="noopener noreferrer" href={instagramUrl}>
+                    <FaInstagram className="icon-social-product" size="2em" />
+                  </a>
+                )}
               </Col>
             </Row>
           </Container>
@@ -222,7 +257,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Product);
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

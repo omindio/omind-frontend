@@ -149,6 +149,51 @@ class ProductInformationForm extends Component {
                     />
                   </>
                 )}
+
+                <Field.Text
+                  label="Web"
+                  placeholder="Web"
+                  name="webUrl"
+                  type="text"
+                  autoComplete="off"
+                  disabled={isFetching}
+                  value={values.webUrl}
+                  onChange={handleChange}
+                  isInvalid={touched.webUrl && errors.webUrl}
+                />
+                <Field.Text
+                  label="Facebook"
+                  placeholder="Facebook"
+                  name="facebookUrl"
+                  type="text"
+                  autoComplete="off"
+                  disabled={isFetching}
+                  value={values.facebookUrl}
+                  onChange={handleChange}
+                  isInvalid={touched.facebookUrl && errors.facebookUrl}
+                />
+                <Field.Text
+                  label="Linkedin"
+                  placeholder="Linkedin"
+                  name="linkedinUrl"
+                  type="text"
+                  autoComplete="off"
+                  disabled={isFetching}
+                  value={values.linkedinUrl}
+                  onChange={handleChange}
+                  isInvalid={touched.linkedinUrl && errors.linkedinUrl}
+                />
+                <Field.Text
+                  label="Instagram"
+                  placeholder="Instagram"
+                  name="instagramUrl"
+                  type="text"
+                  autoComplete="off"
+                  disabled={isFetching}
+                  value={values.instagramUrl}
+                  onChange={handleChange}
+                  isInvalid={touched.instagramUrl && errors.instagramUrl}
+                />
               </Col>
             </Row>
 

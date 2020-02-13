@@ -14,6 +14,7 @@ import {
   MdBusinessCenter,
   MdGroupWork,
   MdWork,
+  MdStar,
 } from 'react-icons/md';
 
 import { Role } from '@utils/Auth';
@@ -113,7 +114,7 @@ const PagesNav = props => {
           </Nav.Item>
           <Nav.Item>
             <NavLink className="nav-link" activeClassName="active" to="/manage/products">
-              <MdWork />
+              <MdStar />
               Products
             </NavLink>
           </Nav.Item>

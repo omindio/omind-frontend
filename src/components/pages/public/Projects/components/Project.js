@@ -170,14 +170,14 @@ class Project extends Component {
               <Col>
                 <h2>{client.companyName}</h2>
                 <p>
-                  <strong>{client.description}</strong>
+                  <strong dangerouslySetInnerHTML={{ __html: client.description }} />
                 </p>
               </Col>
             </Row>
             <Row>
               <Col>
                 <h2>Project Description</h2>
-                <p>{description}</p>
+                <p dangerouslySetInnerHTML={{ __html: description }} />
               </Col>
             </Row>
           </Container>
@@ -230,7 +230,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Project);
+export default connect(mapStateToProps, mapDispatchToProps)(Project);

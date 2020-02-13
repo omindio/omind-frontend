@@ -21,6 +21,10 @@ const initialState = {
     status: '',
     images: [],
     tags: [],
+    webUrl: '',
+    facebookUrl: '',
+    instagramUrl: '',
+    linkedinUrl: '',
     slug: '',
   },
 };

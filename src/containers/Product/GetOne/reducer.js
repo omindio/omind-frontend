@@ -18,6 +18,10 @@ const initialState = {
     videos: [],
     tags: [],
     slug: '',
+    webUrl: '',
+    facebookUrl: '',
+    instagramUrl: '',
+    linkedinUrl: '',
   },
 };
 

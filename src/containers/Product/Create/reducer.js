@@ -21,6 +21,10 @@ const initialState = {
     status: '1',
     images: [],
     tags: [],
+    webUrl: '',
+    facebookUrl: '',
+    instagramUrl: '',
+    linkedinUrl: '',
     slug: '',
   },
 };
@@ -63,6 +67,10 @@ export default function(state = initialState, action) {
           published: false,
           status: '1',
           tags: [],
+          webUrl: '',
+          facebookUrl: '',
+          instagramUrl: '',
+          linkedinUrl: '',
         },
       });
     default:
