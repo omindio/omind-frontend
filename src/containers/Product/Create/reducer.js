@@ -71,6 +71,8 @@ export default function(state = initialState, action) {
           facebookUrl: '',
           instagramUrl: '',
           linkedinUrl: '',
+          youtubeUrl: '',
+          soundcloudUrl: ''
         },
       });
     default:

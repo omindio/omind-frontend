@@ -194,9 +194,30 @@ class ProductInformationForm extends Component {
                   onChange={handleChange}
                   isInvalid={touched.instagramUrl && errors.instagramUrl}
                 />
+                <Field.Text
+                  label="Youtube"
+                  placeholder="Youtube"
+                  name="youtubeUrl"
+                  type="text"
+                  autoComplete="off"
+                  disabled={isFetching}
+                  value={values.youtubeUrl}
+                  onChange={handleChange}
+                  isInvalid={touched.youtubeUrl && errors.youtubeUrl}
+                />
+                <Field.Text
+                  label="Soundcloud"
+                  placeholder="Soundcloud"
+                  name="soundcloudUrl"
+                  type="text"
+                  autoComplete="off"
+                  disabled={isFetching}
+                  value={values.soundcloudUrl}
+                  onChange={handleChange}
+                  isInvalid={touched.soundcloudUrl && errors.soundcloudUrl}
+                />
               </Col>
             </Row>
-
             <Row>
               <Col className="text-right">
                 <Button disabled={isFetching} className="btn text-left" type="submit">

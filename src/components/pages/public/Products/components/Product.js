@@ -9,7 +9,14 @@ import { MediaQueries, Keyframes } from '@utils/Styles';
 import { actions } from '@containers/Product/PublicGetOne';
 
 import { ImageLightboxCard, YoutubeVideoCard, Loader } from '@components/common';
-import { FaFacebook, FaInstagram, FaLinkedin, FaInternetExplorer } from 'react-icons/fa';
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaInternetExplorer,
+  FaYoutube,
+  FaSoundcloud,
+} from 'react-icons/fa';
 
 const HeaderSection = styled.section`
   overflow: hidden;
@@ -150,6 +157,8 @@ class Product extends Component {
       facebookUrl,
       linkedinUrl,
       instagramUrl,
+      youtubeUrl,
+      soundcloudUrl,
     } = product;
     const coverPageImage = Product.getCoverPageImage(images);
 
@@ -203,6 +212,16 @@ class Product extends Component {
                 {instagramUrl && (
                   <a target="_blank" rel="noopener noreferrer" href={instagramUrl}>
                     <FaInstagram className="icon-social-product" size="2em" />
+                  </a>
+                )}
+                {youtubeUrl && (
+                  <a target="_blank" rel="noopener noreferrer" href={youtubeUrl}>
+                    <FaYoutube className="icon-social-product" size="2em" />
+                  </a>
+                )}
+                {soundcloudUrl && (
+                  <a target="_blank" rel="noopener noreferrer" href={soundcloudUrl}>
+                    <FaSoundcloud className="icon-social-product" size="2em" />
                   </a>
                 )}
               </Col>

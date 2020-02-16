@@ -25,6 +25,8 @@ const initialState = {
     facebookUrl: '',
     instagramUrl: '',
     linkedinUrl: '',
+    youtubeUrl: '',
+    soundcloudUrl: '',
     slug: '',
   },
 };
