@@ -46,7 +46,6 @@ const HeaderSection = styled.section`
   h1 {
     margin-bottom: 3rem;
     &:first-letter {
-      text-transform: capitalize;
     }
   }
 `;
